@@ -16,4 +16,8 @@ export class IsdLoginPage implements OnInit {
     this.router.navigate(['/team-member-info']);
   }
 
+  adminpage(){
+    this.router.navigate(['/adminpage']);
+  }
+
 }

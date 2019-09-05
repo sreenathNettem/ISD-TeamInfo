@@ -1,0 +1,46 @@
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title >Adminpage</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size='5'>
+      <ion-list>
+        <ion-list-header>PROJECT</ion-list-header>        
+        <ion-item>
+            <ion-select placeholder= 'projects' (ionChange)="setTeamValues(sProject)"[(ngModel)]="sProject">
+                <ion-select-option [value]="sProject" *ngFor="let sProject of projects">{{sProject.name}} </ion-select-option>
+            </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+    <ion-col size='5'>
+      <ion-list>
+        <ion-list-header>TEAM</ion-list-header>        
+        <ion-item>
+            <ion-select placeholder='teams'  [(ngModel)]="sTeam">
+                <ion-select-option [value]="sTeam" *ngFor="let sTeam of selectedTeams">{{sTeam.name}}</ion-select-option>
+            </ion-select>
+         </ion-item>
+      </ion-list>
+    </ion-col>
+    
+  </ion-row>
+  <ion-list-header color="light">Line Chart</ion-list-header>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
+      <ion-card-title>
+        {{title}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div id="barChart"></div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
