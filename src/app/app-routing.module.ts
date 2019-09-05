@@ -3,7 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'isd-login', pathMatch: 'full' },
-  { path: 'isd-login', loadChildren: './pages/isd-login/isd-login.module#IsdLoginPageModule' },  { path: 'team-member-info', loadChildren: './pages/team-member-info/team-member-info.module#TeamMemberInfoPageModule' }
+  { path: 'isd-login', loadChildren: './pages/isd-login/isd-login.module#IsdLoginPageModule' },  { path: 'team-member-info', loadChildren: './pages/team-member-info/team-member-info.module#TeamMemberInfoPageModule' },
+  { path: 'adminpage', loadChildren: './pages/adminpage/adminpage.module#AdminpagePageModule' }
 
 
 
