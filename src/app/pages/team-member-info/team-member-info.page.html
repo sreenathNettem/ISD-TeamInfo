@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>teamMemberInfo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col size='12' text-center>
+      <img  [src]="defaultImage" alt="Workplace" usemap="#workmap">
+      <map name="workmap">
+        <area shape="rect" coords="100, 100, 120, 120" alt="not good" (click)='onChange()'>
+        <area shape="rect" coords="180, 150, 50, 10" alt="not bad" (click)='onChange1()'>
+        <area shape="rect" coords="240, 200, 20, 10" alt="okay" (click)='onChange2()'>
+        <!-- <area shape="rect" coords="150, 150, 50, 100" alt="good" (click)='onChange3()'>
+        <area shape="rect" coords="200, 200, 50, 100" alt="great" (click)='onChange4()'> -->
+      </map>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='6'>
+      <ion-list>
+        <ion-list-header>PROJECT</ion-list-header>        
+        <ion-item>
+            <ion-select placeholder= 'projects' (ionChange)="setTeamValues(sProject)"[(ngModel)]="sProject">
+                <ion-select-option [value]="sProject" *ngFor="let sProject of projects">{{sProject.name}} </ion-select-option>
+            </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+    <ion-col size='6'>
+      <ion-list>
+        <ion-list-header>TEAM</ion-list-header>        
+        <ion-item>
+            <ion-select placeholder='teams'  [(ngModel)]="sTeam">
+                <ion-select-option [value]="sTeam" *ngFor="let sTeam of selectedTeams">{{sTeam.name}}</ion-select-option>
+            </ion-select>
+         </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <p>COMMENTS</p>
+      <ion-textarea placeholder='Enter your comments here..' rows='4'></ion-textarea>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button>Submit</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

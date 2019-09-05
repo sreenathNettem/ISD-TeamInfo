@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-isd-login',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IsdLoginPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+  teamMemberInfoPage() {
+    this.router.navigate(['/team-member-info']);
   }
 
 }
