@@ -12,7 +12,28 @@ export class TeamMemberInfoPage implements OnInit {
   showImage: boolean = false;
   defaultImage = '../../../assets/imgs/1.png';
   public selectedTeams: any[];
-
+  imgData = [
+    {
+      'coordinate': '74,74,90,90',
+      'image': '../../../assets/imgs/1.png'
+    },
+    {
+      'coordinate': '100, 130, 116, 146',
+      'image': '../../../assets/imgs/2.png'
+    },
+    {
+      'coordinate': '162, 160, 178, 176',
+      'image': '../../../assets/imgs/3.png'
+    },
+    {
+      'coordinate': '220, 130, 246, 146',
+      'image': '../../../assets/imgs/4.png'
+    },
+    {
+      'coordinate': '250, 74, 296, 90',
+      'image': '../../../assets/imgs/5.png'
+    }
+  ]
   public sProject: any;
   public sTeam: any;
   rating: number;
@@ -46,27 +67,9 @@ export class TeamMemberInfoPage implements OnInit {
         this.selectedTeams = this.teams.filter(team => team.project_id === sProject.id);
     }
 
-    onChange() {
-      // alert('"0"');
+    onChange(image) {
       console.log('0 is clicked');
-      this.defaultImage = '../../../assets/imgs/1.png';
-    }
-    onChange1() {
-      // alert('"1"');
-      console.log('1 is clicked');
-      this.defaultImage = '../../../assets/imgs/2.png';
-    }
-    onChange2() {
-      // alert('"2"');
-      console.log('2 is clicked');
-    }
-    onChange3() {
-      // alert('"3"');
-      console.log('3 is clicked');
-    }
-    onChange4() {
-      // alert('"4"');
-      console.log('4 is clicked');
+      this.defaultImage = image;
     }
 
 }
