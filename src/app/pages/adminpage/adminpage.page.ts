@@ -1,112 +1,121 @@
-import { Component, OnInit } from '@angular/core';
+import { TEMPERATURES } from './../shared/temperatures';
+
+import { Component,ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
 import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
+import * as d3Shape from 'd3-shape';
+import * as d3ScaleChromatic from 'd3-scale-chromatic';
 @Component({
   selector: 'app-adminpage',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './adminpage.page.html',
   styleUrls: ['./adminpage.page.scss'],
 })
 export class AdminpagePage implements OnInit {
+    
+  data: any;
 
-
-  barData = [
-    { season: 'S1', viewers: 2500000 },
-    { season: 'S2', viewers: 3800000 },
-    { season: 'S3', viewers: 5000000 },
-    { season: 'S4', viewers: 6900000 },
-    { season: 'S5', viewers: 6900000 },
-    { season: 'S6', viewers: 7500000 },
-    { season: 'S7', viewers: 10000000 },
-    { season: 'S8', viewers: 17000000 }
-  ];
-  title = 'Game of Thrones';
-  subtitle = 'Viewers per season for';
-  width: number;
-  height: number;
-  margin = { top: 20, right: 20, bottom: 30, left: 40 };
-  x: any;
-  y: any;
-  svg: any;
-  g: any;
+    svg: any;
+    margin = {top: 20, right: 80, bottom: 30, left: 50};
+    g: any;
+    width: number;
+    height: number;
+    x;
+    y;
+    z;
+    line;
+  
   public sProject: any;
   public sTeam: any;
   public projects: any[];
   public teams: any[];
   public selectedTeams: any[];
 
-  constructor(private router: Router, private _platform: Platform) {
+  constructor(private router: Router,) {
     this.initializeProject();
     this.initializeTeams();
 
     this.width = 900 - this.margin.left - this.margin.right;
     this.height = 500 - this.margin.top - this.margin.bottom;
 
-
   }
 
 
   ngOnInit() {
-  }
-  ionViewDidEnter() {
-    this.init();
-    this.initAxes();
-    this.drawAxes();
-    this.drawChart();
-  }
+    this.data = TEMPERATURES.map((v) => v.values.map((v) => v.date ))[0];
+        //.reduce((a, b) => a.concat(b), []);
 
-  init() {
-    this.svg = d3.select('#barChart')
-      .append('svg')
-      .attr('width', '100%')
-      .attr('height', '100%')
-      .attr('viewBox', '0 0 900 500');
-    this.g = this.svg.append('g')
-      .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+        this.initChart();
+        this.drawAxis();
+        this.drawPath();
   }
+    
+  private initChart(): void {
+    this.svg = d3.select('svg');
 
-  initAxes() {
-    this.x = d3Scale.scaleBand().rangeRound([0, this.width]).padding(0.1);
-    this.y = d3Scale.scaleLinear().rangeRound([this.height, 0]);
-    this.x.domain(this.barData.map((d) => d.season));
-    this.y.domain([0, d3Array.max(this.barData, (d) => d.viewers)]);
-  }
+    this.width = this.svg.attr('width') - this.margin.left - this.margin.right;
+    this.height = this.svg.attr('height') - this.margin.top - this.margin.bottom;
 
-  drawAxes() {
+    this.g = this.svg.append('g').attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+
+    this.x = d3Scale.scaleTime().range([0, this.width]);
+    this.y = d3Scale.scaleLinear().range([this.height, 0]);
+    this.z = d3Scale.scaleOrdinal(d3ScaleChromatic.schemeCategory10);
+
+    this.line = d3Shape.line()
+        .curve(d3Shape.curveBasis)
+        .x( (d: any) => this.x(d.date) )
+        .y( (d: any) => this.y(d.temperature) );
+
+    this.x.domain(d3Array.extent(this.data, (d: Date) => d ));
+
+    this.y.domain([
+        d3Array.min(TEMPERATURES, function(c) { return d3Array.min(c.values, function(d) { return d.temperature; }); }),
+        d3Array.max(TEMPERATURES, function(c) { return d3Array.max(c.values, function(d) { return d.temperature; }); })
+    ]);
+
+    this.z.domain(TEMPERATURES.map(function(c) { return c.id; }));
+}
+
+private drawAxis(): void {
     this.g.append('g')
-      .attr('class', 'axis axis--x')
-      .attr('transform', 'translate(0,' + this.height + ')')
-      .call(d3Axis.axisBottom(this.x))
-      .attr('font-size', '30');
-    this.g.append('g')
-      .attr('class', 'axis axis--y')
-      .call(d3Axis.axisLeft(this.y))
-      .append('text')
-      .attr('class', 'axis-title')
-      .attr('transform', 'rotate(-90)')
-      .attr('y', 6)
-      .attr('dy', '0.71em')
-      .attr('text-anchor', 'end')
-      .attr('fill', 'rgb(34, 167, 240)')
-      .attr('font-size', '50')
-      .text('viewers');
-  }
+        .attr('class', 'axis axis--x')
+        .attr('transform', 'translate(0,' + this.height + ')')
+        .text('Months')
+        .call(d3Axis.axisBottom(this.x));
 
-  drawChart() {
-    this.g.selectAll('.bar')
-      .data(this.barData)
-      .enter()
-      .append('rect')
-      .attr('class', 'bar')
-      .attr('fill', 'rgb(34, 167, 240)')
-      .attr('x', (d) => this.x(d.season))
-      .attr('y', (d) => this.y(d.viewers))
-      .attr('width', this.x.bandwidth())
-      .attr('height', (d) => this.height - this.y(d.viewers));
-  }
+    this.g.append('g')
+        .attr('class', 'axis axis--y')
+        .call(d3Axis.axisLeft(this.y))
+        .append('text')
+        .attr('transform', 'rotate(-90)')
+        .attr('y', 6)
+        .attr('dy', '0.71em')
+        .attr('fill', '#000')
+        .text('Moods');
+}
+
+private drawPath(): void {
+    let city = this.g.selectAll('.city')
+        .data(TEMPERATURES)
+        .enter().append('g')
+        .attr('class', 'city');
+
+    city.append('path')
+        .attr('class', 'line')
+        .attr('d', (d) => this.line(d.values) )
+        .style('stroke', (d) => this.z(d.id) );
+
+    city.append('text')
+        .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
+        .attr('transform', (d) => 'translate(' + this.x(d.value.date) + ',' + this.y(d.value.temperature) + ')' )
+        .attr('x', 3)
+        .attr('dy', '0.35em')
+        .style('font', '10px sans-serif')
+        .text(function(d) { return d.id; });}
 
   initializeProject() {
     this.projects = [
