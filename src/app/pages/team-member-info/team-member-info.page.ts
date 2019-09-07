@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class TeamMemberInfoPage implements OnInit {
   public projects: any[];
   public teams: any[];
-  showImage: boolean = false;
+  showImage = false;
   defaultImage = '../../../assets/imgs/1.png';
   public selectedTeams: any[];
   imgData = [

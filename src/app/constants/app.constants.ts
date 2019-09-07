@@ -4,6 +4,9 @@ export const APP_CONSTANTS = {
   },
   PAGE_NAMES: {
     LOGIN: 'isd-login',
+  },
+  STORAGE_KEYS: {
+    USER: 'user'
   }
 };
 
