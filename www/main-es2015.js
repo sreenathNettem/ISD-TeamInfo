@@ -12,6 +12,10 @@ var map = {
 		"./src/app/pages/adminpage/adminpage.module.ts",
 		"pages-adminpage-adminpage-module"
 	],
+	"./pages/isd-landing/isd-landing.module": [
+		"./src/app/pages/isd-landing/isd-landing.module.ts",
+		"pages-isd-landing-isd-landing-module"
+	],
 	"./pages/isd-login/isd-login.module": [
 		"./src/app/pages/isd-login/isd-login.module.ts",
 		"pages-isd-login-isd-login-module"
@@ -489,7 +493,8 @@ const routes = [
     { path: '', redirectTo: 'isd-login', pathMatch: 'full' },
     { path: 'isd-login', loadChildren: './pages/isd-login/isd-login.module#IsdLoginPageModule' },
     { path: 'team-member-info', loadChildren: './pages/team-member-info/team-member-info.module#TeamMemberInfoPageModule' },
-    { path: 'adminpage', loadChildren: './pages/adminpage/adminpage.module#AdminpagePageModule' }
+    { path: 'adminpage', loadChildren: './pages/adminpage/adminpage.module#AdminpagePageModule' },
+    { path: 'isd-landing', loadChildren: './pages/isd-landing/isd-landing.module#IsdLandingPageModule' }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -532,29 +537,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
+/* harmony import */ var src_app_services_isd_app_data_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/isd-app-data.service */ "./src/app/services/isd-app-data.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
 
 
 
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, splashScreen, statusBar) {
+    constructor(platform, splashScreen, statusBar, appDataService, router) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.appDataService = appDataService;
+        this.router = router;
         this.initializeApp();
     }
     initializeApp() {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
+            this.appDataService.isLoggedIn().subscribe(result => {
+                if (result.isLoggedIn) {
+                    if (result.userDetails.role === 'admin') {
+                        this.router.navigate(['/isd-landing']);
+                    }
+                    else {
+                        this.router.navigate(['/team-member-info']);
+                    }
+                }
+                else {
+                    this.router.navigate(['/isd-login']);
+                }
+                this.splashScreen.hide();
+            });
         });
     }
 };
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
     { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
-    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] }
+    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
+    { type: src_app_services_isd_app_data_service__WEBPACK_IMPORTED_MODULE_5__["IsdAppDataService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] }
 ];
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -564,7 +591,9 @@ AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
         _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
-        _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]])
+        _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"],
+        src_app_services_isd_app_data_service__WEBPACK_IMPORTED_MODULE_5__["IsdAppDataService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]])
 ], AppComponent);
 
 
@@ -594,6 +623,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_isd_app_data_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/isd-app-data.service */ "./src/app/services/isd-app-data.service.ts");
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm2015/ionic-storage.js");
 /* harmony import */ var _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/in-app-browser/ngx */ "./node_modules/@ionic-native/in-app-browser/ngx/index.js");
+/* harmony import */ var _interceptors_https_interceptor__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./interceptors/https.interceptor */ "./src/app/interceptors/https.interceptor.ts");
+
 
 
 
@@ -624,7 +655,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
             _services_isd_app_data_service__WEBPACK_IMPORTED_MODULE_10__["IsdAppDataService"],
-            _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_12__["InAppBrowser"]
+            _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_12__["InAppBrowser"],
+            { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HTTP_INTERCEPTORS"], useClass: _interceptors_https_interceptor__WEBPACK_IMPORTED_MODULE_13__["HeaderInterceptor"], multi: true }
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })
@@ -659,6 +691,84 @@ const APP_CONSTANTS = {
 
 /***/ }),
 
+/***/ "./src/app/interceptors/https.interceptor.ts":
+/*!***************************************************!*\
+  !*** ./src/app/interceptors/https.interceptor.ts ***!
+  \***************************************************/
+/*! exports provided: HeaderInterceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeaderInterceptor", function() { return HeaderInterceptor; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _services_isd_app_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/isd-app-data.service */ "./src/app/services/isd-app-data.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _constants_app_constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../constants/app.constants */ "./src/app/constants/app.constants.ts");
+
+
+
+
+
+
+
+
+let HeaderInterceptor = class HeaderInterceptor {
+    constructor(appDataService, router) {
+        this.appDataService = appDataService;
+        this.router = router;
+    }
+    intercept(req, next) {
+        let setHeader;
+        if (req.url.includes('getUserPicture') || req.url.includes('saveUserRating')) {
+            setHeader = {
+                email: this.appDataService.userDetails.email,
+                uid: this.appDataService.userDetails.uid,
+                firstName: this.appDataService.userDetails.firstName,
+                lastName: this.appDataService.userDetails.lastName
+            };
+        }
+        else {
+            setHeader = {
+            // Authorization: 'Bearer ' + this.appDataService.userDetails.token
+            };
+        }
+        const modified = req.clone({
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"](setHeader)
+        });
+        return next.handle(modified).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["tap"])(evt => {
+            if (evt instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpResponse"]) {
+                if (evt.body && evt.body.success !== undefined && evt.body.success === false) {
+                    alert('Your session expired. Please login again');
+                    this.appDataService.logout().subscribe(result => {
+                        this.router.navigate([_constants_app_constants__WEBPACK_IMPORTED_MODULE_7__["APP_CONSTANTS"].PAGE_ROUTES.LOGIN]);
+                    }, (err) => {
+                    });
+                }
+            }
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["catchError"])(err => {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(err);
+        }));
+    }
+};
+HeaderInterceptor.ctorParameters = () => [
+    { type: _services_isd_app_data_service__WEBPACK_IMPORTED_MODULE_4__["IsdAppDataService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] }
+];
+HeaderInterceptor = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_isd_app_data_service__WEBPACK_IMPORTED_MODULE_4__["IsdAppDataService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]])
+], HeaderInterceptor);
+
+
+
+/***/ }),
+
 /***/ "./src/app/services/isd-app-data.service.ts":
 /*!**************************************************!*\
   !*** ./src/app/services/isd-app-data.service.ts ***!
@@ -672,16 +782,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _isd_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./isd-http.service */ "./src/app/services/isd-http.service.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var _constants_app_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants/app.constants */ "./src/app/constants/app.constants.ts");
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm2015/ionic-storage.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/in-app-browser/ngx */ "./node_modules/@ionic-native/in-app-browser/ngx/index.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _profile_details_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./profile-details.service */ "./src/app/services/profile-details.service.ts");
-
-
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _constants_app_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/app.constants */ "./src/app/constants/app.constants.ts");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm2015/ionic-storage.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/in-app-browser/ngx */ "./node_modules/@ionic-native/in-app-browser/ngx/index.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 
 
 
@@ -692,114 +798,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let IsdAppDataService = class IsdAppDataService {
-    constructor(httpService, storage, route, inAppBrowser, profileDetailsService) {
+    constructor(httpService, storage, route, inAppBrowser) {
         this.httpService = httpService;
         this.storage = storage;
         this.route = route;
         this.inAppBrowser = inAppBrowser;
-        this.profileDetailsService = profileDetailsService;
         this.defaultFilterSelection = 'qtr=CQ&revTyp=Transactional';
-        this.noAuthentication = _environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].noAuthentication;
+        this.noAuthentication = _environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].noAuthentication;
         this.filtersChange = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         if (this.noAuthentication) {
-            this.userDetails = _environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].userDetails;
+            this.userDetails = _environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].userDetails;
         }
     }
     getTilesData(queryString) {
         return this.httpService.fetchApiData(`${this.httpService.apiUrls.tiles}${queryString}`);
     }
-    getDonutGraphData(queryString) {
-        return this.httpService.fetchApiData(`${this.httpService.apiUrls.donut}${queryString}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => {
-            const responseData = [];
-            response.forEach(data => {
-                const graphData = {};
-                graphData.label = data.label;
-                graphData.value = data.value;
-                graphData.dataAsOf = data.title['Data as of'];
-                for (let [key, value] of Object.entries(data.comparison)) {
-                    graphData.isNegative = value < 0;
-                    graphData.wtwOrWsrValue = value;
-                    if (key === ' pts wtw') {
-                        graphData.units = ' pts';
-                        graphData.wtwOrWsr = 'wtw';
-                        graphData.showArrow = true;
-                    }
-                    else {
-                        graphData.units = 'M';
-                        graphData.wtwOrWsr = key;
-                        graphData.showArrow = false;
-                        graphData.wtwOrWsrValue = `$${value}`;
-                    }
-                }
-                responseData.push(graphData);
-            });
-            return responseData;
-        }));
-    }
-    getGeoCovGraphsData(queryString) {
-        return this.httpService.fetchApiData(`${this.httpService.apiUrls.geoCov}${queryString}`);
-    }
-    getGeoWsrGraphsData(queryString) {
-        return this.httpService.fetchApiData(`${this.httpService.apiUrls.geoWsr}${queryString}`);
-    }
-    getBuCovGraphsData(queryString) {
-        return this.httpService.fetchApiData(`${this.httpService.apiUrls.buCov}${queryString}`);
-    }
-    getBuWsrGraphsData(queryString) {
-        return this.httpService.fetchApiData(`${this.httpService.apiUrls.buWsr}${queryString}`);
-    }
-    getTransKeyDealsData(queryString) {
-        return this.httpService.fetchApiData(`${this.httpService.apiUrls.transKeyDeals}${queryString}`);
-    }
-    getTransKeyDealsDetailsData(queryString) {
-        return this.httpService.fetchApiData(`${this.httpService.apiUrls.transKeyDealsDetails}${queryString}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => {
-            response.data.forEach(data => {
-                data.currentIndex = 0;
-            });
-            return response;
-        }));
-    }
-    getTransKeyDealsSearch(queryString) {
-        return this.httpService.fetchApiData(`${this.httpService.apiUrls.searchEndPoint}${queryString}`);
-    }
-    buildFilterQuery(filterPrompts) {
-        let queryString = '';
-        filterPrompts.parametersList.forEach(prompts => {
-            if (prompts.model !== '' && prompts.model !== 'All' && prompts.model !== undefined && prompts.model.length !== 0) {
-                queryString += `${prompts.name}=${prompts.model}&`;
-            }
-        });
-        filterPrompts.segments.forEach(prompts => {
-            if (prompts.model !== '' && prompts.model !== 'All' && prompts.model !== undefined && prompts.model.length !== 0) {
-                if (prompts.model === 'Trans. Revenue') {
-                    queryString += `${prompts.name}=Transactional&`;
-                }
-                else {
-                    queryString += `${prompts.name}=${prompts.model}&`;
-                }
-            }
-        });
-        this.defaultFilterSelection = queryString;
-        return queryString;
-    }
-    logout() {
-        return new rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"](observer => {
-            this.storage.set(_constants_app_constants__WEBPACK_IMPORTED_MODULE_5__["APP_CONSTANTS"].STORAGE_KEYS.USER, null);
-            observer.next();
-        });
-    }
     isLoggedIn() {
-        return new rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"](observer => {
-            this.storage.get(_constants_app_constants__WEBPACK_IMPORTED_MODULE_5__["APP_CONSTANTS"].STORAGE_KEYS.USER).then(userDetails => {
+        return new rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"](observer => {
+            this.storage.get(_constants_app_constants__WEBPACK_IMPORTED_MODULE_4__["APP_CONSTANTS"].STORAGE_KEYS.USER).then(userDetails => {
                 if (!this.noAuthentication) {
                     this.userDetails = userDetails;
                 }
-                // alert('loggedin');
-                // alert(userDetails);
-                // if (userDetails) { 
-                // alert(userDetails.email);
-                // }
-                observer.next(userDetails ? true : this.noAuthentication);
+                observer.next({ userDetails: this.userDetails, isLoggedIn: this.userDetails ? true : this.noAuthentication });
             })
                 .catch(err => {
                 observer.error(err);
@@ -807,7 +827,7 @@ let IsdAppDataService = class IsdAppDataService {
         });
     }
     getAuthentication() {
-        return new rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"](observer => {
+        return new rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"](observer => {
             const options = 'hidden=no,toolbar=yes,hidenavigationbuttons=yes,closebuttoncaption=Cancel,closebuttoncolor=#FFFFFF,lefttoright=yes,location=no,hideurlbar=yes,toolbarposition=top,presentationstyle=fullscreen,clearcache=yes,clearsessioncache=yes';
             const browser = this.inAppBrowser.create(this.httpService.w3Url, '_blank', options);
             browser.on('loadstop').subscribe(event => {
@@ -829,9 +849,9 @@ let IsdAppDataService = class IsdAppDataService {
         });
     }
     setUserDetails(userDetails) {
-        return new rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"](observer => {
+        return new rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"](observer => {
             if (userDetails) {
-                this.storage.set(_constants_app_constants__WEBPACK_IMPORTED_MODULE_5__["APP_CONSTANTS"].STORAGE_KEYS.USER, userDetails);
+                this.storage.set(_constants_app_constants__WEBPACK_IMPORTED_MODULE_4__["APP_CONSTANTS"].STORAGE_KEYS.USER, userDetails);
                 this.userDetails = userDetails;
                 observer.next(true);
             }
@@ -844,23 +864,28 @@ let IsdAppDataService = class IsdAppDataService {
         const url = `${this.httpService.apiUrls.getProfile}`;
         return this.httpService.fetchProfileAvatar(url);
     }
-    getProfileDetails() {
-        return this.profileDetailsService.profileDetails[0];
-    }
     isNetWorkAvailable() {
-        return new rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"](observer => {
+        return new rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"](observer => {
             this.httpService.isNetWorkAvailable.subscribe(status => {
                 observer.next(status);
             });
         });
     }
+    logout() {
+        return new rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"](observer => {
+            this.storage.set(_constants_app_constants__WEBPACK_IMPORTED_MODULE_4__["APP_CONSTANTS"].STORAGE_KEYS.USER, null);
+            observer.next();
+        });
+    }
+    saveUserRating(params) {
+        return this.httpService.setData(`${this.httpService.backendUrl}${this.httpService.apiUrls.saveUserRating}`, params);
+    }
 };
 IsdAppDataService.ctorParameters = () => [
     { type: _isd_http_service__WEBPACK_IMPORTED_MODULE_2__["IsdHttpService"] },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_6__["Storage"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
-    { type: _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_8__["InAppBrowser"] },
-    { type: _profile_details_service__WEBPACK_IMPORTED_MODULE_10__["ProfileDetailsService"] }
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_5__["Storage"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
+    { type: _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_7__["InAppBrowser"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
@@ -871,10 +896,9 @@ IsdAppDataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         providedIn: 'root'
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_isd_http_service__WEBPACK_IMPORTED_MODULE_2__["IsdHttpService"],
-        _ionic_storage__WEBPACK_IMPORTED_MODULE_6__["Storage"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"],
-        _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_8__["InAppBrowser"],
-        _profile_details_service__WEBPACK_IMPORTED_MODULE_10__["ProfileDetailsService"]])
+        _ionic_storage__WEBPACK_IMPORTED_MODULE_5__["Storage"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
+        _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_7__["InAppBrowser"]])
 ], IsdAppDataService);
 
 
@@ -908,6 +932,7 @@ let IsdHttpService = class IsdHttpService {
         this.w3Url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendW3Url;
         this.avatarUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendAvatarUrl;
         this.accessHubUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].accessHubUrl;
+        this.backendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl;
         this.apiUrls = {
             tiles: 'execTiles/pmfacts?',
             donut: 'execDonut/pmfacts?',
@@ -918,13 +943,18 @@ let IsdHttpService = class IsdHttpService {
             transKeyDeals: 'transKeydeals/roadmap?',
             transKeyDealsDetails: 'transKeydeals/roadmap?getDetails=Y&',
             searchEndPoint: 'searchOpp/roadmap?qtr=CQ&search=',
-            getProfile: 'getUserPicture'
+            getProfile: 'getUserPicture',
+            saveUserRating: 'saveUserRating'
         };
         this.isNetWorkAvailable = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](true);
     }
     fetchData(url) {
         this.isNetWorkAvailable.next(navigator.onLine);
         return this.http.get(url);
+    }
+    setData(url, params) {
+        this.isNetWorkAvailable.next(navigator.onLine);
+        return this.http.post(url, params);
     }
     fetchApiData(url) {
         return this.fetchData(this.apiUrl + url);
@@ -950,138 +980,6 @@ IsdHttpService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/services/profile-details.service.ts":
-/*!*****************************************************!*\
-  !*** ./src/app/services/profile-details.service.ts ***!
-  \*****************************************************/
-/*! exports provided: ProfileDetailsService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileDetailsService", function() { return ProfileDetailsService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-let ProfileDetailsService = class ProfileDetailsService {
-    constructor() {
-        this.profileDetailsDefault = [
-            {
-                profileName: 'profileBUAllGeos',
-                accessHubDetails: {
-                    USERCATEGORY: 'Business Unit',
-                    USERGLOBALMARKETSUBCATEGORY: null,
-                    USERGEOGRAPHY: ['All'],
-                    USERBUSINESSUNIT: [
-                        'Systems Hardware',
-                        'Systems Software',
-                        'GBS',
-                        'GTS',
-                        'C&DP',
-                        'Security',
-                        'WCE Mktg & Commerce',
-                        'WCE Supply Chain',
-                        'Collaboration Solns',
-                        'Talent Solns',
-                        'Watson Health',
-                        'Watson IoT',
-                        'Watson Education',
-                        'Wtsn Media & Weather',
-                        'Indus Platforms Unit'
-                    ]
-                },
-                parametersList: [
-                    {
-                        parameterName: 'qtr',
-                        label: 'QUARTER',
-                        name: 'qtr',
-                        data: ['CQ', 'NQ'],
-                        multi: false,
-                        showAstrick: false,
-                        close: true,
-                        model: 'CQ',
-                        bindLabel: 'label',
-                        show: true,
-                        showBreadCrumb: true
-                    },
-                    {
-                        parameterName: 'geo',
-                        label: 'Geo',
-                        name: 'geo',
-                        data: ['North America',
-                            'Europe',
-                            'Japan',
-                            'Asia Pacific',
-                            'Greater China Group',
-                            'Latin America',
-                            'MEA'],
-                        multi: true,
-                        showAstrick: false,
-                        displayRole: true,
-                        close: false,
-                        model: [],
-                        clearable: true,
-                        bindLabel: 'id'
-                    },
-                    {
-                        parameterName: 'brand',
-                        label: 'BU',
-                        name: 'brand',
-                        data: ['Systems Hardware',
-                            'Systems Software',
-                            'GBS',
-                            'GTS',
-                            'C&DP',
-                            'Security',
-                            'WCE Mktg & Commerce',
-                            'WCE Supply Chain',
-                            'Collaboration Solns',
-                            'Talent Solns',
-                            'Watson Health',
-                            'Watson IoT',
-                            'Watson Education',
-                            'Wtsn Media & Weather',
-                            'Indus Platforms Unit'],
-                        multi: true,
-                        showAstrick: false,
-                        displayRole: true,
-                        close: false,
-                        model: [],
-                        clearable: true,
-                        bindLabel: 'id'
-                    }
-                ],
-                segments: [
-                    {
-                        parameterName: 'revTyp',
-                        label: 'revTyp',
-                        name: 'revTyp',
-                        data: ['Trans. Revenue', 'Signings', 'Signings-ACV'],
-                        multi: false,
-                        showAstrick: false,
-                        displayRole: true,
-                        close: false,
-                        model: 'Trans. Revenue',
-                        clearable: true,
-                        bindLabel: 'id'
-                    }
-                ]
-            }
-        ];
-    }
-};
-ProfileDetailsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-], ProfileDetailsService);
-
-
-
-/***/ }),
-
 /***/ "./src/environments/environment.ts":
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -1098,20 +996,16 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
     noAuthentication: false,
     backendApiUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/mobile/',
-    backendW3Url: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
+    backendW3Url: 'https://localhost/',
     backendAvatarUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
-    accessHubUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/getAccessHubData',
-    // userDetails: {
-    //   email: 'srnettem@in.ibm.com',
-    //   uid: 'AVPU08744',
-    //   firstName: 'Sreenath',
-    //   lastName: 'Nettem'
-    // },
+    accessHubUrl: 'https://localhost/getAccessHubData',
+    backendUrl: 'https://localhost/',
     userDetails: {
-        email: '',
-        uid: '',
-        firstName: '',
-        lastName: ''
+        email: 'srnettem@in.ibm.com',
+        uid: 'AVPU08744',
+        firstName: 'Sreenath',
+        lastName: 'Nettem',
+        role: 'user'
     },
     production: false
 };
@@ -1160,7 +1054,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\SreenathNettem\Documents\ISD-TeamInfo\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\SreenathNettem\Documents\Task\ISD-TeamInfo\src\main.ts */"./src/main.ts");
 
 
 /***/ })

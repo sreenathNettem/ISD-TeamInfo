@@ -42,13 +42,7 @@ export class IsdAppDataService {
         if (!this.noAuthentication) {
           this.userDetails = userDetails;
         }
-        // alert('loggedin');
-        // alert(userDetails);
-        // if (userDetails) { 
-        // alert(userDetails.email);
-        // }
-
-        observer.next(userDetails ? true : this.noAuthentication);
+        observer.next({userDetails: this.userDetails, isLoggedIn: this.userDetails ? true : this.noAuthentication});
       })
         .catch(err => {
           observer.error(err);

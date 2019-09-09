@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>teamMemberInfo</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding>\r\n  <ion-row>\r\n    <ion-col size='12' text-center>\r\n      <img  [src]=\"defaultImage\" alt=\"Workplace\" usemap=\"#workmap\">\r\n      <map name=\"workmap\">\r\n        <!-- <area shape=\"rect\" coords=\"74,74,90,90\" alt=\"not good\" (click)='onChange()'>\r\n        <area shape=\"rect\" coords=\"100, 130, 116, 146\" alt=\"not bad\" (click)='onChange1()'>\r\n        <area shape=\"rect\" coords=\"162, 160, 178, 176\" alt=\"okay\" (click)='onChange2()'>\r\n        <area shape=\"rect\" coords=\"220, 130, 246, 146\" alt=\"good\" (click)='onChange3()'>\r\n        <area shape=\"rect\" coords=\"250, 74, 296, 90\" alt=\"great\" (click)='onChange4()'> -->\r\n        <area shape=\"rect\" *ngFor= \"let data of imgData\" [coords]= \"data.coordinate\" alt=\"not good\" (click)='onChange(data.image)'>\r\n      </map>\r\n    </ion-col>\r\n  </ion-row>\r\n  <ion-row>\r\n    <ion-col size='6'>\r\n      <ion-list>\r\n        <ion-list-header>PROJECT</ion-list-header>        \r\n        <ion-item>\r\n            <ion-select placeholder= 'projects' (ionChange)=\"setTeamValues(sProject)\"[(ngModel)]=\"sProject\">\r\n                <ion-select-option [value]=\"sProject\" *ngFor=\"let sProject of projects\">{{sProject.name}} </ion-select-option>\r\n            </ion-select>\r\n        </ion-item>\r\n      </ion-list>\r\n    </ion-col>\r\n    <ion-col size='6'>\r\n      <ion-list>\r\n        <ion-list-header>TEAM</ion-list-header>        \r\n        <ion-item>\r\n            <ion-select placeholder='teams'  [(ngModel)]=\"sTeam\">\r\n                <ion-select-option [value]=\"sTeam\" *ngFor=\"let sTeam of selectedTeams\">{{sTeam.name}}</ion-select-option>\r\n            </ion-select>\r\n         </ion-item>\r\n      </ion-list>\r\n    </ion-col>\r\n  </ion-row>\r\n  <ion-row>\r\n    <ion-col>\r\n      <p>COMMENTS</p>\r\n      <ion-textarea placeholder='Enter your comments here..' rows='4'></ion-textarea>\r\n    </ion-col>\r\n  </ion-row>\r\n  <ion-row>\r\n    <ion-col>\r\n      <ion-button>Submit</ion-button>\r\n    </ion-col>\r\n  </ion-row>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar >\r\n      <ion-buttons slot=\"start\">\r\n          <ion-back-button></ion-back-button>\r\n      </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content padding>\r\n    <ion-row class=\"ion-margin-top ion-margin-bottom\">\r\n      <ion-col size='12' text-center>How do you feel about?</ion-col>\r\n    </ion-row>\r\n    <ion-row>\r\n      <ion-col size='12' text-center>\r\n        <img  [src]=\"defaultImage\" alt=\"Workplace\" usemap=\"#workmap\">\r\n        <map name=\"workmap\">\r\n          <area shape=\"rect\" *ngFor= \"let data of imgData\" [coords]= \"data.coordinate\" alt=\"not good\" (click)='onChange(data.image)'>\r\n        </map>\r\n      </ion-col>\r\n    </ion-row>\r\n    <ion-row>\r\n        <ion-col size=\"6\">\r\n          <ion-list>\r\n            <ion-item>\r\n                <ion-select placeholder=\"Projects\" (ionChange)=\"setTeamValues(project)\" [(ngModel)]=\"project\" >\r\n                    <ion-select-option [value]=\"project\" *ngFor=\"let project of projects\">{{project.name}} </ion-select-option>\r\n                </ion-select>\r\n            </ion-item>\r\n          </ion-list>\r\n        </ion-col>\r\n        <ion-col size=\"6\">\r\n          <ion-list *ngIf=\"project\">\r\n            <ion-item>\r\n                <ion-select placeholder=\"Teams\" [(ngModel)]=\"sTeam\" >\r\n                    <ion-select-option [value]=\"sTeam\" *ngFor=\"let sTeam of selectedTeams\">{{sTeam.name}}</ion-select-option>\r\n                </ion-select>\r\n             </ion-item>\r\n          </ion-list>\r\n        </ion-col>\r\n      </ion-row>\r\n    <ion-row>\r\n      <ion-col>\r\n        <p>Comments</p>\r\n        <ion-textarea placeholder='Enter your comments here..' rows='4'></ion-textarea>\r\n      </ion-col>\r\n    </ion-row>\r\n    <ion-row>\r\n      <ion-col>\r\n        <ion-button (click)=\"saveUserRating()\">Submit</ion-button>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-content>\r\n  "
 
 /***/ }),
 
@@ -69,7 +69,7 @@ var TeamMemberInfoPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-select {\n  width: 100%;\n  max-width: 100%;\n}\n\nion-textarea {\n  border: 1px solid #ddd;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvdGVhbS1tZW1iZXItaW5mby9DOlxcVXNlcnNcXFNyZWVuYXRoTmV0dGVtXFxEb2N1bWVudHNcXElTRC1UZWFtSW5mby9zcmNcXGFwcFxccGFnZXNcXHRlYW0tbWVtYmVyLWluZm9cXHRlYW0tbWVtYmVyLWluZm8ucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy90ZWFtLW1lbWJlci1pbmZvL3RlYW0tbWVtYmVyLWluZm8ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksV0FBQTtFQUNBLGVBQUE7QUNDSjs7QURDQTtFQUNJLHNCQUFBO0FDRUoiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy90ZWFtLW1lbWJlci1pbmZvL3RlYW0tbWVtYmVyLWluZm8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLXNlbGVjdCB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIG1heC13aWR0aDogMTAwJTtcclxufVxyXG5pb24tdGV4dGFyZWEge1xyXG4gICAgYm9yZGVyOiAxcHggc29saWQgI2RkZDtcclxufSIsImlvbi1zZWxlY3Qge1xuICB3aWR0aDogMTAwJTtcbiAgbWF4LXdpZHRoOiAxMDAlO1xufVxuXG5pb24tdGV4dGFyZWEge1xuICBib3JkZXI6IDFweCBzb2xpZCAjZGRkO1xufSJdfQ== */"
+module.exports = "ion-select {\n  width: 100%;\n  max-width: 100%;\n}\n\nion-textarea {\n  border: 1px solid #ddd;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvdGVhbS1tZW1iZXItaW5mby9DOlxcVXNlcnNcXFNyZWVuYXRoTmV0dGVtXFxEb2N1bWVudHNcXFRhc2tcXElTRC1UZWFtSW5mby9zcmNcXGFwcFxccGFnZXNcXHRlYW0tbWVtYmVyLWluZm9cXHRlYW0tbWVtYmVyLWluZm8ucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy90ZWFtLW1lbWJlci1pbmZvL3RlYW0tbWVtYmVyLWluZm8ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksV0FBQTtFQUNBLGVBQUE7QUNDSjs7QURDQTtFQUNJLHNCQUFBO0FDRUoiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy90ZWFtLW1lbWJlci1pbmZvL3RlYW0tbWVtYmVyLWluZm8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLXNlbGVjdCB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIG1heC13aWR0aDogMTAwJTtcclxufVxyXG5pb24tdGV4dGFyZWEge1xyXG4gICAgYm9yZGVyOiAxcHggc29saWQgI2RkZDtcclxufSIsImlvbi1zZWxlY3Qge1xuICB3aWR0aDogMTAwJTtcbiAgbWF4LXdpZHRoOiAxMDAlO1xufVxuXG5pb24tdGV4dGFyZWEge1xuICBib3JkZXI6IDFweCBzb2xpZCAjZGRkO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -86,36 +86,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_isd_app_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/isd-app-data.service */ "./src/app/services/isd-app-data.service.ts");
+
 
 
 
 var TeamMemberInfoPage = /** @class */ (function () {
-    function TeamMemberInfoPage(router) {
+    function TeamMemberInfoPage(appDataService, router) {
+        this.appDataService = appDataService;
         this.router = router;
         this.showImage = false;
-        this.defaultImage = '../../../assets/imgs/1.png';
+        this.defaultImage = './assets/imgs/5.png';
         this.imgData = [
             {
-                'coordinate': '74,74,90,90',
-                'image': '../../../assets/imgs/1.png'
-            },
-            {
-                'coordinate': '100, 130, 116, 146',
-                'image': '../../../assets/imgs/2.png'
-            },
-            {
-                'coordinate': '162, 160, 178, 176',
-                'image': '../../../assets/imgs/3.png'
+                'coordinate': '250, 74, 296, 90',
+                'image': './assets/imgs/5.png'
             },
             {
                 'coordinate': '220, 130, 246, 146',
-                'image': '../../../assets/imgs/4.png'
+                'image': './assets/imgs/4.png'
             },
             {
-                'coordinate': '250, 74, 296, 90',
-                'image': '../../../assets/imgs/5.png'
+                'coordinate': '162, 160, 178, 176',
+                'image': './assets/imgs/3.png'
+            },
+            {
+                'coordinate': '100, 130, 116, 146',
+                'image': './assets/imgs/2.png'
+            },
+            {
+                'coordinate': '74,74,90,90',
+                'image': './assets/imgs/1.png'
             }
         ];
+        this.userRating = { user_rating: '1', user_project: '2', user_team: '3', user_comment: '4' };
         this.initializeProject();
         this.initializeTeams();
     }
@@ -137,14 +141,19 @@ var TeamMemberInfoPage = /** @class */ (function () {
             { id: 7, name: 'STD Reports', project_id: 2, Project_name: 'Cognos' }
         ];
     };
-    TeamMemberInfoPage.prototype.setTeamValues = function (sProject) {
-        this.selectedTeams = this.teams.filter(function (team) { return team.project_id === sProject.id; });
+    TeamMemberInfoPage.prototype.setTeamValues = function (Project) {
+        this.selectedTeams = this.teams.filter(function (team) { return team.project_id === Project.id; });
     };
     TeamMemberInfoPage.prototype.onChange = function (image) {
-        console.log('0 is clicked');
         this.defaultImage = image;
     };
+    TeamMemberInfoPage.prototype.saveUserRating = function () {
+        this.appDataService.saveUserRating(this.userRating).subscribe(function (response) {
+            console.log(response);
+        });
+    };
     TeamMemberInfoPage.ctorParameters = function () { return [
+        { type: _services_isd_app_data_service__WEBPACK_IMPORTED_MODULE_3__["IsdAppDataService"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
     ]; };
     TeamMemberInfoPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -153,7 +162,7 @@ var TeamMemberInfoPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./team-member-info.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/team-member-info/team-member-info.page.html"),
             styles: [__webpack_require__(/*! ./team-member-info.page.scss */ "./src/app/pages/team-member-info/team-member-info.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_isd_app_data_service__WEBPACK_IMPORTED_MODULE_3__["IsdAppDataService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], TeamMemberInfoPage);
     return TeamMemberInfoPage;
 }());

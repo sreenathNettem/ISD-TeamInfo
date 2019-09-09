@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content>\r\n  <div class=\"login-logo\">\r\n    <img src=\"assets/icon/favicon.png\">\r\n  </div>\r\n  <ion-row>\r\n    <ion-col>\r\n      <ion-button type=\"submit\" expand=\"block\" (click)='login()'>Admin</ion-button>\r\n    </ion-col>\r\n    <ion-col>\r\n      <ion-button color=\"light\" expand=\"block\" (click)='login()'>Team Member</ion-button>\r\n    </ion-col>\r\n  </ion-row>\r\n \r\n</ion-content>"
+module.exports = "<ion-content>\r\n  <div class=\"login-logo\">\r\n    <img src=\"assets/icon/favicon.png\">\r\n  </div>\r\n \r\n      <ion-button color=\"light\" expand=\"block\" (click)='login()'>Login</ion-button>\r\n\r\n \r\n</ion-content>"
 
 /***/ }),
 
@@ -66,7 +66,7 @@ IsdLoginPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".login-logo {\n  padding: 20px 0;\n  min-height: 200px;\n  text-align: center;\n}\n\n.login-logo img {\n  max-width: 150px;\n}\n\n.list {\n  margin-bottom: 0;\n}\n\nion-button {\n  text-transform: capitalize;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvaXNkLWxvZ2luL0M6XFxVc2Vyc1xcU3JlZW5hdGhOZXR0ZW1cXERvY3VtZW50c1xcSVNELVRlYW1JbmZvL3NyY1xcYXBwXFxwYWdlc1xcaXNkLWxvZ2luXFxpc2QtbG9naW4ucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9pc2QtbG9naW4vaXNkLWxvZ2luLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNBLGVBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0FDQ0E7O0FERUE7RUFDQSxnQkFBQTtBQ0NBOztBREVBO0VBQ0EsZ0JBQUE7QUNDQTs7QURDQTtFQUNBLDBCQUFBO0FDRUEiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9pc2QtbG9naW4vaXNkLWxvZ2luLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5sb2dpbi1sb2dvIHtcclxucGFkZGluZzogMjBweCAwO1xyXG5taW4taGVpZ2h0OiAyMDBweDtcclxudGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4ubG9naW4tbG9nbyBpbWcge1xyXG5tYXgtd2lkdGg6IDE1MHB4O1xyXG59XHJcblxyXG4ubGlzdCB7XHJcbm1hcmdpbi1ib3R0b206IDA7XHJcbn1cclxuaW9uLWJ1dHRvbntcclxudGV4dC10cmFuc2Zvcm06IGNhcGl0YWxpemU7XHJcbn1cclxuIiwiLmxvZ2luLWxvZ28ge1xuICBwYWRkaW5nOiAyMHB4IDA7XG4gIG1pbi1oZWlnaHQ6IDIwMHB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5sb2dpbi1sb2dvIGltZyB7XG4gIG1heC13aWR0aDogMTUwcHg7XG59XG5cbi5saXN0IHtcbiAgbWFyZ2luLWJvdHRvbTogMDtcbn1cblxuaW9uLWJ1dHRvbiB7XG4gIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xufSJdfQ== */"
+module.exports = ".login-logo {\n  padding: 20px 0;\n  min-height: 200px;\n  text-align: center;\n}\n\n.login-logo img {\n  max-width: 150px;\n}\n\n.list {\n  margin-bottom: 0;\n}\n\nion-button {\n  text-transform: capitalize;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvaXNkLWxvZ2luL0M6XFxVc2Vyc1xcU3JlZW5hdGhOZXR0ZW1cXERvY3VtZW50c1xcVGFza1xcSVNELVRlYW1JbmZvL3NyY1xcYXBwXFxwYWdlc1xcaXNkLWxvZ2luXFxpc2QtbG9naW4ucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9pc2QtbG9naW4vaXNkLWxvZ2luLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNBLGVBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0FDQ0E7O0FERUE7RUFDQSxnQkFBQTtBQ0NBOztBREVBO0VBQ0EsZ0JBQUE7QUNDQTs7QURDQTtFQUNBLDBCQUFBO0FDRUEiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9pc2QtbG9naW4vaXNkLWxvZ2luLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5sb2dpbi1sb2dvIHtcclxucGFkZGluZzogMjBweCAwO1xyXG5taW4taGVpZ2h0OiAyMDBweDtcclxudGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4ubG9naW4tbG9nbyBpbWcge1xyXG5tYXgtd2lkdGg6IDE1MHB4O1xyXG59XHJcblxyXG4ubGlzdCB7XHJcbm1hcmdpbi1ib3R0b206IDA7XHJcbn1cclxuaW9uLWJ1dHRvbntcclxudGV4dC10cmFuc2Zvcm06IGNhcGl0YWxpemU7XHJcbn1cclxuIiwiLmxvZ2luLWxvZ28ge1xuICBwYWRkaW5nOiAyMHB4IDA7XG4gIG1pbi1oZWlnaHQ6IDIwMHB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5sb2dpbi1sb2dvIGltZyB7XG4gIG1heC13aWR0aDogMTUwcHg7XG59XG5cbi5saXN0IHtcbiAgbWFyZ2luLWJvdHRvbTogMDtcbn1cblxuaW9uLWJ1dHRvbiB7XG4gIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -95,12 +95,6 @@ let IsdLoginPage = class IsdLoginPage {
     }
     ngOnInit() {
     }
-    teamMemberInfoPage() {
-        this.router.navigate(['/team-member-info']);
-    }
-    // adminpage(){
-    //   this.router.navigate(['/adminpage']);
-    // }
     login() {
         this.appDataService.isLoggedIn().subscribe(flag => {
             this.appDataService.getAuthentication().subscribe(userDetails => {
@@ -109,6 +103,12 @@ let IsdLoginPage = class IsdLoginPage {
                     setTimeout(() => {
                         window.location.assign(window.location.host);
                     }, 2000);
+                    if (userDetails.role !== 'admin') {
+                        this.router.navigate(['/team-member-info']);
+                    }
+                    else {
+                        this.router.navigate(['/isd-landing']);
+                    }
                 });
             }, error => {
                 setTimeout(() => {
