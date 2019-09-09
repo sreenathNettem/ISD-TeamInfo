@@ -17,27 +17,29 @@ export class IsdLoginPage implements OnInit {
     this.router.navigate(['/team-member-info']);
   }
 
-  // adminpage(){
-  //   this.router.navigate(['/adminpage']);
-  // }
+  adminpage(){
+    this.router.navigate(['/adminpage']);
+  }
   login() {
-    this.appDataService.isLoggedIn().subscribe(flag => {
-      this.appDataService.getAuthentication().subscribe(userDetails => {
-        this.appDataService.userDetails = userDetails;
-        this.appDataService.setUserDetails(userDetails).subscribe(result => {
-          setTimeout(() => {
-            window.location.assign(window.location.host);
-          }, 2000);
-        });
-      }, error => {
-        setTimeout(() => {
-          window.location.assign(window.location.host);
-        }, 2500);
-      });
-    },
-      error => {
-        alert(error);
-      });
+    this.router.navigate(['/team-member-info']);
+
+    // this.appDataService.isLoggedIn().subscribe(flag => {
+    //   this.appDataService.getAuthentication().subscribe(userDetails => {
+    //     this.appDataService.userDetails = userDetails;
+    //     this.appDataService.setUserDetails(userDetails).subscribe(result => {
+    //       setTimeout(() => {
+    //         window.location.assign(window.location.host);
+    //       }, 2000);
+    //     });
+    //   }, error => {
+    //     setTimeout(() => {
+    //       window.location.assign(window.location.host);
+    //     }, 2500);
+    //   });
+    // },
+    //   error => {
+    //     alert(error);
+    //   });
   }
 
 }

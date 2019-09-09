@@ -7,7 +7,6 @@ import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { environment } from '../../environments/environment';
-import { ProfileDetailsService } from './profile-details.service'
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +21,8 @@ export class IsdAppDataService {
     private httpService: IsdHttpService,
     private storage: Storage,
     private route: Router,
-    private inAppBrowser: InAppBrowser,
-    private profileDetailsService: ProfileDetailsService
-  ) {
+    private inAppBrowser: InAppBrowser
+    ) {
 
     if (this.noAuthentication) {
       this.userDetails = environment.userDetails;
@@ -36,95 +34,6 @@ export class IsdAppDataService {
 
   getTilesData(queryString: string) {
     return this.httpService.fetchApiData(`${this.httpService.apiUrls.tiles}${queryString}`);
-  }
-
-  getDonutGraphData(queryString: string) {
-    return this.httpService.fetchApiData(`${this.httpService.apiUrls.donut}${queryString}`).pipe(map((response: any) => {
-      const responseData: any = [];
-      response.forEach(data => {
-        const graphData: any = {};
-        graphData.label = data.label;
-        graphData.value = data.value;
-        graphData.dataAsOf = data.title['Data as of'];
-        for (let [key, value] of Object.entries(data.comparison)) {
-          graphData.isNegative = value < 0;
-          graphData.wtwOrWsrValue = value;
-          if (key === ' pts wtw') {
-            graphData.units = ' pts';
-            graphData.wtwOrWsr = 'wtw';
-            graphData.showArrow = true;
-          } else {
-            graphData.units = 'M';
-            graphData.wtwOrWsr = key;
-            graphData.showArrow = false;
-            graphData.wtwOrWsrValue = `$${value}`;
-          }
-        }
-        responseData.push(graphData);
-      });
-      return responseData;
-    }));
-  }
-
-  getGeoCovGraphsData(queryString: string) {
-    return this.httpService.fetchApiData(`${this.httpService.apiUrls.geoCov}${queryString}`);
-  }
-
-  getGeoWsrGraphsData(queryString: string) {
-    return this.httpService.fetchApiData(`${this.httpService.apiUrls.geoWsr}${queryString}`);
-  }
-
-  getBuCovGraphsData(queryString: string) {
-    return this.httpService.fetchApiData(`${this.httpService.apiUrls.buCov}${queryString}`);
-  }
-
-  getBuWsrGraphsData(queryString: string) {
-    return this.httpService.fetchApiData(`${this.httpService.apiUrls.buWsr}${queryString}`);
-  }
-
-  getTransKeyDealsData(queryString: string) {
-    return this.httpService.fetchApiData(`${this.httpService.apiUrls.transKeyDeals}${queryString}`);
-  }
-
-  getTransKeyDealsDetailsData(queryString: string) {
-    return this.httpService.fetchApiData(`${this.httpService.apiUrls.transKeyDealsDetails}${queryString}`).pipe(map((response: any) => {
-      response.data.forEach(data => {
-        data.currentIndex = 0;
-      });
-      return response;
-    }));
-  }
-
-  getTransKeyDealsSearch(queryString: string) {
-    return this.httpService.fetchApiData(`${this.httpService.apiUrls.searchEndPoint}${queryString}`);
-  }
-
-  buildFilterQuery(filterPrompts) {
-    let queryString = '';
-    filterPrompts.parametersList.forEach(prompts => {
-      if (prompts.model !== '' && prompts.model !== 'All' && prompts.model !== undefined && prompts.model.length !== 0) {
-        queryString += `${prompts.name}=${prompts.model}&`;
-      }
-    });
-
-    filterPrompts.segments.forEach(prompts => {
-      if (prompts.model !== '' && prompts.model !== 'All' && prompts.model !== undefined && prompts.model.length !== 0) {
-        if (prompts.model === 'Trans. Revenue') {
-          queryString += `${prompts.name}=Transactional&`;
-        } else {
-          queryString += `${prompts.name}=${prompts.model}&`;
-        }
-      }
-    });
-    this.defaultFilterSelection = queryString;
-    return queryString;
-  }
-
-  logout(): Observable<any> {
-    return new Observable<any>(observer => {
-      this.storage.set(APP_CONSTANTS.STORAGE_KEYS.USER, null);
-      observer.next();
-    });
   }
 
   isLoggedIn(): Observable<any> {
@@ -187,10 +96,6 @@ export class IsdAppDataService {
     return this.httpService.fetchProfileAvatar(url);
   }
 
-  getProfileDetails() {
-    return this.profileDetailsService.profileDetails[0];
-  }
-
   isNetWorkAvailable() {
     return new Observable<any>(observer => {
       this.httpService.isNetWorkAvailable.subscribe(status => {
@@ -199,4 +104,14 @@ export class IsdAppDataService {
     });
   }
 
+  logout(): Observable<any> {
+    return new Observable<any>(observer => {
+      this.storage.set(APP_CONSTANTS.STORAGE_KEYS.USER, null);
+      observer.next();
+    });
+  }
+
+  saveUserRating(params) {
+    return this.httpService.setData(`${this.httpService.backendUrl}${this.httpService.apiUrls.saveUserRating}`, params);
+  }
 }

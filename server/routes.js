@@ -211,7 +211,7 @@ module.exports = function (app) {
     });
 
     app.post('/saveUserRating/', function (req, res) {  
-        var user_rating = [req.query.user_id,req.query.user_rating,req.query.user_project,req.query.user_team,req.query.user_comment];
+        var user_rating = [req.headers.email,req.body.user_rating,req.body.user_project,req.body.user_team,req.body.user_comment];
         appStorage.saveUserRating(
             user_rating,
             function (data) {
