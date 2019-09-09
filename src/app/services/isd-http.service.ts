@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Observer } from 'rxjs';
 import { environment } from './../../environments/environment';
 
 
@@ -13,9 +13,10 @@ export class IsdHttpService {
   w3Url = environment.backendW3Url;
   avatarUrl = environment.backendAvatarUrl;
   accessHubUrl = environment.accessHubUrl;
+  backendUrl = environment.backendUrl;
 
   apiUrls = {
-    tiles:  'execTiles/pmfacts?',
+    tiles: 'execTiles/pmfacts?',
     donut: 'execDonut/pmfacts?',
     geoCov: 'execSummary/pmfacts?view=geo&',
     buCov: 'execSummary/pmfacts?view=brand&',
@@ -24,7 +25,8 @@ export class IsdHttpService {
     transKeyDeals: 'transKeydeals/roadmap?',
     transKeyDealsDetails: 'transKeydeals/roadmap?getDetails=Y&',
     searchEndPoint: 'searchOpp/roadmap?qtr=CQ&search=',
-    getProfile: 'getUserPicture'
+    getProfile: 'getUserPicture',
+    saveUserRating: 'saveUserRating'
   };
 
   isNetWorkAvailable = new BehaviorSubject(true);
@@ -34,6 +36,11 @@ export class IsdHttpService {
   fetchData(url: string): Observable<any[]> {
     this.isNetWorkAvailable.next(navigator.onLine);
     return this.http.get<any[]>(url);
+  }
+
+  setData(url: string, params: any): Observable<any> {
+    this.isNetWorkAvailable.next(navigator.onLine);
+    return this.http.post<any>(url, params);
   }
 
   fetchApiData(url: string): Observable<any[]> {

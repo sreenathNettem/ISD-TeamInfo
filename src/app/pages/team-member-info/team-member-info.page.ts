@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { IsdAppDataService } from '../../services/isd-app-data.service';
 @Component({
   selector: 'app-team-member-info',
   templateUrl: './team-member-info.page.html',
@@ -10,34 +10,34 @@ export class TeamMemberInfoPage implements OnInit {
   public projects: any[];
   public teams: any[];
   showImage = false;
-  defaultImage = '../../../assets/imgs/1.png';
+  defaultImage = './assets/imgs/5.png';
   public selectedTeams: any[];
   imgData = [
     {
-      'coordinate': '74,74,90,90',
-      'image': '../../../assets/imgs/1.png'
-    },
-    {
-      'coordinate': '100, 130, 116, 146',
-      'image': '../../../assets/imgs/2.png'
-    },
-    {
-      'coordinate': '162, 160, 178, 176',
-      'image': '../../../assets/imgs/3.png'
+      'coordinate': '250, 74, 296, 90',
+      'image': './assets/imgs/5.png'
     },
     {
       'coordinate': '220, 130, 246, 146',
-      'image': '../../../assets/imgs/4.png'
+      'image': './assets/imgs/4.png'
     },
     {
-      'coordinate': '250, 74, 296, 90',
-      'image': '../../../assets/imgs/5.png'
+      'coordinate': '162, 160, 178, 176',
+      'image': './assets/imgs/3.png'
+    },
+    {
+      'coordinate': '100, 130, 116, 146',
+      'image': './assets/imgs/2.png'
+    },
+    {
+      'coordinate': '74,74,90,90',
+      'image': './assets/imgs/1.png'
     }
-  ]
-  public sProject: any;
+  ];
   public sTeam: any;
   rating: number;
-  constructor(private router: Router) {
+  userRating = {user_rating: '1', user_project: '2', user_team: '3', user_comment: '4'};
+  constructor(private appDataService: IsdAppDataService, private router: Router) {
     this.initializeProject();
     this.initializeTeams();
   }
@@ -63,13 +63,19 @@ export class TeamMemberInfoPage implements OnInit {
     ];
     }
 
-    setTeamValues(sProject) {
-        this.selectedTeams = this.teams.filter(team => team.project_id === sProject.id);
+    setTeamValues(Project) {
+        this.selectedTeams = this.teams.filter(team => team.project_id === Project.id);
     }
 
     onChange(image) {
-      console.log('0 is clicked');
       this.defaultImage = image;
     }
+
+    saveUserRating() {
+      this.appDataService.saveUserRating(this.userRating).subscribe(response => {
+        console.log(response);
+      });
+    }
+
 
 }

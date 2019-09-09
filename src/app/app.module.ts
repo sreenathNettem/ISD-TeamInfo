@@ -8,13 +8,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { IsdAppDataService } from './services/isd-app-data.service';
 
 import { IonicStorageModule } from '@ionic/storage';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { HeaderInterceptor } from './interceptors/https.interceptor';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,7 +30,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     IsdAppDataService,
-    InAppBrowser
+    InAppBrowser,
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
