@@ -8,13 +8,10 @@
       <ion-col size='12' text-center>How do you feel about?</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size='12' text-center>
-        <img  [src]="defaultImage" alt="Workplace" usemap="#workmap">
-        <map name="workmap">
-          <area shape="rect" *ngFor= "let data of imgData" [coords]= "data.coordinate" alt="not good" (click)='onChange(data.image)'>
-        </map>
-      </ion-col>
-    </ion-row>
+    <ion-col size="12" text-center>
+      <img [ngClass]="{'active': !img.isSelected}" *ngFor = "let img of imgData; let i=index" [src] = "img.image" height="100%" width="50" (click) = 'onClick(img)'>
+    </ion-col>
+  </ion-row>
     <ion-row>
         <ion-col size="6">
           <ion-list>
@@ -28,23 +25,23 @@
         <ion-col size="6">
           <ion-list *ngIf="project">
             <ion-item>
-                <ion-select placeholder="Teams" [(ngModel)]="sTeam" >
+                <ion-select placeholder="Teams" (ionChange)="TeamId(sTeam)" [(ngModel)]="sTeam">
                     <ion-select-option [value]="sTeam" *ngFor="let sTeam of selectedTeams">{{sTeam.name}}</ion-select-option>
                 </ion-select>
              </ion-item>
-          </ion-list>
+            </ion-list>
         </ion-col>
       </ion-row>
     <ion-row>
       <ion-col>
         <p>Comments</p>
-        <ion-textarea placeholder='Enter your comments here..' rows='4'></ion-textarea>
+        <ion-textarea placeholder='Enter your comments here..' rows='4' [(ngModel)] = "userRating.user_comment"></ion-textarea>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button (click)="saveUserRating()">Submit</ion-button>
+        <ion-button [disabled]="!project || !sTeam" (click)="saveUserRating()">Submit</ion-button>
       </ion-col>
     </ion-row>
-  </ion-content>
   
+  </ion-content>

@@ -15,7 +15,7 @@ module.exports = {
   // DashDB connection options
   dashdb: {
     dsn: 
-    'DATABASE=SKYLINE;HOSTNAME=0.0.0.0;PORT=50000;PROTOCOL=TCPIP;UID=db2inst1;PWD=skyl1ne;',
+    'DATABASE=SKYLINE;HOSTNAME=192.168.99.100;PORT=50000;PROTOCOL=TCPIP;UID=db2inst1;PWD=skyl1ne;',
     schema: 'SMS_APP_WEB'
   },
 
