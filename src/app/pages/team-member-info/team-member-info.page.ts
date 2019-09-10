@@ -11,7 +11,6 @@ export class TeamMemberInfoPage implements OnInit {
   public projects: any[];
   public teams: any[];
   showImage = false;
-  defaultRatingNum = '5';
   sTeam: any;
   project: any;
   defaultImage = './assets/imgs/5.png';
@@ -56,7 +55,7 @@ export class TeamMemberInfoPage implements OnInit {
    ) {
     this.initializeProject();
     this.initializeTeams();
-    this.userRating.user_rating = this.defaultRatingNum;
+    this.userRating.user_rating = this.imgData[0].ratingNum;
   }
 
   ngOnInit() {
@@ -88,7 +87,6 @@ export class TeamMemberInfoPage implements OnInit {
       this.userRating.user_team = Team.id;
     }
     onClick(imgData) {
-      this.defaultRatingNum = imgData.ratingNum;
       this.userRating.user_rating = imgData.ratingNum;
       console.log(imgData.ratingNum);
       this.imgData.forEach(page => {
