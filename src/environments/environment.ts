@@ -2,17 +2,18 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
-  noAuthentication: true,
+  noAuthentication: false,
   backendApiUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/mobile/',
-  backendW3Url: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
+  backendW3Url: 'https://localhost/',
   backendAvatarUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
-  accessHubUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/getAccessHubData',
+  accessHubUrl: 'https://localhost/getAccessHubData',
   backendUrl: 'https://localhost/',
   userDetails: {
     email: 'srnettem@in.ibm.com',
     uid: 'AVPU08744',
     firstName: 'Sreenath',
-    lastName: 'Nettem'
+    lastName: 'Nettem',
+    role: 'user'
   },
   production: false
 };

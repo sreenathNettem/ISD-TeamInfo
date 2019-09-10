@@ -78,6 +78,7 @@ module.exports = function (app) {
             uid: req.user._json.uid,
             firstName: req.user._json.firstName,
             lastName: req.user._json.lastName,
+            role: 'admin'
         };
         console.log(req.user);
         res.send(JSON.stringify(userDetails));

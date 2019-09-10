@@ -13,33 +13,30 @@ export class IsdLoginPage implements OnInit {
 
   ngOnInit() {
   }
-  teamMemberInfoPage() {
-    this.router.navigate(['/team-member-info']);
-  }
-
-  adminpage(){
-    this.router.navigate(['/adminpage']);
-  }
+ 
   login() {
-    this.router.navigate(['/team-member-info']);
-
-    // this.appDataService.isLoggedIn().subscribe(flag => {
-    //   this.appDataService.getAuthentication().subscribe(userDetails => {
-    //     this.appDataService.userDetails = userDetails;
-    //     this.appDataService.setUserDetails(userDetails).subscribe(result => {
-    //       setTimeout(() => {
-    //         window.location.assign(window.location.host);
-    //       }, 2000);
-    //     });
-    //   }, error => {
-    //     setTimeout(() => {
-    //       window.location.assign(window.location.host);
-    //     }, 2500);
-    //   });
-    // },
-    //   error => {
-    //     alert(error);
-    //   });
+    this.appDataService.isLoggedIn().subscribe(flag => {
+      this.appDataService.getAuthentication().subscribe(userDetails => {
+        this.appDataService.userDetails = userDetails;
+        this.appDataService.setUserDetails(userDetails).subscribe(result => {
+          setTimeout(() => {
+            window.location.assign(window.location.host);
+          }, 2000);
+          if (userDetails.role !== 'admin') {
+            this.router.navigate(['/team-member-info']);
+          } else {
+            this.router.navigate(['/isd-landing']);
+          }
+        });
+      }, error => {
+        setTimeout(() => {
+          window.location.assign(window.location.host);
+        }, 2500);
+      });
+    },
+      error => {
+        alert(error);
+      });
   }
 
 }
