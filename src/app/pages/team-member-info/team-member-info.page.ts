@@ -135,8 +135,9 @@ export class TeamMemberInfoPage implements OnInit {
     });
   }
 
-  onChange(image) {
-    this.defaultImage = image;
+  onChange(imgData) {
+    this.defaultImage = imgData.image;
+    this.userRating.user_rating = imgData.ratingNum;
   }
 
   saveUserRating() {
@@ -145,6 +146,7 @@ export class TeamMemberInfoPage implements OnInit {
       console.log(response);
     });
     this.toastFunction();
+    console.log(this.userRating);
     this.userRating.user_comment = '';
     this.project = '';
   }
