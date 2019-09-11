@@ -24,3 +24,50 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.trend-type {
+    fill: grey;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+.line {
+    fill: none;
+    stroke: #FE0600;
+    stroke-width: 3;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+.y1-axis line {
+    stroke: red;
+}
+
+.y1-axis path {
+    stroke: red;
+}
+
+.y1-axis text {
+    fill: red;
+}
+
+.line0 {
+    stroke: aquamarine !important;
+}
+
+.line1 {
+    stroke: rgb(255, 253, 127) !important;
+}
+
+.line2 {
+    stroke: rgb(150, 127, 255) !important;
+}
+
+.line3 {
+    stroke: rgb(151, 201, 184) !important;
+}
+
+.line4 {
+    stroke: rgb(206, 161, 13) !important;
+}
