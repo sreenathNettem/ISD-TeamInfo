@@ -11,7 +11,7 @@ var DSN = config.get('dashdb.dsn');
 //Queries
 var GET_USER_RATINGS_QUERY = "Select * from " + APP_DB + ".MM_USER_RATING";
 var ADD_USER_RATING_QUERY = "Insert into " + APP_DB + ".MM_USER_RATING (USER_ID,USER_RATING,USER_PROJECT,USER_TEAM,USER_COMMENT) values (?,?,?,?,?)";
-
+var GET_USER_RATINGS_BY_DATE_QUERY = "Select count(USER_PROJECT) as count, USER_RATED_TIMESTAMP as date from " + APP_DB + ".MM_USER_RATING where USER_PROJECT = ? and USER_TEAM = ? group by (USER_RATED_TIMESTAMP)";
 //DASH DB Settings and initialization
 var Pool = require("ibm_db").Pool,
   pool = new Pool(),
@@ -79,6 +79,15 @@ module.exports = {
     _connectAndExecuteQuery(ADD_USER_RATING_QUERY, user_rating).then(
       function (data) {                    
         success("Success");
+      },
+      function (err) {
+        error("Could not insert row: " + err);
+      });
+  },
+  getUserRatingsByDate: function (user_rating, success, error) {  
+    _connectAndExecuteQuery(GET_USER_RATINGS_BY_DATE_QUERY, user_rating).then(
+      function (data) {                    
+        success(data);
       },
       function (err) {
         error("Could not insert row: " + err);
