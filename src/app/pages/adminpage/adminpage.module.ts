@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { AdminpagePage } from './adminpage.page';
 
+import { LineGraphComponent } from '../../line-graph/line-graph.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +23,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AdminpagePage]
+  declarations: [AdminpagePage, LineGraphComponent]
 })
 export class AdminpagePageModule {}

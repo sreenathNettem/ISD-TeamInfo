@@ -32,14 +32,15 @@
   </ion-row>
   <ion-list-header color="light">Line Chart</ion-list-header>
   <ion-card class="welcome-card">
+      
     <ion-card-header>
-      <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
+      <ion-card-subtitle>Header</ion-card-subtitle>
       <ion-card-title>
-        {{title}}
+        Title
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <div id="barChart"></div>
+        <app-line-graph [lineData]="lineData"></app-line-graph>
     </ion-card-content>
   </ion-card>
 
