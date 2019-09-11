@@ -15,34 +15,34 @@ export class TeamMemberInfoPage implements OnInit {
   sTeam: any;
   project: any;
   public selectedTeams: any[];
-  defaultImage = '../../../assets/imgs/1.png';
+  defaultImage = '../../../assets/imgs/5.png';
   imgData = [
     {
-      coordinate: '250, 74, 296, 90',
+      coordinate: '240, 74, 306, 130',
       image: './assets/imgs/5.png',
       ratingNum: '5',
       isSelected: false
     },
     {
-      coordinate: '220, 130, 246, 146',
+      coordinate: '220, 130, 286, 196',
       image: './assets/imgs/4.png',
       ratingNum: '4',
       isSelected: true
     },
     {
-      coordinate: '162, 160, 178, 176',
+      coordinate: '162, 160, 228, 226',
       image: './assets/imgs/3.png',
       ratingNum: '3',
       isSelected: true
     },
     {
-      coordinate: '100, 130, 116, 146',
+      coordinate: '100, 130, 196, 166',
       image: './assets/imgs/2.png',
       ratingNum: '2',
       isSelected: true
     },
     {
-      coordinate: '74,74,90,90',
+      coordinate: '64, 74, 130, 130',
       image: './assets/imgs/1.png',
       ratingNum: '1',
       isSelected: true
@@ -114,6 +114,7 @@ export class TeamMemberInfoPage implements OnInit {
     });
     this.toastFunction();
     console.log(this.userRating);
+    this.defaultImage = '../../../assets/imgs/5.png';
     this.userRating.user_comment = '';
     this.project = '';
   }
