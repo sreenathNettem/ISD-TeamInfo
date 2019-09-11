@@ -41,7 +41,7 @@
         <ion-col size="6" *ngIf="project">
             <ion-item>
                 <ion-label>Teams</ion-label>
-                <ion-select placeholder="Teams" (ionChange)="TeamId(sTeam)" [(ngModel)]="sTeam">
+                <ion-select placeholder="Teams" (ionChange)="teamId(sTeam)" [(ngModel)]="sTeam">
                     <ion-select-option [value]="sTeam" *ngFor="let sTeam of selectedTeams">{{sTeam.name}}</ion-select-option>
                 </ion-select>
              </ion-item>

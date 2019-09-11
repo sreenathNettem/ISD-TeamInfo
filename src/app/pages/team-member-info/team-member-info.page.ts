@@ -63,39 +63,6 @@ export class TeamMemberInfoPage implements OnInit {
   ngOnInit() {
   }
 
-  async presentToast() {
-    const toast = await this.toastController.create({
-      message: 'Your settings have been saved.',
-      duration: 2000
-    });
-    toast.present();
-  }
-
-  async presentToastWithOptions() {
-    const toast = await this.toastController.create({
-      header: 'Toast header',
-      message: 'Click to Close',
-      position: 'top',
-      buttons: [
-        {
-          side: 'start',
-          icon: 'star',
-          text: 'Favorite',
-          handler: () => {
-            console.log('Favorite clicked');
-          }
-        }, {
-          text: 'Done',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
-    toast.present();
-  }
-
   initializeProject() {
     this.projects = [
       { id: 1, name: 'ISD' },
@@ -119,8 +86,8 @@ export class TeamMemberInfoPage implements OnInit {
     this.selectedTeams = this.teams.filter(team => team.project_id === Project.id);
   }
 
-  TeamId(Team) {
-    this.userRating.user_team = Team.id;
+  teamId(team) {
+    this.userRating.user_team = team.id;
   }
 
   onClick(imgData) {

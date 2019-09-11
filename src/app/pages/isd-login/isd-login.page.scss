@@ -1,16 +1,10 @@
-.login-logo {
-padding: 20px 0;
-min-height: 200px;
-text-align: center;
-}
-
-.login-logo img {
-max-width: 150px;
-}
-
-.list {
-margin-bottom: 0;
-}
-ion-button{
-text-transform: capitalize;
+ion-button {
+    text-transform: capitalize;
+    left: 23;
+    left: 23%;
+    width: 50%;
+    height: 48px;
+    position: absolute;
+    --background: linear-gradient(to right, #4E7FF0, #2856C9);
+    top: 40%;
 }
