@@ -223,5 +223,18 @@ module.exports = function (app) {
             },
         );
     });
+
+    app.get('/getUserRatingsByDate/', function (req, res) {  
+        var user_rating = [req.query.user_project,req.query.user_team];
+        appStorage.getUserRatingsByDate(
+            user_rating,
+            function (data) {
+                res.send(data);
+            },
+            function (error) {
+                res.send('Error: ' + error);
+            },
+        );
+    });
     
 }
