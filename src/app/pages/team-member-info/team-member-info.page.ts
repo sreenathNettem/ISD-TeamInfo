@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IsdAppDataService } from '../../services/isd-app-data.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ToastController } from '@ionic/angular';
+import { TEAMS, PROJECTS } from './../../constants/app.constants';
 
 @Component({
   selector: 'app-team-member-info',
@@ -51,34 +52,15 @@ export class TeamMemberInfoPage implements OnInit {
   userRating = { user_rating: '', user_project: '', user_team: '', user_comment: '' };
   constructor(
     private appDataService: IsdAppDataService,
-    private router: Router,
     private sanitizer: DomSanitizer,
     public toastController: ToastController
   ) {
-    this.initializeProject();
-    this.initializeTeams();
     this.userRating.user_rating = this.imgData[0].ratingNum;
   }
 
   ngOnInit() {
-  }
-
-  initializeProject() {
-    this.projects = [
-      { id: 1, name: 'ISD' },
-      { id: 2, name: 'Cognos' },
-    ];
-  }
-
-  initializeTeams() {
-    this.teams = [
-      { id: 1, name: 'UI', project_id: 1, Project_name: 'ISD' },
-      { id: 2, name: 'API', project_id: 1, Project_name: 'ISD' },
-      { id: 3, name: 'TEST', project_id: 1, Project_name: 'ISD' },
-      { id: 4, name: 'DEVOPS', project_id: 1, Project_name: 'ISD' },
-      { id: 5, name: 'CALL', project_id: 2, Project_name: 'Cognos' },
-      { id: 7, name: 'STD Reports', project_id: 2, Project_name: 'Cognos' }
-    ];
+    this.teams = TEAMS;
+    this.projects = PROJECTS;
   }
 
   setTeamValues(Project) {
