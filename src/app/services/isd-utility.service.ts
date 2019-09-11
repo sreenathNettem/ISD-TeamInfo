@@ -117,7 +117,8 @@ export class IsdUtilityService {
   async toastFunction(message) {
     const toast = await this.toastController.create({
       message,
-      duration: 2000
+      duration: 2000,
+      position: 'top'
     });
     toast.present();
   }
