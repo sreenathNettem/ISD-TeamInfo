@@ -109,8 +109,8 @@ export class IsdAppDataService {
     return this.httpService.setData(`${this.httpService.backendUrl}${this.httpService.apiUrls.saveUserRating}`, params);
   }
 
-  getUserRatingsByDate() {
-    return this.httpService.fetchData(`${this.httpService.backendUrl}${this.httpService.apiUrls.getUserRatingsByDate}`);
+  getUserRatingsByDate(query) {
+    return this.httpService.fetchData(`${this.httpService.backendUrl}${this.httpService.apiUrls.getUserRatingsByDate}?${query}`);
   }
 
 }

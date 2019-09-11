@@ -15,74 +15,74 @@ export class AdminpagePage implements OnInit {
 
   lineData = [
     [{
-      "date": '09-09-2019',
-      "value": 0
+      "DATE": '09-09-2019',
+      "VALUE": 0
     },
     {
-      "date": '10-09-2019',
-      "value": 400
+      "DATE": '10-09-2019',
+      "VALUE": 400
     },
     {
-      "date": '11-09-2019',
-      "value": 250
+      "DATE": '11-09-2019',
+      "VALUE": 250
     },
     {
-      "date": '12-09-2019',
-      "value": 140
+      "DATE": '12-09-2019',
+      "VALUE": 140
     }
     ],
     [
       {
-        "date": '09-09-2019',
-        "value": 430
+        "DATE": '09-09-2019',
+        "VALUE": 430
       },
       {
-        "date": '10-09-2019',
-        "value": 370
+        "DATE": '10-09-2019',
+        "VALUE": 370
       },
       {
-        "date": '11-09-2019',
-        "value": 250
+        "DATE": '11-09-2019',
+        "VALUE": 250
       },
       {
-        "date": '12-09-2019',
-        "value": 450
+        "DATE": '12-09-2019',
+        "VALUE": 450
       }
     ],
     [
       {
-        "date": '09-09-2019',
-        "value": 130
+        "DATE": '09-09-2019',
+        "VALUE": 130
       },
       {
-        "date": '10-09-2019',
-        "value": 270
+        "DATE": '10-09-2019',
+        "VALUE": 270
       },
       {
-        "date": '11-09-2019',
-        "value": 350
+        "DATE": '11-09-2019',
+        "VALUE": 350
       },
       {
-        "date": '12-09-2019',
-        "value": 450
+        "DATE": '12-09-2019',
+        "VALUE": 450
       }
     ],
     [
       {
-        "date": '09-09-2019',
-        "value": 100
+        "DATE": '09-09-2019',
+        "VALUE": 100
       },
       {
-        "date": '10-09-2019',
-        "value": 190
+        "DATE": '10-09-2019',
+        "VALUE": 190
       },
       {
-        "date": '11-09-2019',
-        "value": 200
+        "DATE": '11-09-2019',
+        "VALUE": 200
       },
       {
-        "date": '12-09-2019',
-        "value": 250
+        "DATE": '12-09-2019',
+        "VALUE": 250
       }
     ]
   ];
@@ -91,6 +91,15 @@ export class AdminpagePage implements OnInit {
   ngOnInit() {
     this.teams = TEAMS;
     this.projects = PROJECTS;
+  }
+
+  getUserRatingsByDate(project, team) {
+    this.appDataService.getUserRatingsByDate(`user_project=${project.id}&user_team=${team.id}`).subscribe(rating => {
+      this.lineData = rating;
+      
+
+      console.log(this.lineData);
+    });
   }
 
   setTeamValues(sProject) {
