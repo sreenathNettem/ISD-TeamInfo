@@ -26,7 +26,8 @@ export class IsdHttpService {
     transKeyDealsDetails: 'transKeydeals/roadmap?getDetails=Y&',
     searchEndPoint: 'searchOpp/roadmap?qtr=CQ&search=',
     getProfile: 'getUserPicture',
-    saveUserRating: 'saveUserRating'
+    saveUserRating: 'saveUserRating',
+    getUserRatingsByDate: 'getUserRatingsByDate'
   };
 
   isNetWorkAvailable = new BehaviorSubject(true);
