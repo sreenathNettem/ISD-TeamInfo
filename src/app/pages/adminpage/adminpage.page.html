@@ -30,7 +30,7 @@
           </ion-row>
           <ion-row>
       <ion-col>
-        <ion-button expand="full" [disabled]="!project || !sTeam" >Submit</ion-button>
+        <ion-button expand="full" [disabled]="!project || !sTeam" (click)="getUserRatingsByDate(project, sTeam)" >Submit</ion-button>
       </ion-col>
     </ion-row>
     </ion-card>
