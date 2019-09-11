@@ -26,6 +26,10 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
+.gradient-background {
+    --background: linear-gradient(to right, #4E7FF0, #2856C9);
+    --color: #fff;
+}
 .trend-type {
     fill: grey;
     font-family: sans-serif;
