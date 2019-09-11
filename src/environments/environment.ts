@@ -2,7 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
-  noAuthentication: false,
+  noAuthentication: true,
   backendApiUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/mobile/',
   backendW3Url: 'https://localhost/',
   backendAvatarUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
@@ -13,7 +13,7 @@ export const environment = {
     uid: 'AVPU08744',
     firstName: 'Sreenath',
     lastName: 'Nettem',
-    role: 'user'
+    role: 'admin'
   },
   production: false
 };
