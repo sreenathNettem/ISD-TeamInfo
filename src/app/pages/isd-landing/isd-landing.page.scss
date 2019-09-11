@@ -1,16 +1,11 @@
-.login-logo {
-    padding: 20px 0;
-    min-height: 200px;
-    text-align: center;
-    }
-    
-    .login-logo img {
-    max-width: 150px;
-    }
-    
-    .list {
-    margin-bottom: 0;
-    }
-    ion-button{
-    text-transform: capitalize;
-    }
+
+
+ion-button{
+text-transform: capitalize;
+}
+ion-row{
+position: relative;
+top: 40%;
+padding:16px;
+}
+
