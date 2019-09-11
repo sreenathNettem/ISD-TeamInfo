@@ -24,4 +24,37 @@ export const TEAMS = [
   { id: 7, name: 'STD Reports', project_id: 2, Project_name: 'Cognos' }
 ];
 
+export const IMAGEDATA = [
+  {
+    coordinate: '240, 74, 306, 130',
+    image: './assets/imgs/5.png',
+    ratingNum: '5',
+    isSelected: false
+  },
+  {
+    coordinate: '220, 130, 286, 196',
+    image: './assets/imgs/4.png',
+    ratingNum: '4',
+    isSelected: true
+  },
+  {
+    coordinate: '162, 160, 228, 226',
+    image: './assets/imgs/3.png',
+    ratingNum: '3',
+    isSelected: true
+  },
+  {
+    coordinate: '100, 130, 196, 166',
+    image: './assets/imgs/2.png',
+    ratingNum: '2',
+    isSelected: true
+  },
+  {
+    coordinate: '64, 74, 130, 130',
+    image: './assets/imgs/1.png',
+    ratingNum: '1',
+    isSelected: true
+  }
+];
+
 

@@ -81,7 +81,7 @@ module.exports = {
         success("Success");
       },
       function (err) {
-        error("Could not insert row: " + err);
+        success("Fail");
       });
   },
   getUserRatingsByDate: function (user_rating, success, error) {  
