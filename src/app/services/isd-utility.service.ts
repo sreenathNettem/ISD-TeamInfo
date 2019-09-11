@@ -3,6 +3,7 @@ import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
 import { ActionSheetController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { Router, ActivatedRoute, RouterEvent, NavigationEnd } from '@angular/router';
 import { reduce } from 'rxjs/operators';
 @Injectable({
@@ -16,7 +17,8 @@ export class IsdUtilityService {
     private loaderController: LoadingController,
     public actionSheetController: ActionSheetController,
     private activatedRoute: ActivatedRoute,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public toastController: ToastController
   ) {
   }
 
@@ -88,10 +90,10 @@ export class IsdUtilityService {
     });
     return buttons;
   }
-  async presentAlert(data) {
+  async presentAlert() {
     const alert = await this.alertController.create({
-      header: data.header,
-      message: data.message,
+      // header: data.header,
+      // message: data.message,
       buttons: [
         {
           text: 'Cancel',
@@ -109,5 +111,14 @@ export class IsdUtilityService {
       ]
     });
     await alert.present();
+  }
+
+  /* toast messages */
+  async toastFunction(message) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000
+    });
+    toast.present();
   }
 }

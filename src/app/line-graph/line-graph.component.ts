@@ -7,8 +7,19 @@ import * as d3 from 'd3';
   styleUrls: ['./line-graph.component.scss'],
 })
 export class LineGraphComponent implements OnInit {
-
- @Input() lineData;
+  _lineData
+  @Input() set lineData(_lineData) {
+    console.log(_lineData);
+    if (_lineData != undefined) {
+      this._lineData = _lineData;
+      this.initScales();
+      this.initSvg();
+      this._lineData.forEach((d, k) => {
+        this.drawLine(d, k);
+      });
+      this.drawAxis();
+    }
+  };
 
   private w: number = 600;
   private h: number = 400;
@@ -38,12 +49,6 @@ export class LineGraphComponent implements OnInit {
 
   ngOnInit() {
 
-    this.initScales();
-    this.initSvg();
-    this.lineData.forEach((d, k) => {
-      this.drawLine(d, k);
-    });
-    this.drawAxis();
   }
 
   private initScales() {
@@ -52,6 +57,11 @@ export class LineGraphComponent implements OnInit {
   }
 
   private initSvg() {
+
+    this.svg = d3.select(this.container.nativeElement)
+      .select('.chart-container')
+      .select('svg')
+      .remove();
 
     this.svg = d3.select(this.container.nativeElement)
       .select('.chart-container')
@@ -88,17 +98,26 @@ export class LineGraphComponent implements OnInit {
     const that = this;
     const valueline = d3.line()
       .x(function (d, i) {
-        return that.x0(d.date) + 0.5 * that.x0.bandwidth();
+        return that.x0(d.DATE) + 0.5 * that.x0.bandwidth();
       })
       .y(function (d) {
-        return that.y0(d.value);
+        return that.y0(d.VALUE);
       });
 
-    this.x0.domain(linedata.map((d: any) => {
-      return d.date;
-    }));
+    if (linedata != undefined) {
+      this.x0.domain(linedata.map((d: any) => {
+        return d.DATE;
+      }));
+    }
 
-    this.y0.domain([0, 500]);
+    if (linedata != undefined) {
+      let maxValue = 0
+      let maxValueRecord = linedata.forEach((d: any) => {
+        maxValue = d.VALUE > maxValue ? d.VALUE : maxValue;
+      })
+      this.y0.domain([0, maxValue + 30]);
+
+    }
 
     this.lineArea.append('path')
       .data([linedata])
@@ -108,6 +127,5 @@ export class LineGraphComponent implements OnInit {
       .duration(1000);
 
   }
-
 
 }
