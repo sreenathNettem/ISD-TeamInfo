@@ -237,4 +237,15 @@ module.exports = function (app) {
         );
     });
     
+    app.get('/getAllUserRatings/', function (req, res) {  
+        appStorage.getAllUserRatings(
+            function (data) {
+                res.send(data);
+            },
+            function (error) {
+                res.send('Error: ' + error);
+            },
+        );
+    });
+
 }
