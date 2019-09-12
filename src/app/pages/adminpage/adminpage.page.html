@@ -22,7 +22,7 @@
             <ion-col size="12" *ngIf="project">
                 <ion-item>
                     <ion-label>Teams</ion-label>
-                    <ion-select placeholder="Teams" [(ngModel)]="sTeam">
+                    <ion-select placeholder="Teams" (ionChange)="setButtonStatus()" [(ngModel)]="sTeam">
                         <ion-select-option [value]="sTeam" *ngFor="let sTeam of selectedTeams">{{sTeam.name}}</ion-select-option>
                     </ion-select>
                  </ion-item>
@@ -30,7 +30,7 @@
           </ion-row>
           <ion-row>
       <ion-col>
-        <ion-button expand="full" [disabled]="!project || !sTeam" (click)="getUserRatingsByDate(project, sTeam)" >Submit</ion-button>
+        <ion-button expand="full" [disabled]="!isDisabled" (click)="getUserRatingsByDate(project, sTeam)" >Submit</ion-button>
       </ion-col>
     </ion-row>
     </ion-card>
