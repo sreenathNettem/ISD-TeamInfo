@@ -11,7 +11,9 @@ export class AdminpagePage implements OnInit {
   public projects: any[];
   public teams: any[];
   public selectedTeams: any[];
-
+public project: any;
+public sTeam: any;
+public isDisabled: boolean = false;
 
   lineData = [
     [{
@@ -103,7 +105,13 @@ export class AdminpagePage implements OnInit {
   }
 
   setTeamValues(sProject) {
-    this.selectedTeams = this.teams.filter(team => team.project_id === sProject.id);
+    this.sTeam=null;
+    this.selectedTeams = this.teams.filter(team => team.project_id === sProject.id);    
   }
-
+  setButtonStatus(){
+    if(this.project && this.sTeam)
+    this.isDisabled = true;  
+    else 
+      this.isDisabled = false;
+  }
 }
