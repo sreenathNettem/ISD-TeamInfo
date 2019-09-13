@@ -1,11 +1,26 @@
-
-
-ion-button{
-text-transform: capitalize;
-}
-ion-row{
-position: relative;
-top: 40%;
-padding:16px;
+ion-button {
+    text-transform: capitalize;
 }
 
+ion-row {
+    position: relative;
+    top: 0%;
+    padding: 16px;
+}
+
+.log{
+    margin: auto;
+}
+
+.log img{
+    margin-top: 50px;
+    width: 80%;
+}
+
+.welcome-content {
+    text-align: center
+}
+
+.welcome-content p {
+    font-weight: bold;
+}

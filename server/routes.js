@@ -73,7 +73,7 @@ module.exports = function (app) {
     });
 
     app.get('/', ensureAuthenticated, function (req, res, next) {
-          const userDetails = {
+        const userDetails = {
             email: req.user.id,
             uid: req.user._json.uid,
             firstName: req.user._json.firstName,
@@ -170,12 +170,12 @@ module.exports = function (app) {
     app.get('/getAccessHubData', function (req, res) {
         var secret = config.apis.CEDPApi.secretKey;
         var access_token = jwt.sign({
-                id: req.headers.email,
-                user: req.headers.firstName,
-                email: req.headers.email,
-                uid: req.headers.uid,
-                token: secret,
-            },
+            id: req.headers.email,
+            user: req.headers.firstName,
+            email: req.headers.email,
+            uid: req.headers.uid,
+            token: secret,
+        },
             config.apis.CEDPApi.SignatureKey, {
                 expiresIn: '2m',
             },
@@ -200,7 +200,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/getUserRatings/', function (req, res) {  
+    app.get('/getUserRatings/', function (req, res) {
         appStorage.getUserRatings(
             function (data) {
                 res.send(data);
@@ -211,8 +211,8 @@ module.exports = function (app) {
         );
     });
 
-    app.post('/saveUserRating/', function (req, res) {  
-        var user_rating = [req.headers.email,req.body.user_rating,req.body.user_project,req.body.user_team,req.body.user_comment];
+    app.post('/saveUserRating/', function (req, res) {
+        var user_rating = [req.headers.email, req.body.user_rating, req.body.user_project, req.body.user_team, req.body.user_comment];
         appStorage.saveUserRating(
             user_rating,
             function (data) {
@@ -224,8 +224,8 @@ module.exports = function (app) {
         );
     });
 
-    app.get('/getUserRatingsByDate/', function (req, res) {  
-        var user_rating = [req.query.user_project,req.query.user_team];
+    app.get('/getUserRatingsByDate/', function (req, res) {
+        var user_rating = [req.query.user_project, req.query.user_team];
         appStorage.getUserRatingsByDate(
             user_rating,
             function (data) {
@@ -236,5 +236,16 @@ module.exports = function (app) {
             },
         );
     });
-    
+
+    app.get('/getAllUserRatings/', function (req, res) {
+        appStorage.getAllUserRatings(
+            function (data) {
+                res.send(data);
+            },
+            function (error) {
+                res.send('Error: ' + error);
+            },
+        );
+    });
+
 }

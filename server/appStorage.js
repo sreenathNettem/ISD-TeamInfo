@@ -11,7 +11,9 @@ var DSN = config.get('dashdb.dsn');
 //Queries
 var GET_USER_RATINGS_QUERY = "Select * from " + APP_DB + ".MM_USER_RATING";
 var ADD_USER_RATING_QUERY = "Insert into " + APP_DB + ".MM_USER_RATING (USER_ID,USER_RATING,USER_PROJECT,USER_TEAM,USER_COMMENT) values (?,?,?,?,?)";
-var GET_USER_RATINGS_BY_DATE_QUERY = "Select USER_RATING, count(USER_PROJECT) as value, USER_RATED_TIMESTAMP as date from " + APP_DB + ".MM_USER_RATING where USER_PROJECT = ? and USER_TEAM = ? group by USER_RATING, USER_RATED_TIMESTAMP";
+var GET_USER_RATINGS_BY_DATE_QUERY = "Select USER_RATING, count(USER_PROJECT) as value, USER_RATED_TIMESTAMP as date from " + APP_DB + ".MM_USER_RATING where USER_PROJECT = ? and USER_TEAM = ? and USER_RATED_TIMESTAMP between ? and ? group by USER_RATING, USER_RATED_TIMESTAMP";
+var GET_ALL_USER_RATINGS_QUERY = "Select USER_RATING, count(USER_PROJECT) as value, USER_RATED_TIMESTAMP as date from " + APP_DB + ".MM_USER_RATING where USER_RATED_TIMESTAMP between ? and ? group by USER_RATING, USER_RATED_TIMESTAMP";
+
 //DASH DB Settings and initialization
 var Pool = require("ibm_db").Pool,
   pool = new Pool(),
@@ -65,17 +67,17 @@ var _connectAndExecuteQuery = function (user_query, params) {
 //PROFILE MODULE
 module.exports = {
 
-  getUserRatings: function (success, error) {   
+  getUserRatings: function (success, error) {
     var params = [];
     _connectAndExecuteQuery(GET_USER_RATINGS_QUERY).then(
-      function (data) {                    
+      function (data) {
         success(data);
       },
       function (err) {
         error("Could not insert row: " + err);
       });
   },
-  saveUserRating: function (user_rating, success, error) {  
+  saveUserRating: function (user_rating, success, error) {
     _connectAndExecuteQuery(ADD_USER_RATING_QUERY, user_rating).then(
       function (data) {                    
         success({status:"Success"});
@@ -84,20 +86,57 @@ module.exports = {
         success({status:"Fail"});
       });
   },
-  getUserRatingsByDate: function (user_rating, success, error) {  
+  getUserRatingsByDate: function (user_rating, success, error) {
+    var presentDate = new Date;
+    var WFDate = new Date(presentDate.setDate(presentDate.getDate() - presentDate.getDay()));
+    var WLDate = new Date(presentDate.setDate(presentDate.getDate() - presentDate.getDay() + 6));
+    var WFDateFormat = WFDate.getFullYear() + '-' + (WFDate.getMonth() + 1) + '-'  + WFDate.getDate();
+    var WLDateFormat = WLDate.getFullYear() + '-' + (WLDate.getMonth() + 1) + '-'  + WLDate.getDate();
+    user_rating.push(WFDateFormat, WLDateFormat)
+
     _connectAndExecuteQuery(GET_USER_RATINGS_BY_DATE_QUERY, user_rating).then(
-      function (data) { 
-        if(data !== undefined && data.length > 0) 
-        var ratings = [[],[],[],[],[],[]];
-        data.forEach(row => {
-          ratings[row.USER_RATING].push(row);
-        });     
-        ratings.shift();             
-        success(ratings);
+      function (data) {
+        if (data !== undefined && data.length > 0) {
+          var ratings = [[], [], [], [], [], []];
+          data.forEach(row => {
+            ratings[row.USER_RATING].push(row);
+          });
+          ratings.shift();
+          success(ratings);
+        } else {
+          success([]);
+        }
+      },
+      function (err) {
+        error("Could not insert row: " + err);
+      });
+  },
+  getAllUserRatings: function (success, error) {
+
+    var presentDate = new Date;
+    var WFDate = new Date(presentDate.setDate(presentDate.getDate() - presentDate.getDay()));
+    var WLDate = new Date(presentDate.setDate(presentDate.getDate() - presentDate.getDay() + 6));
+    var WFDateFormat = WFDate.getFullYear() + '-' + (WFDate.getMonth() + 1) + '-'  + WFDate.getDate();
+    var WLDateFormat = WLDate.getFullYear() + '-' + (WLDate.getMonth() + 1) + '-'  + WLDate.getDate();
+    var params = [WFDateFormat, WLDateFormat];
+
+    _connectAndExecuteQuery(GET_ALL_USER_RATINGS_QUERY, params).then(
+      function (data) {
+        console.log(data);
+        if (data !== undefined && data.length > 0) {
+          var ratings = [[], [], [], [], [], []];
+          data.forEach(row => {
+            ratings[row.USER_RATING].push(row);
+          });
+          ratings.shift();
+          success(ratings);
+        } else {
+          success([]);
+        }
       },
       function (err) {
         error("Could not insert row: " + err);
       });
   }
-
+  
 }

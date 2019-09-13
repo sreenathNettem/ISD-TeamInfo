@@ -1,5 +1,6 @@
 import { Component, Input, ElementRef, OnChanges, SimpleChanges, SimpleChange, OnInit } from '@angular/core';
 import * as d3 from 'd3';
+import { IsdUtilityService } from '../services/isd-utility.service';
 
 @Component({
   selector: 'app-line-graph',
@@ -9,21 +10,28 @@ import * as d3 from 'd3';
 export class LineGraphComponent implements OnInit {
   _lineData
   @Input() set lineData(_lineData) {
-    console.log(_lineData);
-    if (_lineData != undefined) {
+    this._lineData = [];
+    this.initScales();
+    this.initSvg();
+    let dataFound = false;
+    if (_lineData !== undefined && _lineData.length > 0) {
       this._lineData = _lineData;
-      this.initScales();
-      this.initSvg();
       this._lineData.forEach((d, k) => {
-        this.drawLine(d, k);
+        if (d.length > 0) {
+          this.drawLine(d, k);
+          dataFound = true;
+        }
       });
-      this.drawAxis();
     }
-  };
+    this.drawAxis();
+    if (dataFound === false && _lineData.length === 0) {
+      this.utilityService.toastFunction('Data not found for this selection');
+    }
+  }
 
-  private w: number = 600;
-  private h: number = 400;
-  private divH: number = 375;
+  private w = 600;
+  private h = 400;
+  private divH = 375;
   private halfLength: number;
   private margin = { top: 10, right: 100, bottom: 80, left: 50 };
   private width = this.w - this.margin.left - this.margin.right;
@@ -38,12 +46,12 @@ export class LineGraphComponent implements OnInit {
   private layersBar: any;
   private x0Axis: any;
   private y0Axis: any;
-  private valueline: any;
+  private valueLine: any;
   private lineArea: any
 
   private colors = ['#00D7D2', '#313c53', '#FFC400'];
 
-  constructor(private container: ElementRef) {
+  constructor(private container: ElementRef, private utilityService: IsdUtilityService) {
 
   }
 
@@ -53,7 +61,7 @@ export class LineGraphComponent implements OnInit {
 
   private initScales() {
     this.x0 = d3.scaleBand().rangeRound([0, this.width]).padding(0.05);
-    this.y0 = d3.scaleLinear().range([this.height, 0])
+    this.y0 = d3.scaleLinear().range([this.height, 0]);
   }
 
   private initSvg() {
@@ -96,7 +104,7 @@ export class LineGraphComponent implements OnInit {
 
   private drawLine(linedata: any, k: number) {
     const that = this;
-    const valueline = d3.line()
+    const valueLine = d3.line()
       .x(function (d, i) {
         return that.x0(d.DATE) + 0.5 * that.x0.bandwidth();
       })
@@ -104,17 +112,17 @@ export class LineGraphComponent implements OnInit {
         return that.y0(d.VALUE);
       });
 
-    if (linedata != undefined) {
+    if (linedata !== undefined) {
       this.x0.domain(linedata.map((d: any) => {
         return d.DATE;
       }));
     }
 
-    if (linedata != undefined) {
-      let maxValue = 0
-      let maxValueRecord = linedata.forEach((d: any) => {
+    if (linedata !== undefined) {
+      let maxValue = 0;
+      const maxValueRecord = linedata.forEach((d: any) => {
         maxValue = d.VALUE > maxValue ? d.VALUE : maxValue;
-      })
+      });
       this.y0.domain([0, maxValue + 30]);
 
     }
@@ -122,7 +130,7 @@ export class LineGraphComponent implements OnInit {
     this.lineArea.append('path')
       .data([linedata])
       .attr('class', `line line${k}`)
-      .attr('d', valueline)
+      .attr('d', valueLine)
       .transition()
       .duration(1000);
 

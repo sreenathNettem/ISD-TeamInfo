@@ -27,7 +27,8 @@ export class IsdHttpService {
     searchEndPoint: 'searchOpp/roadmap?qtr=CQ&search=',
     getProfile: 'getUserPicture',
     saveUserRating: 'saveUserRating',
-    getUserRatingsByDate: 'getUserRatingsByDate'
+    getUserRatingsByDate: 'getUserRatingsByDate',
+    getAllUserRatings: 'getAllUserRatings'
   };
 
   isNetWorkAvailable = new BehaviorSubject(true);

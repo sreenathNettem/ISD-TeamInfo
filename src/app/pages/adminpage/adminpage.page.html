@@ -1,50 +1,48 @@
 <ion-header>
   <ion-toolbar class="gradient-background">
-      <ion-title class="ion-text-center">SMS Mood Marbles</ion-title>
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-      </ion-buttons>
+    <ion-title class="ion-text-center">SMS Mood Marbles</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-card padding>
-        <ion-row>
-            <ion-col size="12">
-                <ion-item>
-                    <ion-label>Projects</ion-label>
-                    <ion-select placeholder="Projects" (ionChange)="setTeamValues(project)" [(ngModel)]="project" >
-                        <ion-select-option [value]="project" *ngFor="let project of projects">{{project.name}} </ion-select-option>
-                    </ion-select>
-                </ion-item>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col size="12" *ngIf="project">
-                <ion-item>
-                    <ion-label>Teams</ion-label>
-                    <ion-select placeholder="Teams" (ionChange)="setButtonStatus()" [(ngModel)]="sTeam">
-                        <ion-select-option [value]="sTeam" *ngFor="let sTeam of selectedTeams">{{sTeam.name}}</ion-select-option>
-                    </ion-select>
-                 </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-      <ion-col>
-        <ion-button expand="full" [disabled]="!isDisabled" (click)="getUserRatingsByDate(project, sTeam)" >Submit</ion-button>
+  <ion-card padding>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Projects</ion-label>
+          <ion-select placeholder="Projects" (ionChange)="setTeamValues(project)" [(ngModel)]="project">
+            <ion-select-option [value]="project" *ngFor="let project of projects">{{project.name}} </ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-col>
     </ion-row>
-    </ion-card>
+    <ion-row>
+      <ion-col size="12" *ngIf="project">
+        <ion-item>
+          <ion-label>Teams</ion-label>
+          <ion-select placeholder="Teams" (ionChange)="setButtonStatus()" [(ngModel)]="sTeam">
+            <ion-select-option [value]="sTeam" *ngFor="let sTeam of selectedTeams">{{sTeam.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="small" [disabled]="!isDisabled" (click)="getUserRatingsByDate(project, sTeam)">Filter</ion-button>
+        <ion-button expand="small" [disabled]="!isDisabled" (click)="this.getAllUserRatings()">Reset</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
   <ion-card class="welcome-card">
-      
     <ion-card-header>
-      <ion-card-subtitle>Header</ion-card-subtitle>
       <ion-card-title>
-        Title
+        Mood Marbles - Daily
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-        <app-line-graph [lineData]="lineData"></app-line-graph>
+      <app-line-graph [lineData]="lineData"></app-line-graph>
     </ion-card-content>
   </ion-card>
-
 </ion-content>
