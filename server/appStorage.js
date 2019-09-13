@@ -78,10 +78,10 @@ module.exports = {
   saveUserRating: function (user_rating, success, error) {  
     _connectAndExecuteQuery(ADD_USER_RATING_QUERY, user_rating).then(
       function (data) {                    
-        success("Success");
+        success({status:"Success"});
       },
       function (err) {
-        success("Fail");
+        success({status:"Fail"});
       });
   },
   getUserRatingsByDate: function (user_rating, success, error) {  

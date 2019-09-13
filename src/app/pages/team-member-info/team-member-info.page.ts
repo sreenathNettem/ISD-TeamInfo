@@ -48,12 +48,14 @@ export class TeamMemberInfoPage implements OnInit {
   }
 
   saveUserRating() {
-
     this.userRating.user_comment = this.sanitizer.sanitize(SecurityContext.HTML, this.userRating.user_comment);
     this.appDataService.saveUserRating(this.userRating).subscribe(response => {
-      console.log(response, 'response');
+      if (response.status === 'Success') {
+        this.utilityService.toastFunction('Submitted successfully');
+      } else {
+        this.utilityService.toastFunction('Fail');
+      }
     });
-    this.utilityService.toastFunction('Submitted successfully');
     this.defaultImage = IMAGEDATA[0].image;
     this.userRating.user_comment = '';
     this.project = '';
