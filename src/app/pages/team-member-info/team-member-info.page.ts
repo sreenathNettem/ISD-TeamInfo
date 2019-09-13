@@ -53,7 +53,7 @@ export class TeamMemberInfoPage implements OnInit {
       if (response.status === 'Success') {
         this.utilityService.toastFunction('Submitted successfully');
       } else {
-        this.utilityService.toastFunction('Fail');
+        this.utilityService.toastFunction('Data not updated successfully. Please try again.');
       }
     });
     this.defaultImage = IMAGEDATA[0].image;
