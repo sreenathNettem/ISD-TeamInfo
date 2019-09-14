@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IsdAppDataService } from './../../services/isd-app-data.service';
 import { TEAMS, PROJECTS } from './../../constants/app.constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adminpage',
@@ -15,7 +16,7 @@ export class AdminpagePage implements OnInit {
   public sTeam: any;
   public isDisabled = false;
   lineData = [];
-  constructor(private appDataService: IsdAppDataService) { }
+  constructor(private appDataService: IsdAppDataService, private router: Router) { }
 
   ngOnInit() {
     this.teams = TEAMS;
@@ -48,6 +49,11 @@ export class AdminpagePage implements OnInit {
     } else {
       this.isDisabled = false;
     }
+  }
+  logout() {
+    this.appDataService.logout().subscribe(result => {
+      this.router.navigate(['/isd-login']);
+    });
   }
 
 }

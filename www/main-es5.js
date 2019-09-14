@@ -10,6 +10,7 @@
 var map = {
 	"./pages/adminpage/adminpage.module": [
 		"./src/app/pages/adminpage/adminpage.module.ts",
+		"common",
 		"pages-adminpage-adminpage-module"
 	],
 	"./pages/isd-landing/isd-landing.module": [
@@ -22,6 +23,7 @@ var map = {
 	],
 	"./pages/team-member-info/team-member-info.module": [
 		"./src/app/pages/team-member-info/team-member-info.module.ts",
+		"common",
 		"pages-team-member-info-team-member-info-module"
 	]
 };
@@ -35,7 +37,7 @@ function webpackAsyncContext(req) {
 	}
 
 	var ids = map[req], id = ids[0];
-	return __webpack_require__.e(ids[1]).then(function() {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
 		return __webpack_require__(id);
 	});
 }
@@ -684,12 +686,15 @@ var AppModule = /** @class */ (function () {
 /*!********************************************!*\
   !*** ./src/app/constants/app.constants.ts ***!
   \********************************************/
-/*! exports provided: APP_CONSTANTS */
+/*! exports provided: APP_CONSTANTS, PROJECTS, TEAMS, IMAGEDATA */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_CONSTANTS", function() { return APP_CONSTANTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECTS", function() { return PROJECTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TEAMS", function() { return TEAMS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMAGEDATA", function() { return IMAGEDATA; });
 var APP_CONSTANTS = {
     PAGE_ROUTES: {
         LOGIN: '/isd-login'
@@ -701,6 +706,50 @@ var APP_CONSTANTS = {
         USER: 'user'
     }
 };
+var PROJECTS = [
+    { id: 1, name: 'ISD' },
+    { id: 2, name: 'Cognos' },
+];
+var TEAMS = [
+    { id: 1, name: 'UI', project_id: 1, Project_name: 'ISD' },
+    { id: 2, name: 'API', project_id: 1, Project_name: 'ISD' },
+    { id: 3, name: 'TEST', project_id: 1, Project_name: 'ISD' },
+    { id: 4, name: 'DEVOPS', project_id: 1, Project_name: 'ISD' },
+    { id: 5, name: 'CALL', project_id: 2, Project_name: 'Cognos' },
+    { id: 7, name: 'STD Reports', project_id: 2, Project_name: 'Cognos' }
+];
+var IMAGEDATA = [
+    {
+        coordinate: '240, 74, 306, 130',
+        image: './assets/imgs/5.png',
+        ratingNum: '5',
+        isSelected: false
+    },
+    {
+        coordinate: '220, 130, 286, 196',
+        image: './assets/imgs/4.png',
+        ratingNum: '4',
+        isSelected: true
+    },
+    {
+        coordinate: '162, 160, 228, 226',
+        image: './assets/imgs/3.png',
+        ratingNum: '3',
+        isSelected: true
+    },
+    {
+        coordinate: '100, 130, 196, 166',
+        image: './assets/imgs/2.png',
+        ratingNum: '2',
+        isSelected: true
+    },
+    {
+        coordinate: '64, 74, 130, 130',
+        image: './assets/imgs/1.png',
+        ratingNum: '1',
+        isSelected: true
+    }
+];
 
 
 /***/ }),
@@ -901,6 +950,12 @@ var IsdAppDataService = /** @class */ (function () {
     IsdAppDataService.prototype.saveUserRating = function (params) {
         return this.httpService.setData("" + this.httpService.backendUrl + this.httpService.apiUrls.saveUserRating, params);
     };
+    IsdAppDataService.prototype.getUserRatingsByDate = function (query) {
+        return this.httpService.fetchData("" + this.httpService.backendUrl + this.httpService.apiUrls.getUserRatingsByDate + "?" + query);
+    };
+    IsdAppDataService.prototype.getAllUserRatings = function () {
+        return this.httpService.fetchData("" + this.httpService.backendUrl + this.httpService.apiUrls.getAllUserRatings);
+    };
     IsdAppDataService.ctorParameters = function () { return [
         { type: _isd_http_service__WEBPACK_IMPORTED_MODULE_2__["IsdHttpService"] },
         { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_5__["Storage"] },
@@ -966,7 +1021,9 @@ var IsdHttpService = /** @class */ (function () {
             transKeyDealsDetails: 'transKeydeals/roadmap?getDetails=Y&',
             searchEndPoint: 'searchOpp/roadmap?qtr=CQ&search=',
             getProfile: 'getUserPicture',
-            saveUserRating: 'saveUserRating'
+            saveUserRating: 'saveUserRating',
+            getUserRatingsByDate: 'getUserRatingsByDate',
+            getAllUserRatings: 'getAllUserRatings'
         };
         this.isNetWorkAvailable = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](true);
     }
@@ -1017,7 +1074,7 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 var environment = {
-    noAuthentication: false,
+    noAuthentication: true,
     backendApiUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/mobile/',
     backendW3Url: 'https://localhost/',
     backendAvatarUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
@@ -1028,7 +1085,7 @@ var environment = {
         uid: 'AVPU08744',
         firstName: 'Sreenath',
         lastName: 'Nettem',
-        role: 'user'
+        role: 'admin'
     },
     production: false
 };
@@ -1077,7 +1134,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\SreenathNettem\Documents\Task\ISD-TeamInfo\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\SHILPADODDIPALLI\Desktop\ISD-TeamInfo\src\main.ts */"./src/main.ts");
 
 
 /***/ })
