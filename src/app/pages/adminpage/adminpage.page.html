@@ -30,19 +30,25 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button expand="small" [disabled]="!isDisabled" (click)="getUserRatingsByDate(project, sTeam)">Filter</ion-button>
+        <ion-button expand="small" [disabled]="!isDisabled" (click)="getUserRatingsByDate(project, sTeam)">Filter
+        </ion-button>
         <ion-button expand="small" [disabled]="!isDisabled" (click)="this.getAllUserRatings()">Reset</ion-button>
       </ion-col>
     </ion-row>
   </ion-card>
   <ion-card class="welcome-card">
-    <ion-card-header>
-      <ion-card-title>
-        Mood Marbles - Daily
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <app-line-graph [lineData]="lineData"></app-line-graph>
-    </ion-card-content>
+    <ng-container *ngIf="showGraph">
+      <ion-card-header>
+        <ion-card-title>
+          Mood Marbles - Daily
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <app-line-graph [lineData]="lineData"></app-line-graph>
+      </ion-card-content>
+    </ng-container>
+    <ng-container *ngIf="!showGraph">
+      <p class="no-data-available">Data not available for this selection</p>
+    </ng-container>
   </ion-card>
 </ion-content>

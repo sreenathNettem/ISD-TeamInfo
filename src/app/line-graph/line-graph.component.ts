@@ -8,25 +8,20 @@ import { IsdUtilityService } from '../services/isd-utility.service';
   styleUrls: ['./line-graph.component.scss'],
 })
 export class LineGraphComponent implements OnInit {
-  _lineData
+  _lineData;
   @Input() set lineData(_lineData) {
     this._lineData = [];
     this.initScales();
     this.initSvg();
-    let dataFound = false;
     if (_lineData !== undefined && _lineData.length > 0) {
       this._lineData = _lineData;
       this._lineData.forEach((d, k) => {
         if (d.length > 0) {
           this.drawLine(d, k);
-          dataFound = true;
         }
       });
     }
     this.drawAxis();
-    if (dataFound === false && _lineData.length === 0) {
-      this.utilityService.toastFunction('Data not found for this selection');
-    }
   }
 
   private w = 600;
@@ -51,7 +46,7 @@ export class LineGraphComponent implements OnInit {
 
   private colors = ['#00D7D2', '#313c53', '#FFC400'];
 
-  constructor(private container: ElementRef, private utilityService: IsdUtilityService) {
+  constructor(private container: ElementRef) {
 
   }
 

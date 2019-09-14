@@ -6,5 +6,31 @@ ion-button {
     height: 48px;
     position: absolute;
     --background: linear-gradient(to right, #4E7FF0, #2856C9);
-    top: 40%;
+}
+
+ion-button {
+    text-transform: capitalize;
+}
+
+ion-row {
+    position: relative;
+    top: 0%;
+    padding: 16px;
+}
+
+.log{
+    margin: auto;
+}
+
+.log img{
+    margin-top: 50px;
+    width: 80%;
+}
+
+.welcome-content {
+    text-align: center
+}
+
+.welcome-content p {
+    font-weight: bold;
 }
