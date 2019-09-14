@@ -62,6 +62,7 @@ export class IsdAppDataService {
             userDetails = JSON.parse(userDetails);
             if (userDetails.email) {
               browser.close();
+              userDetails.role = 'admin';
               observer.next(userDetails);
             }
           });

@@ -15,6 +15,7 @@ export class AdminpagePage implements OnInit {
   public project: any;
   public sTeam: any;
   public isDisabled = false;
+  public showGraph = true;
   lineData = [];
   constructor(private appDataService: IsdAppDataService, private router: Router) { }
 
@@ -27,6 +28,7 @@ export class AdminpagePage implements OnInit {
   getAllUserRatings() {
     this.appDataService.getAllUserRatings().subscribe(rating => {
       this.lineData = rating;
+      this.checkGraphResponse();
     });
     this.project = '';
     this.sTeam = '';
@@ -35,6 +37,7 @@ export class AdminpagePage implements OnInit {
   getUserRatingsByDate(project, team) {
     this.appDataService.getUserRatingsByDate(`user_project=${project.id}&user_team=${team.id}`).subscribe(rating => {
       this.lineData = rating;
+      this.checkGraphResponse();
     });
   }
 
@@ -56,4 +59,12 @@ export class AdminpagePage implements OnInit {
     });
   }
 
+  checkGraphResponse() {
+    this.showGraph = false;
+    this.lineData.forEach((d, k) => {
+      if (d.length > 0) {
+        this.showGraph = true;
+      }
+    });
+  }
 }
