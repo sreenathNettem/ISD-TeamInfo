@@ -4,6 +4,11 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="primary" (click)="logout()">
+      <ion-button>
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content no-padding>
@@ -19,7 +24,6 @@
             (click)='onChange(data)'>
         </map>
       </ion-col>
-      <!-- <img *ngFor = "let img of imgData; let i=index" [src] = "imgData[imgData.length-i-1].image" height="60px" width="60px" (click) = 'onClick(img.ratingNum)'> -->
     </ion-row>
   </ion-card>
   <ion-card padding>

@@ -21,7 +21,8 @@ export class TeamMemberInfoPage implements OnInit {
   constructor(
     private utilityService: IsdUtilityService,
     private appDataService: IsdAppDataService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) {
     this.userRating.user_rating = IMAGEDATA[0].ratingNum;
     this.defaultImage = IMAGEDATA[0].image;
@@ -48,14 +49,22 @@ export class TeamMemberInfoPage implements OnInit {
   }
 
   saveUserRating() {
-
     this.userRating.user_comment = this.sanitizer.sanitize(SecurityContext.HTML, this.userRating.user_comment);
     this.appDataService.saveUserRating(this.userRating).subscribe(response => {
-      console.log(response, 'response');
+      if (response.status === 'Success') {
+        this.utilityService.toastFunction('Submitted successfully');
+      } else {
+        this.utilityService.toastFunction('Data not updated successfully. Please try again.');
+      }
     });
-    this.utilityService.toastFunction('Submitted successfully');
     this.defaultImage = IMAGEDATA[0].image;
     this.userRating.user_comment = '';
     this.project = '';
+  }
+
+  logout() {
+    this.appDataService.logout().subscribe(result => {
+      this.router.navigate(['/isd-login']);
+    });
   }
 }

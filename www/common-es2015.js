@@ -728,6 +728,163 @@ const openURL = async (url, ev, direction) => {
 
 
 
+/***/ }),
+
+/***/ "./src/app/services/isd-utility.service.ts":
+/*!*************************************************!*\
+  !*** ./src/app/services/isd-utility.service.ts ***!
+  \*************************************************/
+/*! exports provided: IsdUtilityService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IsdUtilityService", function() { return IsdUtilityService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
+
+
+
+
+let IsdUtilityService = class IsdUtilityService {
+    constructor(router, loaderController, actionSheetController, activatedRoute, alertController, toastController) {
+        this.router = router;
+        this.loaderController = loaderController;
+        this.actionSheetController = actionSheetController;
+        this.activatedRoute = activatedRoute;
+        this.alertController = alertController;
+        this.toastController = toastController;
+    }
+    /** Loader controller util service starts here */
+    // /**
+    //    * Present Loader with message on screen
+    //    * @param loaderMessage - loader message
+    //    * @returns [LoadingController] - Controller for handling loader
+    //    */
+    showLoader(loaderMessage = '') {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            this.loaderElement = yield this.loaderController.create({
+                message: loaderMessage,
+                spinner: 'crescent',
+                backdropDismiss: true
+            });
+            const loader = yield this.loaderController.getTop();
+            yield this.loaderElement.present();
+            setTimeout(() => {
+                this.hideLoader();
+            }, 5000);
+        });
+    }
+    /**
+     * Hide loader
+     * @param loader - LoadingController
+     */
+    hideLoader() {
+        this.loaderController.dismiss(this.loaderElement);
+    }
+    getAllLoaders() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const loader = yield this.loaderController.getTop();
+            return loader;
+        });
+    }
+    /** Loader controller util service ends here */
+    priceConversion(value) {
+        if (value !== undefined && value !== null) {
+            return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+        }
+        else {
+            return '';
+        }
+    }
+    /*Action sheet controller util service starts here*/
+    presentActionSheet(data) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const actionSheet = yield this.actionSheetController.create({
+                cssClass: 'alertDanger',
+                header: data.header,
+                buttons: this.createButtons(data),
+            });
+            yield actionSheet.present();
+        });
+    }
+    createButtons(data) {
+        const buttons = [];
+        data.data.forEach(page => {
+            const button = {
+                text: page.text,
+                cssClass: 'action-sheet-btn-color',
+                handler: () => {
+                    this.router.navigate([page.route]);
+                }
+            };
+            buttons.push(button);
+        });
+        return buttons;
+    }
+    presentAlert() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const alert = yield this.alertController.create({
+                // header: data.header,
+                // message: data.message,
+                buttons: [
+                    {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: (blah) => {
+                            console.log('Confirm Cancel: blah');
+                        }
+                    }, {
+                        text: 'Delete',
+                        handler: () => {
+                            console.log('Confirm Okay');
+                        }
+                    }
+                ]
+            });
+            yield alert.present();
+        });
+    }
+    /* toast messages */
+    toastFunction(message) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const toast = yield this.toastController.create({
+                message,
+                duration: 2000,
+                position: 'top'
+            });
+            toast.present();
+        });
+    }
+};
+IsdUtilityService.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] }
+];
+IsdUtilityService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
+], IsdUtilityService);
+
+
+
 /***/ })
 
 }]);
