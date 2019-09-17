@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TeamMemberInfoPage } from './team-member-info.page';
-
+import { PipesCountDownPipe } from '../../pipes/pipes-count-down.pipe';
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [TeamMemberInfoPage]
+  declarations: [TeamMemberInfoPage, PipesCountDownPipe]
 })
 export class TeamMemberInfoPageModule {}
