@@ -259,4 +259,15 @@ module.exports = function (app) {
         );
     });
 
+    app.get('/getUserRatingDay/', function (req, res) {
+        appStorage.getUserRatingDay(
+            function (data) {
+                res.send(data);
+            },
+            function (error) {
+                res.send('Error: ' + error);
+            },
+        );
+    });
+
 }

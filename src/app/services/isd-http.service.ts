@@ -29,7 +29,8 @@ export class IsdHttpService {
     saveUserRating: 'saveUserRating',
     getUserRatingsByDate: 'getUserRatingsByDate',
     getAllUserRatings: 'getAllUserRatings',
-    getUserRatingComments: 'getUserRatingComments'
+    getUserRatingComments: 'getUserRatingComments',
+    getUserRatingDay: 'getUserRatingDay'
   };
 
   isNetWorkAvailable = new BehaviorSubject(true);

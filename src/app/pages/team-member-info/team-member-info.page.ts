@@ -26,6 +26,7 @@ export class TeamMemberInfoPage implements OnInit {
   public isDisabled = false;
   public isAdmin = true;
   public currentTabGraph;
+  public userDayRatings = [];
 
   constructor(
     private utilityService: IsdUtilityService,
@@ -125,6 +126,9 @@ export class TeamMemberInfoPage implements OnInit {
     });
     this.appDataService.getUserRatingComments().subscribe(comments => {
       this.userComments = comments;
+    });
+    this.appDataService.getUserRatingDay().subscribe(dayRatings => {
+      this.userDayRatings = dayRatings;
     });
     this.project = '';
     this.sTeam = '';

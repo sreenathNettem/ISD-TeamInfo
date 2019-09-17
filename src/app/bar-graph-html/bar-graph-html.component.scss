@@ -17,11 +17,14 @@
     .title {
         color: inherit;
         margin-top: -40px;
+        position: absolute;
     }
 
     .value {
         color: inherit;
         margin-left: -40px;
+        margin-top: -25px;
         font-size: 15px;
+        position: absolute;
     }
 }
