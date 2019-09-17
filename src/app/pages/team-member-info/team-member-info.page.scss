@@ -30,7 +30,13 @@ ion-button {
     display: flex;
     justify-content: center;
     img {
-        width: 275px!important;
-        height: 180px!important;
+        width: 275px !important;
+        height: 180px !important;
     }
+}
+
+.no-ellipsis {
+    overflow: visible !important;
+    text-overflow: unset !important;
+    white-space: normal !important;
 }

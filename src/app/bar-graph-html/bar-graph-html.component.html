@@ -1,0 +1,7 @@
+<div class="graph-container">
+  <div class="progress-outer" *ngFor="let barData of barChartData">
+    <div class="progress-inner" [ngStyle]="getBarStyle(barData)" >
+      &nbsp;<div class="title">{{barData.title}}</div> <div class="value">{{barData.value}}</div>
+    </div>
+  </div>
+</div>

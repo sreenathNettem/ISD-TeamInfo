@@ -248,4 +248,15 @@ module.exports = function (app) {
         );
     });
 
+    app.get('/getUserRatingComments/', function (req, res) {
+        appStorage.getUserRatingComments(
+            function (data) {
+                res.send(data);
+            },
+            function (error) {
+                res.send('Error: ' + error);
+            },
+        );
+    });
+
 }

@@ -10,54 +10,132 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment (ionChange)="segmentChanged($event)" mode="md">
+      <ion-segment-button checked value="Personal" mode="md">
+        <ion-label>Personal</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Team" mode="md">
+        <ion-label>Team</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 <ion-content no-padding>
-  <ion-row class="ion-margin-top ion-margin-bottom">
-    <ion-col size="12" text-center>How do you feel about?</ion-col>
-  </ion-row>
-  <ion-card>
-    <ion-row>
-      <ion-col text-center class="cst_wh">
-        <img [src]="defaultImage" alt="Workplace" usemap="#workmap">
-        <map name="workmap">
-          <area shape="rect" *ngFor="let data of imgData" [coords]="data.coordinate" alt="not good"
-            (click)='onChange(data)'>
-        </map>
-      </ion-col>
+  <ng-container *ngIf="currentTab === 'Personal'">
+    <ion-row class="ion-margin-top ion-margin-bottom">
+      <ion-col size="12" text-center>How do you feel about?</ion-col>
     </ion-row>
-  </ion-card>
-  <ion-card padding>
-    <!-- <ion-row>
-      <ion-col>{{'24205822.012345670' | pipesCountDown}}</ion-col>
-    </ion-row> -->
-    <ion-row>
-      <ion-col size="6">
-        <ion-item>
-          <ion-label>Projects</ion-label>
-          <ion-select placeholder="Projects" (ionChange)="setTeamValues(project)" [(ngModel)]="project">
-            <ion-select-option [value]="project" *ngFor="let project of projects">{{project.name}} </ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-      <ion-col size="6" *ngIf="project">
-        <ion-item>
-          <ion-label>Teams</ion-label>
-          <ion-select placeholder="Teams" (ionChange)="teamId(sTeam)" [(ngModel)]="sTeam">
-            <ion-select-option [value]="sTeam" *ngFor="let sTeam of selectedTeams">{{sTeam.name}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
+    <ion-card padding>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label>Stream</ion-label>
+            <ion-select placeholder="Stream" (ionChange)="setTeamValues(project)" [(ngModel)]="project">
+              <ion-select-option [value]="project" *ngFor="let project of projects">{{project.name}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" *ngIf="project">
+          <ion-item>
+            <ion-label>Squad</ion-label>
+            <ion-select placeholder="Squad" (ionChange)="teamId(sTeam)" [(ngModel)]="sTeam">
+              <ion-select-option [value]="sTeam" *ngFor="let sTeam of selectedTeams">{{sTeam.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='12' text-center class="cst_wh">
+          <img [src]="defaultImage" alt="Workplace" usemap="#workmap">
+          <map name="workmap">
+            <area shape="rect" *ngFor="let data of imgData" [coords]="data.coordinate" alt="not good"
+              (click)='onChange(data)'>
+          </map>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p class="no-margin">Comments</p>
+          <ion-textarea placeholder="Enter your comments.." rows="2" [(ngModel)]="userRating.user_comment">
+          </ion-textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="full" [disabled]="!project || !sTeam" (click)="saveUserRating()">Submit</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ng-container>
+  <ng-container *ngIf="currentTab === 'Team'">
+    <ion-row class="ion-margin-top ion-margin-bottom">
+      <ion-col size="12" text-center>Mood Marbles - Daily</ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-        <p>Comments</p>
-        <ion-textarea placeholder="Enter your comments.." rows="4" [(ngModel)]="userRating.user_comment"></ion-textarea>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button expand="full" [disabled]="!project || !sTeam" (click)="saveUserRating()">Submit</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-card>
+    <ion-card padding *ngIf="isAdmin">
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Stream</ion-label>
+            <ion-select placeholder="Stream" (ionChange)="setTeamValues(project)" [(ngModel)]="project">
+              <ion-select-option [value]="project" *ngFor="let project of projects">{{project.name}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" *ngIf="project">
+          <ion-item>
+            <ion-label>Squad</ion-label>
+            <ion-select placeholder="Squad" (ionChange)="setButtonStatus()" [(ngModel)]="sTeam">
+              <ion-select-option [value]="sTeam" *ngFor="let sTeam of selectedTeams">{{sTeam.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="small" [disabled]="!isDisabled" (click)="getUserRatingsByDate(project, sTeam)">Filter
+          </ion-button>
+          <ion-button expand="small" [disabled]="!isDisabled" (click)="reset()">Reset</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    <ion-card no-padding>
+      <ion-segment mode="md" (ionChange)="segmentChangedGraphs($event)">
+        <ion-segment-button checked value="Today" mode="md">
+          <ion-label>Today</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Weekly" mode="md">
+          <ion-label>Weekly</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <ng-container *ngIf="currentTabGraph === 'Today'">
+        <bar-graph-html></bar-graph-html>
+      </ng-container>
+      <ng-container *ngIf="currentTabGraph === 'Weekly'">
+        <ng-container *ngIf="showGraph">
+          <app-line-graph [lineData]="lineGraphData"></app-line-graph>
+        </ng-container>
+        <ng-container *ngIf="!showGraph">
+          <p class="no-data-available">Data not available for this selection</p>
+        </ng-container>
+      </ng-container>
+    </ion-card>
+    <ion-card no-padding *ngIf="isAdmin">
+      <ion-item lines="full" *ngFor="let comment of userComments">
+        <ion-avatar slot="start">
+          <img src="./assets/icon/moods/mood{{comment['USER_RATING']}}.png">
+        </ion-avatar>
+        <ion-label class="ion-text-wrap">
+          {{comment['USER_COMMENT']}}
+        </ion-label>
+        <span slot="end">
+          {{'24205822.012345670' | pipesCountDown}}
+        </span>
+      </ion-item>
+    </ion-card>
+  </ng-container>
 </ion-content>

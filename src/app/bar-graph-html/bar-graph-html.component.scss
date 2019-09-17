@@ -1,0 +1,27 @@
+.graph-container {
+    width: 85%;
+    margin: 15% 5% 10% 10%;
+}
+
+.progress-outer {
+    width: 95%;
+    margin: 30px 0px 40px 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+}
+
+.progress-inner {
+    height: 6px;
+
+    .title {
+        color: inherit;
+        margin-top: -40px;
+    }
+
+    .value {
+        color: inherit;
+        margin-left: -40px;
+        font-size: 15px;
+    }
+}

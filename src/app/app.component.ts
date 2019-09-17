@@ -29,15 +29,15 @@ export class AppComponent {
       this.appDataService.isLoggedIn().subscribe(result => {
         if (result.isLoggedIn) {
           if (result.userDetails.role === 'admin') {
-            this.router.navigate(['/isd-landing']);
+            this.router.navigate(['/team-member-info']);
           } else {
-          this.router.navigate(['/team-member-info']);
+            this.router.navigate(['/team-member-info']);
           }
         } else {
           this.router.navigate(['/isd-login']);
         }
         this.splashScreen.hide();
       });
-  });
+    });
   }
 }
