@@ -73,7 +73,7 @@
     <ion-row class="ion-margin-top ion-margin-bottom">
       <ion-col size="12" text-center>Mood Marbles - Daily</ion-col>
     </ion-row>
-    <ion-card padding *ngIf="isAdmin">
+    <!-- <ion-card padding *ngIf="isAdmin">
       <ion-row>
         <ion-col size="12">
           <ion-item>
@@ -102,7 +102,7 @@
           <ion-button expand="small" [disabled]="!isDisabled" (click)="reset()">Reset</ion-button>
         </ion-col>
       </ion-row>
-    </ion-card>
+    </ion-card> -->
     <ion-card no-padding>
       <ion-segment mode="md" (ionChange)="segmentChangedGraphs($event)">
         <ion-segment-button checked value="Today" mode="md">
@@ -113,7 +113,7 @@
         </ion-segment-button>
       </ion-segment>
       <ng-container *ngIf="currentTabGraph === 'Today'">
-        <bar-graph-html></bar-graph-html>
+        <bar-graph-html [barChartData]="userDayRatings"></bar-graph-html>
       </ng-container>
       <ng-container *ngIf="currentTabGraph === 'Weekly'">
         <ng-container *ngIf="showGraph">
@@ -133,7 +133,7 @@
           {{comment['USER_COMMENT']}}
         </ion-label>
         <span slot="end">
-          {{'24205822.012345670' | pipesCountDown}}
+          {{comment['TIMEDIFFERENCE'] | pipesCountDown}}
         </span>
       </ion-item>
     </ion-card>
