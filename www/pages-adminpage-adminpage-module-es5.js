@@ -29143,7 +29143,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"chart-container\">\r\n</div>"
+module.exports = "<div class=\"chart-container\">\n</div>"
 
 /***/ }),
 
@@ -29154,7 +29154,7 @@ module.exports = "<div class=\"chart-container\">\r\n</div>"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar class=\"gradient-background\">\r\n    <ion-title class=\"ion-text-center\">SMS Mood Marbles</ion-title>\r\n    <ion-buttons slot=\"start\">\r\n      <ion-back-button></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-buttons slot=\"primary\" (click)=\"logout()\">\r\n      <ion-button>\r\n        <ion-icon slot=\"icon-only\" name=\"log-out\"></ion-icon>\r\n      </ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content>\r\n  <ion-card padding>\r\n    <ion-row>\r\n      <ion-col size=\"12\">\r\n        <ion-item>\r\n          <ion-label>Projects</ion-label>\r\n          <ion-select placeholder=\"Projects\" (ionChange)=\"setTeamValues(project)\" [(ngModel)]=\"project\">\r\n            <ion-select-option [value]=\"project\" *ngFor=\"let project of projects\">{{project.name}} </ion-select-option>\r\n          </ion-select>\r\n        </ion-item>\r\n      </ion-col>\r\n    </ion-row>\r\n    <ion-row>\r\n      <ion-col size=\"12\" *ngIf=\"project\">\r\n        <ion-item>\r\n          <ion-label>Teams</ion-label>\r\n          <ion-select placeholder=\"Teams\" (ionChange)=\"setButtonStatus()\" [(ngModel)]=\"sTeam\">\r\n            <ion-select-option [value]=\"sTeam\" *ngFor=\"let sTeam of selectedTeams\">{{sTeam.name}}</ion-select-option>\r\n          </ion-select>\r\n        </ion-item>\r\n      </ion-col>\r\n    </ion-row>\r\n    <ion-row>\r\n      <ion-col>\r\n        <ion-button expand=\"small\" [disabled]=\"!isDisabled\" (click)=\"getUserRatingsByDate(project, sTeam)\">Filter</ion-button>\r\n        <ion-button expand=\"small\" [disabled]=\"!isDisabled\" (click)=\"this.getAllUserRatings()\">Reset</ion-button>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-card>\r\n  <ion-card class=\"welcome-card\">\r\n    <ion-card-header>\r\n      <ion-card-title>\r\n        Mood Marbles - Daily\r\n      </ion-card-title>\r\n    </ion-card-header>\r\n    <ion-card-content>\r\n      <app-line-graph [lineData]=\"lineData\"></app-line-graph>\r\n    </ion-card-content>\r\n  </ion-card>\r\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar class=\"gradient-background\">\n    <ion-title class=\"ion-text-center\">SMS Mood Marbles</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-buttons slot=\"primary\" (click)=\"logout()\">\n      <ion-button>\n        <ion-icon slot=\"icon-only\" name=\"log-out\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-card padding>\n    <ion-row>\n      <ion-col size=\"12\">\n        <ion-item>\n          <ion-label>Projects</ion-label>\n          <ion-select placeholder=\"Projects\" (ionChange)=\"setTeamValues(project)\" [(ngModel)]=\"project\">\n            <ion-select-option [value]=\"project\" *ngFor=\"let project of projects\">{{project.name}} </ion-select-option>\n          </ion-select>\n        </ion-item>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col size=\"12\" *ngIf=\"project\">\n        <ion-item>\n          <ion-label>Teams</ion-label>\n          <ion-select placeholder=\"Teams\" (ionChange)=\"setButtonStatus()\" [(ngModel)]=\"sTeam\">\n            <ion-select-option [value]=\"sTeam\" *ngFor=\"let sTeam of selectedTeams\">{{sTeam.name}}</ion-select-option>\n          </ion-select>\n        </ion-item>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <ion-button expand=\"small\" [disabled]=\"!isDisabled\" (click)=\"getUserRatingsByDate(project, sTeam)\">Filter\n        </ion-button>\n        <ion-button expand=\"small\" [disabled]=\"!isDisabled\" (click)=\"this.getAllUserRatings()\">Reset</ion-button>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n  <ion-card class=\"welcome-card\">\n    <ng-container *ngIf=\"showGraph\">\n      <ion-card-header>\n        <ion-card-title>\n          Mood Marbles - Daily\n        </ion-card-title>\n      </ion-card-header>\n      <ion-card-content>\n        <app-line-graph [lineData]=\"lineData\"></app-line-graph>\n      </ion-card-content>\n    </ng-container>\n    <ng-container *ngIf=\"!showGraph\">\n      <p class=\"no-data-available\">Data not available for this selection</p>\n    </ng-container>\n  </ion-card>\n</ion-content>"
 
 /***/ }),
 
@@ -29182,15 +29182,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! d3 */ "./node_modules/d3/index.js");
-/* harmony import */ var _services_isd_utility_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/isd-utility.service */ "./src/app/services/isd-utility.service.ts");
-
 
 
 
 var LineGraphComponent = /** @class */ (function () {
-    function LineGraphComponent(container, utilityService) {
+    function LineGraphComponent(container) {
         this.container = container;
-        this.utilityService = utilityService;
         this.w = 600;
         this.h = 400;
         this.divH = 375;
@@ -29205,20 +29202,15 @@ var LineGraphComponent = /** @class */ (function () {
             this._lineData = [];
             this.initScales();
             this.initSvg();
-            var dataFound = false;
             if (_lineData !== undefined && _lineData.length > 0) {
                 this._lineData = _lineData;
                 this._lineData.forEach(function (d, k) {
                     if (d.length > 0) {
                         _this.drawLine(d, k);
-                        dataFound = true;
                     }
                 });
             }
             this.drawAxis();
-            if (dataFound === false && _lineData.length === 0) {
-                this.utilityService.toastFunction('Data not found for this selection');
-            }
         },
         enumerable: true,
         configurable: true
@@ -29286,8 +29278,7 @@ var LineGraphComponent = /** @class */ (function () {
             .duration(1000);
     };
     LineGraphComponent.ctorParameters = function () { return [
-        { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] },
-        { type: _services_isd_utility_service__WEBPACK_IMPORTED_MODULE_3__["IsdUtilityService"] }
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }
     ]; };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -29300,7 +29291,7 @@ var LineGraphComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./line-graph.component.html */ "./node_modules/raw-loader/index.js!./src/app/line-graph/line-graph.component.html"),
             styles: [__webpack_require__(/*! ./line-graph.component.scss */ "./src/app/line-graph/line-graph.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _services_isd_utility_service__WEBPACK_IMPORTED_MODULE_3__["IsdUtilityService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
     ], LineGraphComponent);
     return LineGraphComponent;
 }());
@@ -29369,7 +29360,7 @@ var AdminpagePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-content {\n  --background: #f4f4f4;\n}\n\nion-card {\n  --background: #fff;\n  margin: 10px 10px;\n}\n\nion-select {\n  width: 100%;\n  max-width: 100%;\n  padding: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvYWRtaW5wYWdlL0M6XFxVc2Vyc1xcU0hJTFBBRE9ERElQQUxMSVxcRGVza3RvcFxcSVNELVRlYW1JbmZvL3NyY1xcYXBwXFxwYWdlc1xcYWRtaW5wYWdlXFxhZG1pbnBhZ2UucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9hZG1pbnBhZ2UvYWRtaW5wYWdlLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLHFCQUFBO0FDQ0o7O0FEQ0E7RUFDSSxrQkFBQTtFQUNBLGlCQUFBO0FDRUo7O0FERUE7RUFDSSxXQUFBO0VBQ0EsZUFBQTtFQUNBLFVBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2FkbWlucGFnZS9hZG1pbnBhZ2UucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNvbnRlbnQge1xyXG4gICAgLS1iYWNrZ3JvdW5kOiAjZjRmNGY0O1xyXG59XHJcbmlvbi1jYXJke1xyXG4gICAgLS1iYWNrZ3JvdW5kOiAjZmZmO1xyXG4gICAgbWFyZ2luOiAxMHB4IDEwcHg7XHJcbn1cclxuXHJcblxyXG5pb24tc2VsZWN0IHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgbWF4LXdpZHRoOiAxMDAlO1xyXG4gICAgcGFkZGluZzogMDtcclxufSIsImlvbi1jb250ZW50IHtcbiAgLS1iYWNrZ3JvdW5kOiAjZjRmNGY0O1xufVxuXG5pb24tY2FyZCB7XG4gIC0tYmFja2dyb3VuZDogI2ZmZjtcbiAgbWFyZ2luOiAxMHB4IDEwcHg7XG59XG5cbmlvbi1zZWxlY3Qge1xuICB3aWR0aDogMTAwJTtcbiAgbWF4LXdpZHRoOiAxMDAlO1xuICBwYWRkaW5nOiAwO1xufSJdfQ== */"
+module.exports = "ion-content {\n  --background: #f4f4f4;\n}\n\nion-card {\n  --background: #fff;\n  margin: 10px 10px;\n}\n\nion-select {\n  width: 100%;\n  max-width: 100%;\n  padding: 0;\n}\n\n.no-data-available {\n  font-weight: bold;\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zd2FteS9EZXNrdG9wL0lCTS9tb29kIG1hcmJsZXMvSVNELVRlYW1JbmZvL3NyYy9hcHAvcGFnZXMvYWRtaW5wYWdlL2FkbWlucGFnZS5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL2FkbWlucGFnZS9hZG1pbnBhZ2UucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0kscUJBQUE7QUNDSjs7QURFQTtFQUNJLGtCQUFBO0VBQ0EsaUJBQUE7QUNDSjs7QURHQTtFQUNJLFdBQUE7RUFDQSxlQUFBO0VBQ0EsVUFBQTtBQ0FKOztBREdBO0VBQ0ksaUJBQUE7RUFDQSxrQkFBQTtBQ0FKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvYWRtaW5wYWdlL2FkbWlucGFnZS5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudCB7XG4gICAgLS1iYWNrZ3JvdW5kOiAjZjRmNGY0O1xufVxuXG5pb24tY2FyZCB7XG4gICAgLS1iYWNrZ3JvdW5kOiAjZmZmO1xuICAgIG1hcmdpbjogMTBweCAxMHB4O1xufVxuXG5cbmlvbi1zZWxlY3Qge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIG1heC13aWR0aDogMTAwJTtcbiAgICBwYWRkaW5nOiAwO1xufVxuXG4ubm8tZGF0YS1hdmFpbGFibGUge1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iLCJpb24tY29udGVudCB7XG4gIC0tYmFja2dyb3VuZDogI2Y0ZjRmNDtcbn1cblxuaW9uLWNhcmQge1xuICAtLWJhY2tncm91bmQ6ICNmZmY7XG4gIG1hcmdpbjogMTBweCAxMHB4O1xufVxuXG5pb24tc2VsZWN0IHtcbiAgd2lkdGg6IDEwMCU7XG4gIG1heC13aWR0aDogMTAwJTtcbiAgcGFkZGluZzogMDtcbn1cblxuLm5vLWRhdGEtYXZhaWxhYmxlIHtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -29394,21 +29385,96 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AdminpagePage = /** @class */ (function () {
+    // lineData = [];
     function AdminpagePage(appDataService, router) {
         this.appDataService = appDataService;
         this.router = router;
         this.isDisabled = false;
-        this.lineData = [];
+        this.showGraph = true;
+        this.lineData = [
+            [{
+                    "DATE": '09-09-2019',
+                    "VALUE": 0
+                },
+                {
+                    "DATE": '10-09-2019',
+                    "VALUE": 400
+                },
+                {
+                    "DATE": '11-09-2019',
+                    "VALUE": 250
+                },
+                {
+                    "DATE": '12-09-2019',
+                    "VALUE": 140
+                }
+            ],
+            [
+                {
+                    "DATE": '09-09-2019',
+                    "VALUE": 430
+                },
+                {
+                    "DATE": '10-09-2019',
+                    "VALUE": 370
+                },
+                {
+                    "DATE": '11-09-2019',
+                    "VALUE": 250
+                },
+                {
+                    "DATE": '12-09-2019',
+                    "VALUE": 450
+                }
+            ],
+            [
+                {
+                    "DATE": '09-09-2019',
+                    "VALUE": 130
+                },
+                {
+                    "DATE": '10-09-2019',
+                    "VALUE": 270
+                },
+                {
+                    "DATE": '11-09-2019',
+                    "VALUE": 350
+                },
+                {
+                    "DATE": '12-09-2019',
+                    "VALUE": 450
+                }
+            ],
+            [
+                {
+                    "DATE": '09-09-2019',
+                    "VALUE": 100
+                },
+                {
+                    "DATE": '10-09-2019',
+                    "VALUE": 190
+                },
+                {
+                    "DATE": '11-09-2019',
+                    "VALUE": 200
+                },
+                {
+                    "DATE": '12-09-2019',
+                    "VALUE": 250
+                }
+            ]
+        ];
     }
     AdminpagePage.prototype.ngOnInit = function () {
         this.teams = _constants_app_constants__WEBPACK_IMPORTED_MODULE_3__["TEAMS"];
         this.projects = _constants_app_constants__WEBPACK_IMPORTED_MODULE_3__["PROJECTS"];
-        this.getAllUserRatings();
+        // this.getAllUserRatings();
     };
     AdminpagePage.prototype.getAllUserRatings = function () {
         var _this = this;
         this.appDataService.getAllUserRatings().subscribe(function (rating) {
             _this.lineData = rating;
+            _this.checkGraphResponse();
         });
         this.project = '';
         this.sTeam = '';
@@ -29417,6 +29483,7 @@ var AdminpagePage = /** @class */ (function () {
         var _this = this;
         this.appDataService.getUserRatingsByDate("user_project=" + project.id + "&user_team=" + team.id).subscribe(function (rating) {
             _this.lineData = rating;
+            _this.checkGraphResponse();
         });
     };
     AdminpagePage.prototype.setTeamValues = function (sProject) {
@@ -29435,6 +29502,15 @@ var AdminpagePage = /** @class */ (function () {
         var _this = this;
         this.appDataService.logout().subscribe(function (result) {
             _this.router.navigate(['/isd-login']);
+        });
+    };
+    AdminpagePage.prototype.checkGraphResponse = function () {
+        var _this = this;
+        this.showGraph = false;
+        this.lineData.forEach(function (d, k) {
+            if (d.length > 0) {
+                _this.showGraph = true;
+            }
         });
     };
     AdminpagePage.ctorParameters = function () { return [

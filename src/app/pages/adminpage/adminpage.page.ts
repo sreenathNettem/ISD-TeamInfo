@@ -16,13 +16,156 @@ export class AdminpagePage implements OnInit {
   public sTeam: any;
   public isDisabled = false;
   public showGraph = true;
-  lineData = [];
+  // lineData = [];
   constructor(private appDataService: IsdAppDataService, private router: Router) { }
 
+  lineData = [
+    [{
+      "DATE": '09-09-2019',
+      "VALUE": 0
+    },
+    {
+      "DATE": '10-09-2019',
+      "VALUE": 400
+    },
+    {
+      "DATE": '11-09-2019',
+      "VALUE": 250
+    },
+    {
+      "DATE": '12-09-2019',
+      "VALUE": 140
+    }
+    ],
+    [
+      {
+        "DATE": '09-09-2019',
+        "VALUE": 430
+      },
+      {
+        "DATE": '10-09-2019',
+        "VALUE": 370
+      },
+      {
+        "DATE": '11-09-2019',
+        "VALUE": 250
+      },
+      {
+        "DATE": '12-09-2019',
+        "VALUE": 450
+      }
+    ],
+    [
+      {
+        "DATE": '09-09-2019',
+        "VALUE": 130
+      },
+      {
+        "DATE": '10-09-2019',
+        "VALUE": 270
+      },
+      {
+        "DATE": '11-09-2019',
+        "VALUE": 350
+      },
+      {
+        "DATE": '12-09-2019',
+        "VALUE": 450
+      }
+    ],
+    [
+      {
+        "DATE": '09-09-2019',
+        "VALUE": 100
+      },
+      {
+        "DATE": '10-09-2019',
+        "VALUE": 190
+      },
+      {
+        "DATE": '11-09-2019',
+        "VALUE": 200
+      },
+      {
+        "DATE": '12-09-2019',
+        "VALUE": 250
+      }
+    ]
+  ];
+
+  lineData2 = [
+    [{
+      "DATE": '09-09-2019',
+      "VALUE": 0
+    },
+    {
+      "DATE": '10-09-2019',
+      "VALUE": 400
+    },
+    {
+      "DATE": '11-09-2019',
+      "VALUE": 250
+    },
+    {
+      "DATE": '12-09-2019',
+      "VALUE": 140
+    }
+    ],
+    [
+      {
+        "DATE": '09-09-2019',
+        "VALUE": 430
+      },
+      {
+        "DATE": '10-09-2019',
+        "VALUE": 370
+      },
+      {
+        "DATE": '11-09-2019',
+        "VALUE": 250
+      },
+      {
+        "DATE": '12-09-2019',
+        "VALUE": 450
+      }
+    ],
+    [
+      {
+        "DATE": '09-09-2019',
+        "VALUE": 130
+      },
+      {
+        "DATE": '10-09-2019',
+        "VALUE": 270
+      },
+      {
+        "DATE": '11-09-2019',
+        "VALUE": 350
+      },
+      {
+        "DATE": '12-09-2019',
+        "VALUE": 450
+      }
+    ],
+    [
+      {
+        "DATE": '09-09-2019',
+        "VALUE": 100
+      },
+      {
+        "DATE": '10-09-2019',
+        "VALUE": 190
+      },
+      {
+        "DATE": '11-09-2019',
+        "VALUE": 200
+      }
+    ]
+  ];
   ngOnInit() {
     this.teams = TEAMS;
     this.projects = PROJECTS;
-    this.getAllUserRatings();
+    // this.getAllUserRatings();
   }
 
   getAllUserRatings() {
@@ -32,6 +175,11 @@ export class AdminpagePage implements OnInit {
     });
     this.project = '';
     this.sTeam = '';
+  }
+
+  reset() {
+    // console.log(this.lineData2)
+    // this.lineData = [...this.lineData2];
   }
 
   getUserRatingsByDate(project, team) {

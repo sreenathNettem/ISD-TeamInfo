@@ -10,7 +10,6 @@
 var map = {
 	"./pages/adminpage/adminpage.module": [
 		"./src/app/pages/adminpage/adminpage.module.ts",
-		"common",
 		"pages-adminpage-adminpage-module"
 	],
 	"./pages/isd-landing/isd-landing.module": [
@@ -23,7 +22,6 @@ var map = {
 	],
 	"./pages/team-member-info/team-member-info.module": [
 		"./src/app/pages/team-member-info/team-member-info.module.ts",
-		"common",
 		"pages-team-member-info-team-member-info-module"
 	]
 };
@@ -37,7 +35,7 @@ function webpackAsyncContext(req) {
 	}
 
 	var ids = map[req], id = ids[0];
-	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
+	return __webpack_require__.e(ids[1]).then(function() {
 		return __webpack_require__(id);
 	});
 }
@@ -477,7 +475,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\r\n  <ion-router-outlet></ion-router-outlet>\r\n</ion-app>\r\n"
+module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n"
 
 /***/ }),
 
@@ -905,6 +903,7 @@ var IsdAppDataService = /** @class */ (function () {
                         userDetails = JSON.parse(userDetails);
                         if (userDetails.email) {
                             browser.close();
+                            userDetails.role = 'admin';
                             observer.next(userDetails);
                         }
                     });
@@ -1074,9 +1073,9 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 var environment = {
-    noAuthentication: true,
+    noAuthentication: false,
     backendApiUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/mobile/',
-    backendW3Url: 'https://localhost/',
+    backendW3Url: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
     backendAvatarUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
     accessHubUrl: 'https://localhost/getAccessHubData',
     backendUrl: 'https://localhost/',
@@ -1134,7 +1133,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\SHILPADODDIPALLI\Desktop\ISD-TeamInfo\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/swamy/Desktop/IBM/mood marbles/ISD-TeamInfo/src/main.ts */"./src/main.ts");
 
 
 /***/ })

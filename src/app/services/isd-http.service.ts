@@ -28,7 +28,8 @@ export class IsdHttpService {
     getProfile: 'getUserPicture',
     saveUserRating: 'saveUserRating',
     getUserRatingsByDate: 'getUserRatingsByDate',
-    getAllUserRatings: 'getAllUserRatings'
+    getAllUserRatings: 'getAllUserRatings',
+    getUserRatingComments: 'getUserRatingComments'
   };
 
   isNetWorkAvailable = new BehaviorSubject(true);

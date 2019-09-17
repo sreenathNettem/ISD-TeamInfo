@@ -30,6 +30,7 @@
     --background: linear-gradient(to right, #4E7FF0, #2856C9);
     --color: #fff;
 }
+
 .trend-type {
     fill: grey;
     font-family: sans-serif;
@@ -57,24 +58,25 @@
 }
 
 .line0 {
-    stroke: aquamarine !important;
+    stroke: rgb(218, 6, 6) !important;
 }
 
 .line1 {
-    stroke: rgb(255, 253, 127) !important;
+    stroke: rgb(226, 126, 12) !important;
 }
 
 .line2 {
-    stroke: rgb(150, 127, 255) !important;
+    stroke: rgb(247, 223, 6) !important;
 }
 
 .line3 {
-    stroke: rgb(151, 201, 184) !important;
+    stroke: rgb(116, 228, 51) !important;
 }
 
 .line4 {
-    stroke: rgb(206, 161, 13) !important;
+    stroke: rgb(4, 68, 4) !important;
 }
+
 ion-content {
     --background: #f4f4f4;
-    }
+}

@@ -24,7 +24,7 @@ export class LineGraphComponent implements OnInit {
     this.drawAxis();
   }
 
-  private w = 600;
+  private w = 650;
   private h = 400;
   private divH = 375;
   private halfLength: number;
@@ -118,7 +118,7 @@ export class LineGraphComponent implements OnInit {
       const maxValueRecord = linedata.forEach((d: any) => {
         maxValue = d.VALUE > maxValue ? d.VALUE : maxValue;
       });
-      this.y0.domain([0, maxValue + 30]);
+      this.y0.domain([0, maxValue + 10]);
 
     }
 

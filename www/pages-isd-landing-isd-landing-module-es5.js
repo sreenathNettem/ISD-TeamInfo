@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content padding>\r\n  <ion-row>\r\n    <ion-col text-center>\r\n      <img src=\"./assets/logo.png\" />\r\n      <p class=\"bold\">Welcome to SMS Mood Marbles</p>\r\n    </ion-col>\r\n  </ion-row>\r\n  <ion-row>\r\n    <ion-col>\r\n      <ion-button type=\"submit\" expand=\"block\" (click)='adminpage()'>Admin</ion-button>\r\n    </ion-col>\r\n    <ion-col>\r\n      <ion-button expand=\"block\" (click)='teamMemberInfoPage()'>Team Member</ion-button>\r\n    </ion-col>\r\n  </ion-row>\r\n\r\n</ion-content>"
+module.exports = "<ion-content padding>\n  <ion-row>\n    <ion-col text-center>\n      <img src=\"./assets/logo.png\" />\n    </ion-col>\n  </ion-row>\n  <!-- <ion-row class=\"welcome-content\">\n    <ion-col>\n      <p>Welcome to SMS Mood Marbles</p>\n    </ion-col>\n  </ion-row> -->\n  <ion-row>\n    <ion-col>\n      <ion-button type=\"submit\" expand=\"block\" (click)='adminpage()'>Admin</ion-button>\n    </ion-col>\n    <ion-col>\n      <ion-button expand=\"block\" (click)='teamMemberInfoPage()'>Team Member</ion-button>\n    </ion-col>\n  </ion-row>\n\n</ion-content>"
 
 /***/ }),
 
@@ -69,7 +69,7 @@ var IsdLandingPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-button {\n  text-transform: capitalize;\n}\n\n.bold {\n  font-weight: bold;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvaXNkLWxhbmRpbmcvQzpcXFVzZXJzXFxTSElMUEFET0RESVBBTExJXFxEZXNrdG9wXFxJU0QtVGVhbUluZm8vc3JjXFxhcHBcXHBhZ2VzXFxpc2QtbGFuZGluZ1xcaXNkLWxhbmRpbmcucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9pc2QtbGFuZGluZy9pc2QtbGFuZGluZy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSwwQkFBQTtBQ0NKOztBREVBO0VBQ0ksaUJBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2lzZC1sYW5kaW5nL2lzZC1sYW5kaW5nLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1idXR0b24ge1xyXG4gICAgdGV4dC10cmFuc2Zvcm06IGNhcGl0YWxpemU7XHJcbn1cclxuXHJcbi5ib2xkIHtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG59IiwiaW9uLWJ1dHRvbiB7XG4gIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xufVxuXG4uYm9sZCB7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xufSJdfQ== */"
+module.exports = "ion-button {\n  text-transform: capitalize;\n}\n\n.bold {\n  font-weight: bold;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zd2FteS9EZXNrdG9wL0lCTS9tb29kIG1hcmJsZXMvSVNELVRlYW1JbmZvL3NyYy9hcHAvcGFnZXMvaXNkLWxhbmRpbmcvaXNkLWxhbmRpbmcucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9pc2QtbGFuZGluZy9pc2QtbGFuZGluZy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSwwQkFBQTtBQ0NKOztBREVBO0VBQ0ksaUJBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2lzZC1sYW5kaW5nL2lzZC1sYW5kaW5nLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1idXR0b24ge1xuICAgIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xufVxuXG4uYm9sZCB7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59IiwiaW9uLWJ1dHRvbiB7XG4gIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xufVxuXG4uYm9sZCB7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xufSJdfQ== */"
 
 /***/ }),
 

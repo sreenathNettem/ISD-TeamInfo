@@ -118,4 +118,8 @@ export class IsdAppDataService {
     return this.httpService.fetchData(`${this.httpService.backendUrl}${this.httpService.apiUrls.getAllUserRatings}`);
   }
 
+  getUserRatingComments() {
+    return this.httpService.fetchData(`${this.httpService.backendUrl}${this.httpService.apiUrls.getUserRatingComments}`);
+  }
+
 }

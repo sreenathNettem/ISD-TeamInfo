@@ -13,8 +13,8 @@ var GET_USER_RATINGS_QUERY = "Select * from " + APP_DB + ".MM_USER_RATING";
 var ADD_USER_RATING_QUERY = "Insert into " + APP_DB + ".MM_USER_RATING (USER_ID,USER_RATING,USER_PROJECT,USER_TEAM,USER_COMMENT) values (?,?,?,?,?)";
 var GET_USER_RATINGS_BY_DATE_QUERY = "Select USER_RATING, count(USER_PROJECT) as value, USER_RATED_TIMESTAMP as date from " + APP_DB + ".MM_USER_RATING where USER_PROJECT = ? and USER_TEAM = ? and USER_RATED_TIMESTAMP between ? and ? group by USER_RATING, USER_RATED_TIMESTAMP";
 var GET_ALL_USER_RATINGS_QUERY = "Select USER_RATING, count(USER_PROJECT) as value, USER_RATED_TIMESTAMP as date from " + APP_DB + ".MM_USER_RATING where USER_RATED_TIMESTAMP between ? and ? group by USER_RATING, USER_RATED_TIMESTAMP";
-
-//DASH DB Settings and initialization
+var GET_USER_RATING_COMMENTS_QUERY = "Select USER_ID,USER_RATING,USER_PROJECT,USER_TEAM,USER_COMMENT, USER_RATED_TIMESTAMP, USER_RATED_TIME, ((SELECT current timestamp FROM sysibm.sysdummy1)-USER_RATED_TIME) as timeDifference from " + APP_DB + ".MM_USER_RATING where USER_RATED_TIMESTAMP between ? and ? order by RATING_ID desc";
+ //DASH DB Settings and initialization
 var Pool = require("ibm_db").Pool,
   pool = new Pool(),
   cn = DSN;
@@ -137,6 +137,28 @@ module.exports = {
       function (err) {
         error("Could not insert row: " + err);
       });
+  }, 
+  getUserRatingComments: function (success, error) {
+
+    var presentDate = new Date;
+    var WFDate = new Date(presentDate.setDate(presentDate.getDate() - presentDate.getDay()));
+    var WLDate = new Date(presentDate.setDate(presentDate.getDate() - presentDate.getDay() + 6));
+    var WFDateFormat = WFDate.getFullYear() + '-' + (WFDate.getMonth() + 1) + '-'  + WFDate.getDate();
+    var WLDateFormat = WLDate.getFullYear() + '-' + (WLDate.getMonth() + 1) + '-'  + WLDate.getDate();
+    var params = [WFDateFormat, WLDateFormat];
+
+    _connectAndExecuteQuery(GET_USER_RATING_COMMENTS_QUERY, params).then(
+      function (data) {
+        if (data !== undefined && data.length > 0) {
+          success(data);
+        } else {
+          success([]);
+        }
+      },
+      function (err) {
+        error("Could not insert row: " + err);
+      });
   }
+  
   
 }
