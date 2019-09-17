@@ -26,31 +26,36 @@ export const TEAMS = [
 
 export const IMAGEDATA = [
   {
-    coordinate: '240, 74, 306, 130',
+    // coordinate: '250, 74, 306, 130',
+    coordinate: '205, 70, 245, 110',
     image: './assets/imgs/5.png',
     ratingNum: '5',
     isSelected: false
   },
   {
-    coordinate: '220, 130, 286, 196',
+    // coordinate: '220, 130, 286, 196',
+    coordinate: '170, 110, 210, 150',
     image: './assets/imgs/4.png',
     ratingNum: '4',
     isSelected: true
   },
   {
-    coordinate: '162, 160, 228, 226',
+    // coordinate: '162, 160, 228, 226',
+    coordinate: '110, 140, 150, 200',
     image: './assets/imgs/3.png',
     ratingNum: '3',
     isSelected: true
   },
   {
-    coordinate: '100, 130, 196, 166',
+    // coordinate: '100, 130, 196, 166',
+    coordinate: '85, 110, 125, 150',
     image: './assets/imgs/2.png',
     ratingNum: '2',
     isSelected: true
   },
   {
-    coordinate: '64, 74, 130, 130',
+    // coordinate: '64, 74, 130, 130',
+    coordinate: '60, 70, 100, 110',
     image: './assets/imgs/1.png',
     ratingNum: '1',
     isSelected: true

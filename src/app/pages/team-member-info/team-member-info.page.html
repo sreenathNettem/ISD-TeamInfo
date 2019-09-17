@@ -47,7 +47,7 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size='12' text-center>
+        <ion-col size='12' text-center class="cst_wh">
           <img [src]="defaultImage" alt="Workplace" usemap="#workmap">
           <map name="workmap">
             <area shape="rect" *ngFor="let data of imgData" [coords]="data.coordinate" alt="not good"
@@ -133,7 +133,7 @@
           {{comment['USER_COMMENT']}}
         </ion-label>
         <span slot="end">
-          12 ms
+          {{'24205822.012345670' | pipesCountDown}}
         </span>
       </ion-item>
     </ion-card>
