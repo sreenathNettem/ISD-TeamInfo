@@ -17,7 +17,7 @@
   </ion-row>
   <ion-card>
     <ion-row>
-      <ion-col size='12' text-center>
+      <ion-col text-center class="cst_wh">
         <img [src]="defaultImage" alt="Workplace" usemap="#workmap">
         <map name="workmap">
           <area shape="rect" *ngFor="let data of imgData" [coords]="data.coordinate" alt="not good"
@@ -27,6 +27,22 @@
     </ion-row>
   </ion-card>
   <ion-card padding>
+    <ion-row align-items-center>
+      <ion-col size="3" align-self-center text-center>
+        <img src="../../../assets/imgs/avtar1.png">
+      </ion-col>
+      <ion-col size="9">
+        <p>dummy data is benign information that does not contain any useful data</p>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center>
+        <ion-col size="3" align-self-center text-center>
+          <img src="../../../assets/imgs/avatar1.png">
+        </ion-col>
+        <ion-col size="9">
+          <p>dummy data is benign information that does not contain any useful data</p>
+        </ion-col>
+      </ion-row>
     <ion-row>
       <ion-col size="6">
         <ion-item>
