@@ -4,7 +4,7 @@
 export const environment = {
   noAuthentication: true,
   backendApiUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/mobile/',
-  backendW3Url: 'https://localhost/',
+  backendW3Url: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
   backendAvatarUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
   accessHubUrl: 'https://localhost/getAccessHubData',
   backendUrl: 'https://localhost/',
