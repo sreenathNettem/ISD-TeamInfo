@@ -122,4 +122,8 @@ export class IsdAppDataService {
     return this.httpService.fetchData(`${this.httpService.backendUrl}${this.httpService.apiUrls.getUserRatingComments}`);
   }
 
+  getUserRatingDay() {
+    return this.httpService.fetchData(`${this.httpService.backendUrl}${this.httpService.apiUrls.getUserRatingDay}`);
+  }
+
 }

@@ -13,7 +13,7 @@ export const environment = {
     uid: 'AVPU08744',
     firstName: 'Sreenath',
     lastName: 'Nettem',
-    role: 'admin' // user
+    role: 'admin' // user //admin
   },
   production: false
 };
