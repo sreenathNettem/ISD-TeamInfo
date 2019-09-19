@@ -1,9 +1,6 @@
 <ion-header>
   <ion-toolbar class="gradient-background">
     <ion-title class="ion-text-center">SMS Mood Marbles</ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
     <ion-buttons slot="primary" (click)="logout()">
       <ion-button>
         <ion-icon slot="icon-only" name="log-out"></ion-icon>
@@ -23,9 +20,9 @@
 </ion-header>
 <ion-content no-padding>
   <ng-container *ngIf="currentTab === 'Personal'">
-    <ion-row class="ion-margin-top ion-margin-bottom cst_bg">
+    <ion-row class="ion-margin-top ion-margin-bottom">
       <ion-col size="12" text-center>
-        <p no-margin>How do you feel about?</p>
+        <p no-margin><strong>How do you feel about?</strong></p>
       </ion-col>
     </ion-row>
     <ion-card padding>
@@ -73,7 +70,7 @@
   </ng-container>
   <ng-container *ngIf="currentTab === 'Team'">
     <ion-row class="ion-margin-top ion-margin-bottom">
-      <ion-col size="12" text-center>Mood Marbles Dashboard</ion-col>
+      <ion-col size="12" text-center><strong>Mood Marbles Dashboard</strong></ion-col>
     </ion-row>
     <!-- <ion-card padding *ngIf="isAdmin">
       <ion-row>

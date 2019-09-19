@@ -10,11 +10,8 @@
 var map = {
 	"./pages/adminpage/adminpage.module": [
 		"./src/app/pages/adminpage/adminpage.module.ts",
+		"default~pages-adminpage-adminpage-module~pages-team-member-info-team-member-info-module",
 		"pages-adminpage-adminpage-module"
-	],
-	"./pages/isd-landing/isd-landing.module": [
-		"./src/app/pages/isd-landing/isd-landing.module.ts",
-		"pages-isd-landing-isd-landing-module"
 	],
 	"./pages/isd-login/isd-login.module": [
 		"./src/app/pages/isd-login/isd-login.module.ts",
@@ -22,6 +19,7 @@ var map = {
 	],
 	"./pages/team-member-info/team-member-info.module": [
 		"./src/app/pages/team-member-info/team-member-info.module.ts",
+		"default~pages-adminpage-adminpage-module~pages-team-member-info-team-member-info-module",
 		"pages-team-member-info-team-member-info-module"
 	]
 };
@@ -35,7 +33,7 @@ function webpackAsyncContext(req) {
 	}
 
 	var ids = map[req], id = ids[0];
-	return __webpack_require__.e(ids[1]).then(function() {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
 		return __webpack_require__(id);
 	});
 }
@@ -500,7 +498,6 @@ var routes = [
     { path: 'isd-login', loadChildren: './pages/isd-login/isd-login.module#IsdLoginPageModule' },
     { path: 'team-member-info', loadChildren: './pages/team-member-info/team-member-info.module#TeamMemberInfoPageModule' },
     { path: 'adminpage', loadChildren: './pages/adminpage/adminpage.module#AdminpagePageModule' },
-    { path: 'isd-landing', loadChildren: './pages/isd-landing/isd-landing.module#IsdLandingPageModule' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -572,7 +569,7 @@ var AppComponent = /** @class */ (function () {
             _this.appDataService.isLoggedIn().subscribe(function (result) {
                 if (result.isLoggedIn) {
                     if (result.userDetails.role === 'admin') {
-                        _this.router.navigate(['/isd-landing']);
+                        _this.router.navigate(['/team-member-info']);
                     }
                     else {
                         _this.router.navigate(['/team-member-info']);
@@ -684,7 +681,7 @@ var AppModule = /** @class */ (function () {
 /*!********************************************!*\
   !*** ./src/app/constants/app.constants.ts ***!
   \********************************************/
-/*! exports provided: APP_CONSTANTS, PROJECTS, TEAMS, IMAGEDATA */
+/*! exports provided: APP_CONSTANTS, PROJECTS, TEAMS, IMAGEDATA, LINE_GRAPH_DATA, USER_COMMENTS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -693,6 +690,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECTS", function() { return PROJECTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TEAMS", function() { return TEAMS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMAGEDATA", function() { return IMAGEDATA; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LINE_GRAPH_DATA", function() { return LINE_GRAPH_DATA; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USER_COMMENTS", function() { return USER_COMMENTS; });
 var APP_CONSTANTS = {
     PAGE_ROUTES: {
         LOGIN: '/isd-login'
@@ -718,35 +717,116 @@ var TEAMS = [
 ];
 var IMAGEDATA = [
     {
-        coordinate: '240, 74, 306, 130',
+        coordinate: '205, 70, 245, 110',
         image: './assets/imgs/5.png',
         ratingNum: '5',
         isSelected: false
     },
     {
-        coordinate: '220, 130, 286, 196',
+        coordinate: '170, 110, 210, 150',
         image: './assets/imgs/4.png',
         ratingNum: '4',
         isSelected: true
     },
     {
-        coordinate: '162, 160, 228, 226',
+        coordinate: '110, 140, 150, 200',
         image: './assets/imgs/3.png',
         ratingNum: '3',
         isSelected: true
     },
     {
-        coordinate: '100, 130, 196, 166',
+        coordinate: '85, 110, 125, 150',
         image: './assets/imgs/2.png',
         ratingNum: '2',
         isSelected: true
     },
     {
-        coordinate: '64, 74, 130, 130',
+        coordinate: '60, 70, 100, 110',
         image: './assets/imgs/1.png',
         ratingNum: '1',
         isSelected: true
     }
+];
+var LINE_GRAPH_DATA = [
+    [{
+            DATE: '09-09-2019',
+            VALUE: 0
+        },
+        {
+            DATE: '10-09-2019',
+            VALUE: 400
+        },
+        {
+            DATE: '11-09-2019',
+            VALUE: 250
+        },
+        {
+            DATE: '12-09-2019',
+            VALUE: 140
+        }
+    ],
+    [
+        {
+            DATE: '09-09-2019',
+            VALUE: 430
+        },
+        {
+            DATE: '10-09-2019',
+            VALUE: 370
+        },
+        {
+            DATE: '11-09-2019',
+            VALUE: 250
+        },
+        {
+            DATE: '12-09-2019',
+            VALUE: 450
+        }
+    ],
+    [
+        {
+            DATE: '09-09-2019',
+            VALUE: 130
+        },
+        {
+            DATE: '10-09-2019',
+            VALUE: 270
+        },
+        {
+            DATE: '11-09-2019',
+            VALUE: 350
+        },
+        {
+            DATE: '12-09-2019',
+            VALUE: 450
+        }
+    ],
+    [
+        {
+            DATE: '09-09-2019',
+            VALUE: 100
+        },
+        {
+            DATE: '10-09-2019',
+            VALUE: 190
+        },
+        {
+            DATE: '11-09-2019',
+            VALUE: 200
+        },
+        {
+            DATE: '12-09-2019',
+            VALUE: 250
+        }
+    ]
+];
+var USER_COMMENTS = [
+    { 'RATING_ID': '9', 'USER_ID': 'srnettem@in.ibm.com', 'USER_RATING': '3', 'USER_PROJECT': '1', 'USER_TEAM': '2', 'USER_COMMENT': '', 'USER_RATED_TIMESTAMP': '2019-09-16', 'USER_RATED_TIME': '2019-09-16 16:58:29.849336' },
+    { 'RATING_ID': '8', 'USER_ID': 'srnettem@in.ibm.com', 'USER_RATING': '4', 'USER_PROJECT': '2', 'USER_TEAM': '5', 'USER_COMMENT': '', 'USER_RATED_TIMESTAMP': '2019-09-16', 'USER_RATED_TIME': '2019-09-16 16:49:02.646380' },
+    { 'RATING_ID': '7', 'USER_ID': 'srnettem@in.ibm.com', 'USER_RATING': '5', 'USER_PROJECT': '1', 'USER_TEAM': '3', 'USER_COMMENT': '', 'USER_RATED_TIMESTAMP': '2019-09-16', 'USER_RATED_TIME': '2019-09-16 16:17:51.832084' },
+    { 'RATING_ID': '6', 'USER_ID': 'srnettem@in.ibm.com', 'USER_RATING': '5', 'USER_PROJECT': '2', 'USER_TEAM': '7', 'USER_COMMENT': '', 'USER_RATED_TIMESTAMP': '2019-09-16', 'USER_RATED_TIME': '2019-09-16 16:17:23.136885' },
+    { 'RATING_ID': '5', 'USER_ID': 'srnettem@in.ibm.com', 'USER_RATING': '1', 'USER_PROJECT': '1', 'USER_TEAM': '1', 'USER_COMMENT': '', 'USER_RATED_TIMESTAMP': '2019-09-16', 'USER_RATED_TIME': '2019-09-16 16:04:59.803209' },
+    { 'RATING_ID': '4', 'USER_ID': 'srnettem@in.ibm.com', 'USER_RATING': '2', 'USER_PROJECT': '1', 'USER_TEAM': '1', 'USER_COMMENT': '', 'USER_RATED_TIMESTAMP': '2019-09-16', 'USER_RATED_TIME': '2019-09-16 16:00:56.893132' }
 ];
 
 
@@ -903,7 +983,6 @@ var IsdAppDataService = /** @class */ (function () {
                         userDetails = JSON.parse(userDetails);
                         if (userDetails.email) {
                             browser.close();
-                            userDetails.role = 'admin';
                             observer.next(userDetails);
                         }
                     });
@@ -954,6 +1033,12 @@ var IsdAppDataService = /** @class */ (function () {
     };
     IsdAppDataService.prototype.getAllUserRatings = function () {
         return this.httpService.fetchData("" + this.httpService.backendUrl + this.httpService.apiUrls.getAllUserRatings);
+    };
+    IsdAppDataService.prototype.getUserRatingComments = function () {
+        return this.httpService.fetchData("" + this.httpService.backendUrl + this.httpService.apiUrls.getUserRatingComments);
+    };
+    IsdAppDataService.prototype.getUserRatingDay = function () {
+        return this.httpService.fetchData("" + this.httpService.backendUrl + this.httpService.apiUrls.getUserRatingDay);
     };
     IsdAppDataService.ctorParameters = function () { return [
         { type: _isd_http_service__WEBPACK_IMPORTED_MODULE_2__["IsdHttpService"] },
@@ -1022,7 +1107,9 @@ var IsdHttpService = /** @class */ (function () {
             getProfile: 'getUserPicture',
             saveUserRating: 'saveUserRating',
             getUserRatingsByDate: 'getUserRatingsByDate',
-            getAllUserRatings: 'getAllUserRatings'
+            getAllUserRatings: 'getAllUserRatings',
+            getUserRatingComments: 'getUserRatingComments',
+            getUserRatingDay: 'getUserRatingDay'
         };
         this.isNetWorkAvailable = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](true);
     }
@@ -1074,17 +1161,17 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     noAuthentication: false,
-    backendApiUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/mobile/',
-    backendW3Url: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
-    backendAvatarUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
-    accessHubUrl: 'https://localhost/getAccessHubData',
-    backendUrl: 'https://localhost/',
+    backendApiUrl: 'https://skylinemobile.epm-sales-development.us-south.containers.appdomain.cloud/mobile/',
+    backendW3Url: 'https://skylinemobile.epm-sales-development.us-south.containers.appdomain.cloud/',
+    backendAvatarUrl: 'https://skylinemobile.epm-sales-development.us-south.containers.appdomain.cloud/',
+    accessHubUrl: 'https://skylinemobile.epm-sales-development.us-south.containers.appdomain.cloud/getAccessHubData',
+    backendUrl: 'https://skylinemobile.epm-sales-development.us-south.containers.appdomain.cloud/',
     userDetails: {
         email: 'srnettem@in.ibm.com',
         uid: 'AVPU08744',
         firstName: 'Sreenath',
         lastName: 'Nettem',
-        role: 'admin'
+        role: 'admin' // user //admin
     },
     production: false
 };

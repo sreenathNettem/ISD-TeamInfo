@@ -9,24 +9,21 @@ import { IsdAppDataService } from 'src/app/services/isd-app-data.service';
 })
 export class IsdLoginPage implements OnInit {
 
+  isLoggedIn = false;
   constructor(private router: Router, private appDataService: IsdAppDataService) { }
 
   ngOnInit() {
   }
- 
+
   login() {
     this.appDataService.isLoggedIn().subscribe(flag => {
+      this.isLoggedIn = true;
       this.appDataService.getAuthentication().subscribe(userDetails => {
         this.appDataService.userDetails = userDetails;
         this.appDataService.setUserDetails(userDetails).subscribe(result => {
           setTimeout(() => {
             window.location.assign(window.location.host);
           }, 2000);
-          if (userDetails.role !== 'admin') {
-            this.router.navigate(['/team-member-info']);
-          } else {
-            this.router.navigate(['/isd-landing']);
-          }
         });
       }, error => {
         setTimeout(() => {

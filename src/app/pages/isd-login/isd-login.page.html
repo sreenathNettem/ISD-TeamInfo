@@ -1,13 +1,17 @@
 <ion-content>
   <ion-row>
-    <ion-col class="logo">
-      <img src="./assets/logo.png" />
+    <ion-col class="logo" style="margin-top: 150px; text-align: center;">
+      <img src="./assets/mm-logo2.png" style="width: 60%" />
     </ion-col>
   </ion-row>
-  <!-- <ion-row class="welcome-content">
-    <ion-col>
-      <p>Welcome to SMS Mood Marbles</p>
+  <ion-row *ngIf="!isLoggedIn">
+    <ion-col style="text-align: center;">
+      <ion-button expand="large" (click)='login()' color="light">Login</ion-button>
     </ion-col>
-  </ion-row> -->
-  <ion-button expand="large" (click)='login()'>Login</ion-button>
+  </ion-row>
+  <ion-row *ngIf="isLoggedIn">
+    <ion-col style="text-align: center;">
+      <a size="large" expand="block">Loading...</a>
+    </ion-col>
+  </ion-row>
 </ion-content>

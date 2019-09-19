@@ -2,7 +2,7 @@ import { Component, OnInit, SecurityContext } from '@angular/core';
 import { Router } from '@angular/router';
 import { IsdAppDataService } from '../../services/isd-app-data.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { TEAMS, PROJECTS, IMAGEDATA, LINE_GRAPH_DATA, USER_COMMENTS } from './../../constants/app.constants';
+import { TEAMS, PROJECTS, IMAGEDATA } from './../../constants/app.constants';
 import { IsdUtilityService } from '../../services/isd-utility.service';
 
 @Component({
@@ -19,8 +19,8 @@ export class TeamMemberInfoPage implements OnInit {
   public defaultImage: any;
   public userRating = { user_rating: '', user_project: '', user_team: '', user_comment: '' };
   public currentTab;
-  public lineGraphData = LINE_GRAPH_DATA;
-  public userComments = USER_COMMENTS;
+  public lineGraphData = [];
+  public userComments = [];
   public showGraph = true;
   public sTeam: any;
   public isDisabled = false;
@@ -74,7 +74,6 @@ export class TeamMemberInfoPage implements OnInit {
         this.utilityService.toastFunction('Data not updated successfully. Please try again.');
       }
     });
-    this.utilityService.toastFunction('Submitted successfully');
     this.defaultImage = IMAGEDATA[0].image;
     this.userRating.user_rating = IMAGEDATA[0].ratingNum;
     this.userRating.user_comment = '';

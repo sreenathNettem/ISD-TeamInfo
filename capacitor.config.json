@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "DemoApp",
+  "appId": "com.ibm.cio.be.sms.moodmarbles",
+  "appName": "SMS Mood Marbles",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www"
