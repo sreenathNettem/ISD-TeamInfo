@@ -71,7 +71,7 @@
   </ng-container>
   <ng-container *ngIf="currentTab === 'Team'">
     <ion-row class="ion-margin-top ion-margin-bottom">
-      <ion-col size="12" text-center>Mood Marbles - Daily</ion-col>
+      <ion-col size="12" text-center>Mood Marbles Dashboard</ion-col>
     </ion-row>
     <!-- <ion-card padding *ngIf="isAdmin">
       <ion-row>
@@ -117,7 +117,7 @@
       </ng-container>
       <ng-container *ngIf="currentTabGraph === 'Weekly'">
         <ng-container >
-          <app-line-graph [lineData]="lineGraphData"></app-line-graph>
+          <app-line-graph [lineData]="lineGraphData" *ngIf="showGraph"></app-line-graph>
           <p class="no-data-available" *ngIf="!showGraph">Data not available.</p>
         </ng-container>
       </ng-container>
