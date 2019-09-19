@@ -76,6 +76,7 @@ export class TeamMemberInfoPage implements OnInit {
     });
     this.utilityService.toastFunction('Submitted successfully');
     this.defaultImage = IMAGEDATA[0].image;
+    this.userRating.user_rating = IMAGEDATA[0].ratingNum;
     this.userRating.user_comment = '';
     this.project = '';
   }
