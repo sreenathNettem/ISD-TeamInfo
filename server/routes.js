@@ -13,29 +13,6 @@ var jwt = require('jsonwebtoken');
 var accessHubApiUrl = config.get('apis.accessHubApiUrl');
 var appStorage = require('./appStorage');
 
-// var CryptoJS = require("crypto-js");
-
-// Decrypt
-// var bytes  = CryptoJS.AES.decrypt('U2FsdGVkX1+rf4wEwB8Es95zsF6qlSPlR6zkTgVIAiksJO7Rgt/yxhHP6fvkW4Ny6IZbxLRaPMUtCFLD/AVXxria45egXjkd5ePH+Yvq98P7VuqxX3wIOmcS9w5ts6QZ', 'myPassword');
-// var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-// console.log(plaintext, 'plaintext');
-
-// import * as CryptoJS from 'crypto-js';
-// // INIT
-// var myString = "firstName=Swamy,email=sputsa10@in.ibm.com&LastName=Swamy Kumar&uid=12121";
-// var myPassword = "myPassword";
-
-// // PROCESS
-// var encrypted = CryptoJS.AES.encrypt(myString, myPassword);
-// var decrypted = CryptoJS.AES.decrypt(encrypted, myPassword);
-// alert(encrypted);
-// alert(decrypted);
-
-// console.log(myString)
-// console.log(encrypted)
-// console.log(decrypted)
-// console.log(decrypted.toString(CryptoJS.enc.Utf8))
-
 if (noAuthentication) {
     console.log('Running with no authentication checking');
 }
@@ -73,12 +50,15 @@ module.exports = function (app) {
     });
 
     app.get('/', ensureAuthenticated, function (req, res, next) {
+
+        var admins = { 'sputsa10@in.ibm.com': true, 'sachaval@in.ibm.com': true, 'deepak.kulkarni@in.ibm.com': true, 'stephenpiper@us.ibm.com': true }; 
+        var userID = req.user.id.toLowerCase();
         const userDetails = {
             email: req.user.id,
             uid: req.user._json.uid,
             firstName: req.user._json.firstName,
             lastName: req.user._json.lastName,
-            role: 'admin'
+            role: admins[userID] ? 'admin' : 'user'
         };
         console.log(req.user);
         res.send(JSON.stringify(userDetails));
