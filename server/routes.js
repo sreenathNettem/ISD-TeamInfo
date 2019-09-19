@@ -51,7 +51,20 @@ module.exports = function (app) {
 
     app.get('/', ensureAuthenticated, function (req, res, next) {
 
-        var admins = { 'sputsa10@in.ibm.com': true, 'sachaval@in.ibm.com': true, 'deepak.kulkarni@in.ibm.com': true, 'stephenpiper@us.ibm.com': true }; 
+        var admins = {
+            'sputsa10@in.ibm.com': true,
+            'sachaval@in.ibm.com': true,
+            'deepak.kulkarni@in.ibm.com': true,
+            'stephenpiper@us.ibm.com': true,
+            'soukamal@in.ibm.com': true,
+            'skoganti@in.ibm.com': true,
+            'tibaidya@in.ibm.com': true,
+            'gaujanik@in.ibm.com': true,
+            'sarojsha@in.ibm.com': true,
+            'rajnikant.thakur@in.ibm.com': true,
+            'saachini@in.ibm.com': true
+        };
+
         var userID = req.user.id.toLowerCase();
         const userDetails = {
             email: req.user.id,
