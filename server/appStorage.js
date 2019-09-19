@@ -168,31 +168,28 @@ module.exports = {
 
     _connectAndExecuteQuery(GET_USER_RATING_DAY_QUERY).then(
       function (data) {
+        var USER_RATING_DAILY = [
+          { title: 'I\'m great', value: 0, mood: 5 },
+          { title: 'I\'m good', value: 0, mood: 4 },
+          { title: 'I\'m okay', value: 0, mood: 3 },
+          { title: 'I\'m not bad', value: 0, mood: 2 },
+          { title: 'I\'m not good', value: 0, mood: 1 },
+        ];
         if (data !== undefined && data.length > 0) {
-
-          var USER_RATING_DAILY = [
-            { title: 'I\'m great', value: 0, mood: 5 },
-            { title: 'I\'m good', value: 0, mood: 4 },
-            { title: 'I\'m okay', value: 0, mood: 3 },
-            { title: 'I\'m not bad', value: 0, mood: 2 },
-            { title: 'I\'m not good', value: 0, mood: 1 },
-          ];
           USER_RATING_DAILY.map(rating => {
-            var found = data.filter(row => row.USER_RATING == rating.mood );
+            var found = data.filter(row => row.USER_RATING == rating.mood);
             if (found[0] != undefined && found[0].COUNT != undefined) {
               rating.value = found[0].COUNT;
             }
           });
           success(USER_RATING_DAILY);
-
         } else {
-          success([]);
+          success(USER_RATING_DAILY);
         }
       },
       function (err) {
         error("Could not insert row: " + err);
       });
   }
-
 
 }

@@ -58,7 +58,7 @@
       <ion-row>
         <ion-col>
           <p class="no-margin">Comments</p>
-          <ion-textarea placeholder="Enter your comments.." rows="2" [(ngModel)]="userRating.user_comment">
+          <ion-textarea placeholder="Enter your comments.." rows="2" maxlength="180" [(ngModel)]="userRating.user_comment">
           </ion-textarea>
         </ion-col>
       </ion-row>
@@ -116,11 +116,9 @@
         <bar-graph-html [barChartData]="userDayRatings"></bar-graph-html>
       </ng-container>
       <ng-container *ngIf="currentTabGraph === 'Weekly'">
-        <ng-container *ngIf="showGraph">
+        <ng-container >
           <app-line-graph [lineData]="lineGraphData"></app-line-graph>
-        </ng-container>
-        <ng-container *ngIf="!showGraph">
-          <p class="no-data-available">Data not available for this selection</p>
+          <p class="no-data-available" *ngIf="!showGraph">Data not available.</p>
         </ng-container>
       </ng-container>
     </ion-card>
