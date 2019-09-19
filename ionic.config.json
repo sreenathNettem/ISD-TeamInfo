@@ -1,5 +1,5 @@
 {
-  "name": "DemoApp",
+  "name": "SMS Mood Marbles",
   "integrations": {
     "cordova": {},
     "capacitor": {}

@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content>\n  <ion-row>\n    <ion-col class=\"logo\">\n      <img src=\"./assets/logo.png\" />\n    </ion-col>\n  </ion-row>\n  <!-- <ion-row class=\"welcome-content\">\n    <ion-col>\n      <p>Welcome to SMS Mood Marbles</p>\n    </ion-col>\n  </ion-row> -->\n  <ion-button expand=\"large\" (click)='login()'>Login</ion-button>\n</ion-content>"
+module.exports = "<ion-content>\n  <ion-row>\n    <ion-col class=\"logo\" style=\"margin-top: 150px; text-align: center;\">\n      <img src=\"./assets/mm-logo2.png\" style=\"width: 60%\" />\n    </ion-col>\n  </ion-row>\n  <ion-row *ngIf=\"!isLoggedIn\">\n    <ion-col style=\"text-align: center;\">\n      <ion-button expand=\"large\" (click)='login()' color=\"light\">Login</ion-button>\n    </ion-col>\n  </ion-row>\n  <ion-row *ngIf=\"isLoggedIn\">\n    <ion-col style=\"text-align: center;\">\n      <a size=\"large\" expand=\"block\">Loading...</a>\n    </ion-col>\n  </ion-row>\n</ion-content>"
 
 /***/ }),
 
@@ -69,7 +69,7 @@ var IsdLoginPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-button {\n  text-transform: capitalize;\n  left: 23;\n  left: 23%;\n  width: 50%;\n  height: 48px;\n  position: absolute;\n  --background: linear-gradient(to right, #4E7FF0, #2856C9);\n}\n\nion-button {\n  text-transform: capitalize;\n}\n\nion-row {\n  position: relative;\n  top: 0%;\n  padding: 16px;\n}\n\n.log {\n  margin: auto;\n}\n\n.log img {\n  margin-top: 50px;\n  width: 80%;\n}\n\n.welcome-content {\n  text-align: center;\n}\n\n.welcome-content p {\n  font-weight: bold;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zd2FteS9EZXNrdG9wL0lCTS9tb29kIG1hcmJsZXMvSVNELVRlYW1JbmZvL3NyYy9hcHAvcGFnZXMvaXNkLWxvZ2luL2lzZC1sb2dpbi5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL2lzZC1sb2dpbi9pc2QtbG9naW4ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksMEJBQUE7RUFDQSxRQUFBO0VBQ0EsU0FBQTtFQUNBLFVBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSx5REFBQTtBQ0NKOztBREVBO0VBQ0ksMEJBQUE7QUNDSjs7QURFQTtFQUNJLGtCQUFBO0VBQ0EsT0FBQTtFQUNBLGFBQUE7QUNDSjs7QURFQTtFQUNJLFlBQUE7QUNDSjs7QURFQTtFQUNJLGdCQUFBO0VBQ0EsVUFBQTtBQ0NKOztBREVBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLGlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9pc2QtbG9naW4vaXNkLWxvZ2luLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1idXR0b24ge1xuICAgIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xuICAgIGxlZnQ6IDIzO1xuICAgIGxlZnQ6IDIzJTtcbiAgICB3aWR0aDogNTAlO1xuICAgIGhlaWdodDogNDhweDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgLS1iYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsICM0RTdGRjAsICMyODU2QzkpO1xufVxuXG5pb24tYnV0dG9uIHtcbiAgICB0ZXh0LXRyYW5zZm9ybTogY2FwaXRhbGl6ZTtcbn1cblxuaW9uLXJvdyB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIHRvcDogMCU7XG4gICAgcGFkZGluZzogMTZweDtcbn1cblxuLmxvZ3tcbiAgICBtYXJnaW46IGF1dG87XG59XG5cbi5sb2cgaW1ne1xuICAgIG1hcmdpbi10b3A6IDUwcHg7XG4gICAgd2lkdGg6IDgwJTtcbn1cblxuLndlbGNvbWUtY29udGVudCB7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyXG59XG5cbi53ZWxjb21lLWNvbnRlbnQgcCB7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59IiwiaW9uLWJ1dHRvbiB7XG4gIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xuICBsZWZ0OiAyMztcbiAgbGVmdDogMjMlO1xuICB3aWR0aDogNTAlO1xuICBoZWlnaHQ6IDQ4cHg7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgLS1iYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsICM0RTdGRjAsICMyODU2QzkpO1xufVxuXG5pb24tYnV0dG9uIHtcbiAgdGV4dC10cmFuc2Zvcm06IGNhcGl0YWxpemU7XG59XG5cbmlvbi1yb3cge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRvcDogMCU7XG4gIHBhZGRpbmc6IDE2cHg7XG59XG5cbi5sb2cge1xuICBtYXJnaW46IGF1dG87XG59XG5cbi5sb2cgaW1nIHtcbiAgbWFyZ2luLXRvcDogNTBweDtcbiAgd2lkdGg6IDgwJTtcbn1cblxuLndlbGNvbWUtY29udGVudCB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLndlbGNvbWUtY29udGVudCBwIHtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59Il19 */"
+module.exports = "ion-content {\n  --background: #12327E;\n}\n\nion-button {\n  text-transform: capitalize;\n  left: 23;\n  left: 23%;\n  width: 50%;\n  height: 48px;\n  position: absolute;\n  --background: linear-gradient(to right, #4E7FF0, #2856C9);\n}\n\nion-button {\n  text-transform: capitalize;\n}\n\nion-row {\n  position: relative;\n  top: 0%;\n  padding: 16px;\n}\n\n/* Login Page */\n\n.log {\n  margin: auto;\n}\n\n.log img {\n  margin-top: 50px;\n  width: 50% !important;\n}\n\n.welcome-content {\n  text-align: center;\n}\n\n.welcome-content p {\n  font-weight: bold;\n}\n\n/* Login Page */\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zd2FteS9EZXNrdG9wL0lCTS9tb29kIG1hcmJsZXMvSVNELVRlYW1JbmZvL3NyYy9hcHAvcGFnZXMvaXNkLWxvZ2luL2lzZC1sb2dpbi5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL2lzZC1sb2dpbi9pc2QtbG9naW4ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0kscUJBQUE7QUNDSjs7QURDQTtFQUNJLDBCQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSxVQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0EseURBQUE7QUNFSjs7QURDQTtFQUNJLDBCQUFBO0FDRUo7O0FEQ0E7RUFDSSxrQkFBQTtFQUNBLE9BQUE7RUFDQSxhQUFBO0FDRUo7O0FEQ0EsZUFBQTs7QUFDQTtFQUNJLFlBQUE7QUNFSjs7QURDQTtFQUNJLGdCQUFBO0VBQ0EscUJBQUE7QUNFSjs7QURDQTtFQUNJLGtCQUFBO0FDRUo7O0FEQ0E7RUFDSSxpQkFBQTtBQ0VKOztBRENBLGVBQUEiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9pc2QtbG9naW4vaXNkLWxvZ2luLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50IHtcbiAgICAtLWJhY2tncm91bmQ6ICMxMjMyN0U7XG59XG5pb24tYnV0dG9uIHtcbiAgICB0ZXh0LXRyYW5zZm9ybTogY2FwaXRhbGl6ZTtcbiAgICBsZWZ0OiAyMztcbiAgICBsZWZ0OiAyMyU7XG4gICAgd2lkdGg6IDUwJTtcbiAgICBoZWlnaHQ6IDQ4cHg7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIC0tYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KHRvIHJpZ2h0LCAjNEU3RkYwLCAjMjg1NkM5KTtcbn1cblxuaW9uLWJ1dHRvbiB7XG4gICAgdGV4dC10cmFuc2Zvcm06IGNhcGl0YWxpemU7XG59XG5cbmlvbi1yb3cge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICB0b3A6IDAlO1xuICAgIHBhZGRpbmc6IDE2cHg7XG59XG5cbi8qIExvZ2luIFBhZ2UgKi9cbi5sb2cge1xuICAgIG1hcmdpbjogYXV0bztcbn1cblxuLmxvZyBpbWcge1xuICAgIG1hcmdpbi10b3A6IDUwcHg7XG4gICAgd2lkdGg6IDUwJSAhaW1wb3J0YW50O1xufVxuXG4ud2VsY29tZS1jb250ZW50IHtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXJcbn1cblxuLndlbGNvbWUtY29udGVudCBwIHtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn1cblxuLyogTG9naW4gUGFnZSAqLyIsImlvbi1jb250ZW50IHtcbiAgLS1iYWNrZ3JvdW5kOiAjMTIzMjdFO1xufVxuXG5pb24tYnV0dG9uIHtcbiAgdGV4dC10cmFuc2Zvcm06IGNhcGl0YWxpemU7XG4gIGxlZnQ6IDIzO1xuICBsZWZ0OiAyMyU7XG4gIHdpZHRoOiA1MCU7XG4gIGhlaWdodDogNDhweDtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICAtLWJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCwgIzRFN0ZGMCwgIzI4NTZDOSk7XG59XG5cbmlvbi1idXR0b24ge1xuICB0ZXh0LXRyYW5zZm9ybTogY2FwaXRhbGl6ZTtcbn1cblxuaW9uLXJvdyB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgdG9wOiAwJTtcbiAgcGFkZGluZzogMTZweDtcbn1cblxuLyogTG9naW4gUGFnZSAqL1xuLmxvZyB7XG4gIG1hcmdpbjogYXV0bztcbn1cblxuLmxvZyBpbWcge1xuICBtYXJnaW4tdG9wOiA1MHB4O1xuICB3aWR0aDogNTAlICFpbXBvcnRhbnQ7XG59XG5cbi53ZWxjb21lLWNvbnRlbnQge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi53ZWxjb21lLWNvbnRlbnQgcCB7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuXG4vKiBMb2dpbiBQYWdlICovIl19 */"
 
 /***/ }),
 
@@ -95,24 +95,20 @@ var IsdLoginPage = /** @class */ (function () {
     function IsdLoginPage(router, appDataService) {
         this.router = router;
         this.appDataService = appDataService;
+        this.isLoggedIn = false;
     }
     IsdLoginPage.prototype.ngOnInit = function () {
     };
     IsdLoginPage.prototype.login = function () {
         var _this = this;
         this.appDataService.isLoggedIn().subscribe(function (flag) {
+            _this.isLoggedIn = true;
             _this.appDataService.getAuthentication().subscribe(function (userDetails) {
                 _this.appDataService.userDetails = userDetails;
                 _this.appDataService.setUserDetails(userDetails).subscribe(function (result) {
                     setTimeout(function () {
                         window.location.assign(window.location.host);
                     }, 2000);
-                    if (userDetails.role !== 'admin') {
-                        _this.router.navigate(['/team-member-info']);
-                    }
-                    else {
-                        _this.router.navigate(['/isd-landing']);
-                    }
                 });
             }, function (error) {
                 setTimeout(function () {

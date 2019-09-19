@@ -2,18 +2,18 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
-  noAuthentication: true,
-  backendApiUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/mobile/',
-  backendW3Url: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
-  backendAvatarUrl: 'https://skyline.epm-sales-development.us-south.containers.appdomain.cloud/',
-  accessHubUrl: 'https://localhost/getAccessHubData',
-  backendUrl: 'https://localhost/',
+  noAuthentication: false,
+  backendApiUrl: 'https://skylinemobile.epm-sales-development.us-south.containers.appdomain.cloud/mobile/',
+  backendW3Url: 'https://skylinemobile.epm-sales-development.us-south.containers.appdomain.cloud/',
+  backendAvatarUrl: 'https://skylinemobile.epm-sales-development.us-south.containers.appdomain.cloud/',
+  accessHubUrl: 'https://skylinemobile.epm-sales-development.us-south.containers.appdomain.cloud/getAccessHubData',
+  backendUrl: 'https://skylinemobile.epm-sales-development.us-south.containers.appdomain.cloud/',
   userDetails: {
-    email: 'srnettem@in.ibm.com',
-    uid: 'AVPU08744',
-    firstName: 'Sreenath',
-    lastName: 'Nettem',
-    role: 'admin' // user //admin
+    email: '',
+    uid: '',
+    firstName: '',
+    lastName: '',
+    role: '' // user //admin
   },
   production: false
 };

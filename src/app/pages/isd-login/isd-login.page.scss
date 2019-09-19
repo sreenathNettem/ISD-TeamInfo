@@ -1,3 +1,6 @@
+ion-content {
+    --background: #12327E;
+}
 ion-button {
     text-transform: capitalize;
     left: 23;
@@ -18,13 +21,14 @@ ion-row {
     padding: 16px;
 }
 
-.log{
+/* Login Page */
+.log {
     margin: auto;
 }
 
-.log img{
+.log img {
     margin-top: 50px;
-    width: 80%;
+    width: 50% !important;
 }
 
 .welcome-content {
@@ -34,3 +38,5 @@ ion-row {
 .welcome-content p {
     font-weight: bold;
 }
+
+/* Login Page */
