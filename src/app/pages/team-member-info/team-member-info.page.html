@@ -2,9 +2,7 @@
   <ion-toolbar class="gradient-background">
     <ion-title class="ion-text-center">SMS Mood Marbles</ion-title>
     <ion-buttons slot="primary" (click)="logout()">
-      <ion-button>
-        <ion-icon slot="icon-only" name="log-out"></ion-icon>
-      </ion-button>
+      <ion-icon slot="icon-only" name="log-out" mode="md"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
@@ -115,7 +113,7 @@
         <bar-graph-html [barChartData]="userDayRatings"></bar-graph-html>
       </ng-container>
       <ng-container *ngIf="currentTabGraph === 'Weekly'">
-        <ng-container >
+        <ng-container>
           <app-line-graph [lineData]="lineGraphData" *ngIf="showGraph"></app-line-graph>
           <p class="no-data-available" *ngIf="!showGraph">Data not available.</p>
         </ng-container>
